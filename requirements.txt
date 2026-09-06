@@ -6,7 +6,7 @@ torch==2.14.0
 open-clip-torch==3.3.0
 faiss-cpu==1.15.0
 imagehash==4.3.2
-rembg==2.0.83
+rembg>=2.0.60
 Pillow==12.3.0
 numpy==2.2.6
 scikit-learn==1.9.0
