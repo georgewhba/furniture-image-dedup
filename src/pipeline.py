@@ -70,9 +70,7 @@ def _discover_images(
     Image.MAX_IMAGE_PIXELS = max_pixels
 
     candidates = sorted(
-        p
-        for p in input_dir.rglob("*")
-        if p.is_file() and p.suffix.lower() in supported_extensions
+        p for p in input_dir.rglob("*") if p.is_file() and p.suffix.lower() in supported_extensions
     )
 
     valid: list[Path] = []
@@ -186,9 +184,7 @@ def run(
         except OSError as exc:
             logger.warning("Cannot read file: %s — %s", path, exc)
 
-    logger.info(
-        "Cache: %d cached, %d new/changed", len(cached_files), len(new_files)
-    )
+    logger.info("Cache: %d cached, %d new/changed", len(cached_files), len(new_files))
 
     # Compute exact hashes for new files
     file_exact_hashes: dict[str, str] = {}
@@ -441,9 +437,7 @@ def run(
     passed_candidates = 0
     rejected_candidates = 0
 
-    for cand in tqdm(
-        embedding_candidates, desc="Color verification", unit="pair"
-    ):
+    for cand in tqdm(embedding_candidates, desc="Color verification", unit="pair"):
         path_a, path_b = cand["pair"]
         similarity = cand["similarity"]
 
@@ -451,9 +445,7 @@ def run(
         img_b = _safe_open_image(Path(path_b))
 
         if img_a is None or img_b is None:
-            logger.warning(
-                "Cannot open image for color check: %s ↔ %s", path_a, path_b
-            )
+            logger.warning("Cannot open image for color check: %s ↔ %s", path_a, path_b)
             rejected_candidates += 1
             continue
 
@@ -491,9 +483,7 @@ def run(
             else:
                 rejected_candidates += 1
         except Exception as exc:
-            logger.warning(
-                "Color verification error: %s ↔ %s — %s", path_a, path_b, exc
-            )
+            logger.warning("Color verification error: %s ↔ %s — %s", path_a, path_b, exc)
             rejected_candidates += 1
         finally:
             img_a.close()

@@ -187,9 +187,7 @@ def write_excel(
 
         # Conditional fill on confidence column
         conf_col_idx = (
-            list(df.columns).index("confidence") + 1
-            if "confidence" in df.columns
-            else None
+            list(df.columns).index("confidence") + 1 if "confidence" in df.columns else None
         )
         if conf_col_idx is not None:
             for row_idx in range(2, len(df) + 2):
@@ -316,15 +314,17 @@ def write_inventory_excel(df: pd.DataFrame, path: Path) -> None:
     """Write the full image inventory to a formatted Excel file."""
     path.parent.mkdir(parents=True, exist_ok=True)
 
-    header_fill = PatternFill(
-        start_color="1F497D", end_color="1F497D", fill_type="solid"
-    )
+    header_fill = PatternFill(start_color="1F497D", end_color="1F497D", fill_type="solid")
     header_font = Font(name="Segoe UI", size=10, bold=True, color="FFFFFF")
     data_font = Font(name="Segoe UI", size=9)
 
     fill_dup = PatternFill(start_color="FFC7CE", end_color="FFC7CE", fill_type="solid")  # soft red
-    fill_master = PatternFill(start_color="C6EFCE", end_color="C6EFCE", fill_type="solid")  # soft green
-    fill_unique = PatternFill(start_color="DDEBF7", end_color="DDEBF7", fill_type="solid")  # soft blue
+    fill_master = PatternFill(
+        start_color="C6EFCE", end_color="C6EFCE", fill_type="solid"
+    )  # soft green
+    fill_unique = PatternFill(
+        start_color="DDEBF7", end_color="DDEBF7", fill_type="solid"
+    )  # soft blue
 
     with pd.ExcelWriter(path, engine="openpyxl") as writer:
         df.to_excel(writer, sheet_name="All_Images_Inventory", index=False)
@@ -395,7 +395,7 @@ def generate_reports(
         Tuple of (duplicates_xlsx, duplicates_csv, inventory_xlsx, inventory_csv).
     """
     base = output_path.with_suffix("")
-    
+
     # 1. Duplicates reports
     dup_xlsx = base.parent / f"{base.name}_filtered_duplicates.xlsx"
     dup_csv = base.parent / f"{base.name}_filtered_duplicates.csv"
@@ -417,9 +417,9 @@ def generate_reports(
     inv_xlsx = base.parent / f"{base.name}_all_images_inventory.xlsx"
     inv_csv = base.parent / f"{base.name}_all_images_inventory.csv"
 
-    all_paths = all_image_paths if all_image_paths is not None else [
-        m for g in groups for m in g.members
-    ]
+    all_paths = (
+        all_image_paths if all_image_paths is not None else [m for g in groups for m in g.members]
+    )
     df_inv = build_inventory_dataframe(all_paths, groups, content_hashes)
 
     write_csv(df_inv, inv_csv)

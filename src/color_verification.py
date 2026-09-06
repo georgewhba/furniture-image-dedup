@@ -282,9 +282,7 @@ def extract_dominant_colors(
 
 def _lab_euclidean(c1: LabColor, c2: LabColor) -> float:
     """Euclidean distance between two colors in Lab space."""
-    return float(
-        np.sqrt((c1.L - c2.L) ** 2 + (c1.a - c2.a) ** 2 + (c1.b - c2.b) ** 2)
-    )
+    return float(np.sqrt((c1.L - c2.L) ** 2 + (c1.a - c2.a) ** 2 + (c1.b - c2.b) ** 2))
 
 
 def compare_palettes(
@@ -361,7 +359,9 @@ def _get_cached_palette(
             if np.sum(alpha > 128) >= min_pixel_count:
                 img = bg_img
             else:
-                logger.debug("Background removal left too few pixels for %s, falling back to original", path)
+                logger.debug(
+                    "Background removal left too few pixels for %s, falling back to original", path
+                )
         except Exception as exc:
             logger.warning("Background removal failed for %s: %s", path, exc)
 
@@ -495,8 +495,6 @@ def verify_color_match(
         palette_a=palette_a,
         palette_b=palette_b,
         reason=(
-            ""
-            if passed
-            else f"Color distance {distance:.2f} > threshold {distance_threshold:.2f}"
+            "" if passed else f"Color distance {distance:.2f} > threshold {distance_threshold:.2f}"
         ),
     )

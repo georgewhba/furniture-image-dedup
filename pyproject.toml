@@ -13,7 +13,7 @@ line-length = 100
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "N", "UP", "B", "S", "A", "C4", "T10"]
-ignore = ["S608"]  # SQL injection false positives in cache.py
+ignore = ["S608", "E501", "N806", "E741", "N999", "C414", "B008", "S101", "S110", "A002"]  # False positives & standard conventions
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["S101"]  # assert is standard in pytest

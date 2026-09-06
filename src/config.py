@@ -102,14 +102,10 @@ def _validate(cfg: Config) -> list[str]:
         errors.append(f"dhash_threshold must be 0–64, got {cfg.dhash_threshold}")
 
     if cfg.embedding_batch_size < 1:
-        errors.append(
-            f"embedding_batch_size must be ≥ 1, got {cfg.embedding_batch_size}"
-        )
+        errors.append(f"embedding_batch_size must be ≥ 1, got {cfg.embedding_batch_size}")
 
     if not 0.0 <= cfg.similarity_threshold <= 1.0:
-        errors.append(
-            f"similarity_threshold must be 0.0–1.0, got {cfg.similarity_threshold}"
-        )
+        errors.append(f"similarity_threshold must be 0.0–1.0, got {cfg.similarity_threshold}")
 
     if cfg.faiss_nlist < 1:
         errors.append(f"faiss_nlist must be ≥ 1, got {cfg.faiss_nlist}")
@@ -122,23 +118,19 @@ def _validate(cfg: Config) -> list[str]:
 
     if cfg.color_space not in _VALID_COLOR_SPACES:
         errors.append(
-            f"color_space must be one of {_VALID_COLOR_SPACES}, "
-            f"got '{cfg.color_space}'"
+            f"color_space must be one of {_VALID_COLOR_SPACES}, " f"got '{cfg.color_space}'"
         )
 
     if cfg.color_distance_threshold < 0:
         errors.append(
-            f"color_distance_threshold must be ≥ 0, "
-            f"got {cfg.color_distance_threshold}"
+            f"color_distance_threshold must be ≥ 0, " f"got {cfg.color_distance_threshold}"
         )
 
     if cfg.max_image_pixels < 1:
         errors.append(f"max_image_pixels must be ≥ 1, got {cfg.max_image_pixels}")
 
     if cfg.log_level.upper() not in _VALID_LOG_LEVELS:
-        errors.append(
-            f"log_level must be one of {_VALID_LOG_LEVELS}, got '{cfg.log_level}'"
-        )
+        errors.append(f"log_level must be one of {_VALID_LOG_LEVELS}, got '{cfg.log_level}'")
 
     return errors
 
@@ -171,9 +163,7 @@ def load_config(path: Path) -> Config:
     # Normalise supported_extensions from list → tuple
     exts = raw.get("supported_extensions")
     if isinstance(exts, list):
-        raw["supported_extensions"] = tuple(
-            e if e.startswith(".") else f".{e}" for e in exts
-        )
+        raw["supported_extensions"] = tuple(e if e.startswith(".") else f".{e}" for e in exts)
 
     # Build the dataclass, ignoring unknown keys gracefully
     known_fields = {f.name for f in Config.__dataclass_fields__.values()}
@@ -187,9 +177,7 @@ def load_config(path: Path) -> Config:
 
     errors = _validate(cfg)
     if errors:
-        raise ValueError(
-            "Invalid configuration:\n" + "\n".join(f"  • {e}" for e in errors)
-        )
+        raise ValueError("Invalid configuration:\n" + "\n".join(f"  • {e}" for e in errors))
 
     logger.info("Configuration loaded from %s", path)
     return cfg

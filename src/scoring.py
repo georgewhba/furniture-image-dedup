@@ -169,9 +169,7 @@ def build_groups(
             curr = G[m.path_a][m.path_b]
             if m.confidence > curr["confidence"]:
                 curr["confidence"] = m.confidence
-            if MATCH_TYPE_RANK.get(m.match_type, 0) > MATCH_TYPE_RANK.get(
-                curr["match_type"], 0
-            ):
+            if MATCH_TYPE_RANK.get(m.match_type, 0) > MATCH_TYPE_RANK.get(curr["match_type"], 0):
                 curr["match_type"] = m.match_type
         else:
             G.add_edge(
@@ -224,9 +222,7 @@ def build_groups(
             curr = rep_G[r_a][r_b]
             if m.confidence > curr["confidence"]:
                 curr["confidence"] = m.confidence
-            if MATCH_TYPE_RANK.get(m.match_type, 0) > MATCH_TYPE_RANK.get(
-                curr["match_type"], 0
-            ):
+            if MATCH_TYPE_RANK.get(m.match_type, 0) > MATCH_TYPE_RANK.get(curr["match_type"], 0):
                 curr["match_type"] = m.match_type
         else:
             rep_G.add_edge(
@@ -289,7 +285,6 @@ def build_groups(
                 for split_comp in nx.connected_components(curr_sub):
                     queue.append(curr_sub.subgraph(split_comp).copy())
 
-
     # Step 4: Expand representatives back to all their exact duplicate members
     raw_groups: list[list[str]] = []
     for r_group in rep_groups:
@@ -306,9 +301,7 @@ def build_groups(
             curr = G[m.path_a][m.path_b]
             if m.confidence > curr["confidence"]:
                 curr["confidence"] = m.confidence
-            if MATCH_TYPE_RANK.get(m.match_type, 0) > MATCH_TYPE_RANK.get(
-                curr["match_type"], 0
-            ):
+            if MATCH_TYPE_RANK.get(m.match_type, 0) > MATCH_TYPE_RANK.get(curr["match_type"], 0):
                 curr["match_type"] = m.match_type
         else:
             G.add_edge(
@@ -321,12 +314,7 @@ def build_groups(
     # Build DuplicateGroup objects
     groups: list[DuplicateGroup] = []
     for members in raw_groups:
-        sub_edges = [
-            G[u][v]
-            for u in members
-            for v in members
-            if u < v and G.has_edge(u, v)
-        ]
+        sub_edges = [G[u][v] for u in members for v in members if u < v and G.has_edge(u, v)]
         if not sub_edges:
             continue
         best_conf = max(e.get("confidence", 0) for e in sub_edges)

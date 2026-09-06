@@ -69,8 +69,8 @@ class TestExtractDominantColors:
     def test_two_color_image(self) -> None:
         """An image with two regions produces two dominant clusters."""
         pixels = np.zeros((100, 100, 3), dtype=np.uint8)
-        pixels[:50, :] = [255, 0, 0]   # top half red
-        pixels[50:, :] = [0, 0, 255]   # bottom half blue
+        pixels[:50, :] = [255, 0, 0]  # top half red
+        pixels[50:, :] = [0, 0, 255]  # bottom half blue
         img = Image.fromarray(pixels)
         colors = extract_dominant_colors(img, n_clusters=3, seed=42)
         assert colors is not None
@@ -82,8 +82,8 @@ class TestExtractDominantColors:
     def test_respects_alpha_channel(self) -> None:
         """Only non-transparent pixels should be used."""
         pixels = np.zeros((100, 100, 4), dtype=np.uint8)
-        pixels[:50, :] = [255, 0, 0, 255]   # top half: red, opaque
-        pixels[50:, :] = [0, 0, 255, 0]     # bottom half: blue, transparent
+        pixels[:50, :] = [255, 0, 0, 255]  # top half: red, opaque
+        pixels[50:, :] = [0, 0, 255, 0]  # bottom half: blue, transparent
         img = Image.fromarray(pixels, "RGBA")
         colors = extract_dominant_colors(img, n_clusters=3, seed=42)
         assert colors is not None
@@ -163,7 +163,8 @@ class TestVerifyColorMatch:
         img_b = Image.open(fixtures_dir / "sofa_beige_dark_bg.png")
 
         result = verify_color_match(
-            img_a, img_b,
+            img_a,
+            img_b,
             use_background_removal=False,  # test images are simple enough
             n_clusters=3,
             color_space="lab",
@@ -198,7 +199,8 @@ class TestVerifyColorMatch:
         img_b = Image.fromarray(pixels_b)
 
         result = verify_color_match(
-            img_a, img_b,
+            img_a,
+            img_b,
             use_background_removal=False,
             n_clusters=3,
             color_space="lab",
@@ -221,7 +223,8 @@ class TestVerifyColorMatch:
         img_b = Image.new("RGB", (100, 100), (200, 180, 150))
 
         result = verify_color_match(
-            img_a, img_b,
+            img_a,
+            img_b,
             use_background_removal=False,
             n_clusters=3,
             color_space="lab",
@@ -240,7 +243,8 @@ class TestVerifyColorMatch:
         img_b = Image.new("L", (100, 100), 128)
 
         result = verify_color_match(
-            img_a, img_b,
+            img_a,
+            img_b,
             use_background_removal=False,
             n_clusters=3,
             color_space="lab",
@@ -256,11 +260,12 @@ class TestVerifyColorMatch:
         # Create RGBA image with transparent background
         pixels = np.zeros((100, 100, 4), dtype=np.uint8)
         pixels[20:80, 20:80] = [255, 0, 0, 255]  # red product, opaque
-        pixels[:20, :] = [255, 255, 255, 0]       # transparent background
+        pixels[:20, :] = [255, 255, 255, 0]  # transparent background
         img = Image.fromarray(pixels, "RGBA")
 
         result = verify_color_match(
-            img, img,
+            img,
+            img,
             use_background_removal=False,
             n_clusters=3,
             color_space="lab",
@@ -278,7 +283,8 @@ class TestVerifyColorMatch:
         img_b = Image.new("RGB", (100, 100), (0, 0, 255))
 
         result = verify_color_match(
-            img_a, img_b,
+            img_a,
+            img_b,
             use_background_removal=False,
             n_clusters=3,
             color_space="lab",
@@ -288,8 +294,7 @@ class TestVerifyColorMatch:
         )
 
         assert result.passed is False, (
-            f"CRITICAL FAILURE: Red and blue accepted as match! "
-            f"Distance={result.distance:.2f}"
+            f"CRITICAL FAILURE: Red and blue accepted as match! " f"Distance={result.distance:.2f}"
         )
 
     def test_result_contains_palettes(self) -> None:
@@ -297,7 +302,8 @@ class TestVerifyColorMatch:
         img = Image.new("RGB", (100, 100), (128, 128, 128))
 
         result = verify_color_match(
-            img, img,
+            img,
+            img,
             use_background_removal=False,
             n_clusters=3,
             color_space="lab",

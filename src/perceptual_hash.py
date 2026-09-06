@@ -11,7 +11,6 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
-from pathlib import Path
 
 import imagehash
 from PIL import Image
@@ -194,9 +193,7 @@ def find_near_duplicates(
                     p_dist = int(D[k])
                     d_dist = (d_ints[i] ^ d_ints[j]).bit_count()
                     if d_dist <= dhash_threshold:
-                        conf = compute_confidence(
-                            p_dist, d_dist, confidence_base, confidence_decay
-                        )
+                        conf = compute_confidence(p_dist, d_dist, confidence_base, confidence_decay)
                         matches.append(
                             {
                                 "pair": (paths[i], paths[j]),
@@ -217,9 +214,7 @@ def find_near_duplicates(
                     dhash_threshold,
                 )
                 if is_match:
-                    conf = compute_confidence(
-                        p_dist, d_dist, confidence_base, confidence_decay
-                    )
+                    conf = compute_confidence(p_dist, d_dist, confidence_base, confidence_decay)
                     matches.append(
                         {
                             "pair": (paths[i], paths[j]),
@@ -236,4 +231,3 @@ def find_near_duplicates(
         len(paths),
     )
     return matches
-

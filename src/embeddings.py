@@ -75,7 +75,9 @@ class EmbeddingExtractor:
             torch.set_num_threads(num_threads)
             logger.info("Configured PyTorch CPU with %d threads", num_threads)
 
-        local_model = Path(__file__).resolve().parent.parent / "models" / "open_clip_model.safetensors"
+        local_model = (
+            Path(__file__).resolve().parent.parent / "models" / "open_clip_model.safetensors"
+        )
         if local_model.is_file():
             arch = "ViT-B-32-quickgelu" if "quickgelu" not in model_name else model_name
             self.model, _, self.preprocess = open_clip.create_model_and_transforms(
@@ -86,9 +88,7 @@ class EmbeddingExtractor:
             self.model, _, self.preprocess = open_clip.create_model_and_transforms(
                 model_name, pretrained=pretrained
             )
-            logger.info(
-                "CLIP model loaded: %s / %s on %s", model_name, pretrained, self.device
-            )
+            logger.info("CLIP model loaded: %s / %s on %s", model_name, pretrained, self.device)
 
         self.model = self.model.to(self.device).eval()
         self._dim: int | None = None
@@ -142,9 +142,9 @@ class EmbeddingExtractor:
 
         for start in iterator:
             batch = images[start : start + batch_size]
-            tensors = torch.stack(
-                [self.preprocess(img.convert("RGB")) for img in batch]
-            ).to(self.device)
+            tensors = torch.stack([self.preprocess(img.convert("RGB")) for img in batch]).to(
+                self.device
+            )
             with torch.no_grad():
                 features = self.model.encode_image(tensors)
             features = features / features.norm(dim=-1, keepdim=True)
@@ -207,9 +207,7 @@ class FaissIndex:
         self._n_vectors = n
 
         if n < self.brute_force_threshold:
-            logger.info(
-                "Building brute-force index (IndexFlatIP) for %d vectors", n
-            )
+            logger.info("Building brute-force index (IndexFlatIP) for %d vectors", n)
             self._index = faiss.IndexFlatIP(d)
         else:
             actual_nlist = min(self.nlist, n // 10)  # can't have more clusters than n/10
