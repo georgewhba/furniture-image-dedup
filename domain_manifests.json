@@ -1,0 +1,3819 @@
+{
+  "D1_Living_Room_Sofas": [
+    {
+      "model_id": "101_upholstered_sofa",
+      "primary_file": "101_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "101_Upholstered_Sofa_1.jpg",
+        "101_Upholstered_Sofa_2.jpg",
+        "101_Upholstered_Sofa_3.jpg",
+        "101_Upholstered_Sofa_8.jpg",
+        "101_Upholstered_Sofa_9.jpg"
+      ]
+    },
+    {
+      "model_id": "102_upholstered_sofa",
+      "primary_file": "102_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "102_Upholstered_Sofa_1.jpg",
+        "102_Upholstered_Sofa_4.jpg"
+      ]
+    },
+    {
+      "model_id": "2_-_piece_modular_upholstered_sectional",
+      "primary_file": "2_-_Piece_Modular_Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "2_-_Piece_Modular_Upholstered_Sectional_1.jpg"
+      ]
+    },
+    {
+      "model_id": "5_-_piece_modular_upholstered_sectional",
+      "primary_file": "5_-_Piece_Modular_Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "5_-_Piece_Modular_Upholstered_Sectional_1.jpg"
+      ]
+    },
+    {
+      "model_id": "7_-_piece_modular_upholstered_sectional",
+      "primary_file": "7_-_Piece_Modular_Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "7_-_Piece_Modular_Upholstered_Sectional_1.jpg"
+      ]
+    },
+    {
+      "model_id": "80_square_arm_sofa_bed",
+      "primary_file": "80_Square_Arm_Sofa_Bed_11.jpg",
+      "all_views": [
+        "80_Square_Arm_Sofa_Bed_11.jpg",
+        "80_Square_Arm_Sofa_Bed_12.jpg",
+        "80_Square_Arm_Sofa_Bed_13.jpg",
+        "80_Square_Arm_Sofa_Bed_8.jpg"
+      ]
+    },
+    {
+      "model_id": "84_upholstered_sofa",
+      "primary_file": "84_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "84_Upholstered_Sofa_1.jpg",
+        "84_Upholstered_Sofa_10.jpg",
+        "84_Upholstered_Sofa_11.jpg",
+        "84_Upholstered_Sofa_12.jpg",
+        "84_Upholstered_Sofa_13.jpg",
+        "84_Upholstered_Sofa_14.jpg"
+      ]
+    },
+    {
+      "model_id": "88.18_upholstered_sofa",
+      "primary_file": "88.18_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "88.18_Upholstered_Sofa_1.jpg",
+        "88.18_Upholstered_Sofa_3.jpg",
+        "88.18_Upholstered_Sofa_4.jpg",
+        "88.18_Upholstered_Sofa_5.jpg"
+      ]
+    },
+    {
+      "model_id": "89_upholstered_sofa",
+      "primary_file": "89_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "89_Upholstered_Sofa_1.jpg",
+        "89_Upholstered_Sofa_4.jpg",
+        "89_Upholstered_Sofa_5.jpg"
+      ]
+    },
+    {
+      "model_id": "97_upholstered_sofa",
+      "primary_file": "97_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "97_Upholstered_Sofa_1.jpg",
+        "97_Upholstered_Sofa_2.jpg",
+        "97_Upholstered_Sofa_3.jpg"
+      ]
+    },
+    {
+      "model_id": "aarhus_3_-_piece_modular_upholstered_reversible_sectional",
+      "primary_file": "Aarhus_3_-_Piece_Modular_Upholstered_Reversible_Sectional_1.jpg",
+      "all_views": [
+        "Aarhus_3_-_Piece_Modular_Upholstered_Reversible_Sectional_1.jpg",
+        "Aarhus_3_-_Piece_Modular_Upholstered_Reversible_Sectional_11.jpg",
+        "Aarhus_3_-_Piece_Modular_Upholstered_Reversible_Sectional_2.jpg",
+        "Aarhus_3_-_Piece_Modular_Upholstered_Reversible_Sectional_3.jpg",
+        "Aarhus_3_-_Piece_Modular_Upholstered_Reversible_Sectional_6.jpg",
+        "Aarhus_3_-_Piece_Modular_Upholstered_Reversible_Sectional_7.jpg"
+      ]
+    },
+    {
+      "model_id": "aileen_2_-_piece_modular_upholstered_sectional",
+      "primary_file": "Aileen_2_-_Piece_Modular_Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "Aileen_2_-_Piece_Modular_Upholstered_Sectional_1.jpg",
+        "Aileen_2_-_Piece_Modular_Upholstered_Sectional_2.jpg",
+        "Aileen_2_-_Piece_Modular_Upholstered_Sectional_3.jpg",
+        "Aileen_2_-_Piece_Modular_Upholstered_Sectional_4.jpg"
+      ]
+    },
+    {
+      "model_id": "ainsley_2_-_piece_upholstered_sectional",
+      "primary_file": "Ainsley_2_-_Piece_Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "Ainsley_2_-_Piece_Upholstered_Sectional_1.jpg",
+        "Ainsley_2_-_Piece_Upholstered_Sectional_10.jpg",
+        "Ainsley_2_-_Piece_Upholstered_Sectional_4.jpg",
+        "Ainsley_2_-_Piece_Upholstered_Sectional_5.jpg"
+      ]
+    },
+    {
+      "model_id": "almaaz_upholstered_sectional",
+      "primary_file": "Almaaz_Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "Almaaz_Upholstered_Sectional_1.jpg",
+        "Almaaz_Upholstered_Sectional_3.jpg"
+      ]
+    },
+    {
+      "model_id": "almeta_80_upholstered_sofa",
+      "primary_file": "Almeta_80_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Almeta_80_Upholstered_Sofa_1.jpg",
+        "Almeta_80_Upholstered_Sofa_3.jpg",
+        "Almeta_80_Upholstered_Sofa_4.jpg",
+        "Almeta_80_Upholstered_Sofa_5.jpg",
+        "Almeta_80_Upholstered_Sofa_6.jpg"
+      ]
+    },
+    {
+      "model_id": "amelie_79_upholstered_sofa",
+      "primary_file": "Amelie_79_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Amelie_79_Upholstered_Sofa_1.jpg",
+        "Amelie_79_Upholstered_Sofa_3.jpg",
+        "Amelie_79_Upholstered_Sofa_4.jpg",
+        "Amelie_79_Upholstered_Sofa_5.jpg",
+        "Amelie_79_Upholstered_Sofa_6.jpg"
+      ]
+    },
+    {
+      "model_id": "anse_67_upholstered_sofa",
+      "primary_file": "Anse_67_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Anse_67_Upholstered_Sofa_1.jpg",
+        "Anse_67_Upholstered_Sofa_2.jpg",
+        "Anse_67_Upholstered_Sofa_3.jpg",
+        "Anse_67_Upholstered_Sofa_4.jpg",
+        "Anse_67_Upholstered_Sofa_5.jpg"
+      ]
+    },
+    {
+      "model_id": "anya_leather_sectional",
+      "primary_file": "Anya_Leather_Sectional_4.jpg",
+      "all_views": [
+        "Anya_Leather_Sectional_4.jpg",
+        "Anya_Leather_Sectional_5.jpg",
+        "Anya_Leather_Sectional_6.jpg",
+        "Anya_Leather_Sectional_7.jpg"
+      ]
+    },
+    {
+      "model_id": "anya_modular_leather_sectional",
+      "primary_file": "Anya_Modular_Leather_Sectional_5.jpg",
+      "all_views": [
+        "Anya_Modular_Leather_Sectional_5.jpg",
+        "Anya_Modular_Leather_Sectional_6.jpg"
+      ]
+    },
+    {
+      "model_id": "ardys_67_round_arm_sofa",
+      "primary_file": "Ardys_67_Round_Arm_Sofa_1.jpg",
+      "all_views": [
+        "Ardys_67_Round_Arm_Sofa_1.jpg",
+        "Ardys_67_Round_Arm_Sofa_3.jpg",
+        "Ardys_67_Round_Arm_Sofa_8.jpg",
+        "Ardys_67_Round_Arm_Sofa_9.jpg"
+      ]
+    },
+    {
+      "model_id": "arit_2_-_piece_upholstered_sectional",
+      "primary_file": "Arit_2_-_Piece_Upholstered_Sectional_4.jpg",
+      "all_views": [
+        "Arit_2_-_Piece_Upholstered_Sectional_4.jpg"
+      ]
+    },
+    {
+      "model_id": "arit_3_-_piece_upholstered_sectional",
+      "primary_file": "Arit_3_-_Piece_Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "Arit_3_-_Piece_Upholstered_Sectional_1.jpg",
+        "Arit_3_-_Piece_Upholstered_Sectional_2.jpg",
+        "Arit_3_-_Piece_Upholstered_Sectional_3.jpg",
+        "Arit_3_-_Piece_Upholstered_Sectional_5.jpg",
+        "Arit_3_-_Piece_Upholstered_Sectional_6.jpg"
+      ]
+    },
+    {
+      "model_id": "arkim_5_-_piece_modular_upholstered_sectional",
+      "primary_file": "Arkim_5_-_Piece_Modular_Upholstered_Sectional_6.jpg",
+      "all_views": [
+        "Arkim_5_-_Piece_Modular_Upholstered_Sectional_6.jpg"
+      ]
+    },
+    {
+      "model_id": "arlo_genuine_leather_mid_century_sofa",
+      "primary_file": "Arlo_Genuine_Leather_Mid_Century_Sofa_4.jpg",
+      "all_views": [
+        "Arlo_Genuine_Leather_Mid_Century_Sofa_4.jpg",
+        "Arlo_Genuine_Leather_Mid_Century_Sofa_5.jpg"
+      ]
+    },
+    {
+      "model_id": "armand_3_-_piece_modular_upholstered_reversible_sectional",
+      "primary_file": "Armand_3_-_Piece_Modular_Upholstered_Reversible_Sectional_1.jpg",
+      "all_views": [
+        "Armand_3_-_Piece_Modular_Upholstered_Reversible_Sectional_1.jpg",
+        "Armand_3_-_Piece_Modular_Upholstered_Reversible_Sectional_2.jpg"
+      ]
+    },
+    {
+      "model_id": "armand_4_-_piece_modular_upholstered_sectional",
+      "primary_file": "Armand_4_-_Piece_Modular_Upholstered_Sectional_5.jpg",
+      "all_views": [
+        "Armand_4_-_Piece_Modular_Upholstered_Sectional_5.jpg",
+        "Armand_4_-_Piece_Modular_Upholstered_Sectional_6.jpg"
+      ]
+    },
+    {
+      "model_id": "asher_2_-_piece_upholstered_sectional",
+      "primary_file": "Asher_2_-_Piece_Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "Asher_2_-_Piece_Upholstered_Sectional_1.jpg",
+        "Asher_2_-_Piece_Upholstered_Sectional_2.jpg",
+        "Asher_2_-_Piece_Upholstered_Sectional_3.jpg",
+        "Asher_2_-_Piece_Upholstered_Sectional_8.jpg",
+        "Asher_2_-_Piece_Upholstered_Sectional_9.jpg"
+      ]
+    },
+    {
+      "model_id": "asher_82_upholstered_sofa",
+      "primary_file": "Asher_82_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Asher_82_Upholstered_Sofa_1.jpg",
+        "Asher_82_Upholstered_Sofa_3.jpg"
+      ]
+    },
+    {
+      "model_id": "bainton_110_upholstered_sofa",
+      "primary_file": "Bainton_110_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Bainton_110_Upholstered_Sofa_1.jpg",
+        "Bainton_110_Upholstered_Sofa_2.jpg",
+        "Bainton_110_Upholstered_Sofa_3.jpg"
+      ]
+    },
+    {
+      "model_id": "bainton_110_vegan_leather_sofa",
+      "primary_file": "Bainton_110_Vegan_Leather_Sofa_1.jpg",
+      "all_views": [
+        "Bainton_110_Vegan_Leather_Sofa_1.jpg",
+        "Bainton_110_Vegan_Leather_Sofa_3.jpg"
+      ]
+    },
+    {
+      "model_id": "belgrade_84_leather_sofa",
+      "primary_file": "Belgrade_84_Leather_Sofa_1.jpg",
+      "all_views": [
+        "Belgrade_84_Leather_Sofa_1.jpg",
+        "Belgrade_84_Leather_Sofa_2.jpg",
+        "Belgrade_84_Leather_Sofa_3.jpg",
+        "Belgrade_84_Leather_Sofa_4.jpg",
+        "Belgrade_84_Leather_Sofa_5.jpg"
+      ]
+    },
+    {
+      "model_id": "benedict_2_-_piece_upholstered_sectional",
+      "primary_file": "Benedict_2_-_Piece_Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "Benedict_2_-_Piece_Upholstered_Sectional_1.jpg",
+        "Benedict_2_-_Piece_Upholstered_Sectional_10.jpg",
+        "Benedict_2_-_Piece_Upholstered_Sectional_11.jpg",
+        "Benedict_2_-_Piece_Upholstered_Sectional_13.jpg",
+        "Benedict_2_-_Piece_Upholstered_Sectional_14.jpg",
+        "Benedict_2_-_Piece_Upholstered_Sectional_15.jpg",
+        "Benedict_2_-_Piece_Upholstered_Sectional_16.jpg",
+        "Benedict_2_-_Piece_Upholstered_Sectional_17.jpg",
+        "Benedict_2_-_Piece_Upholstered_Sectional_9.jpg"
+      ]
+    },
+    {
+      "model_id": "benjy_81_upholstered_sofa",
+      "primary_file": "Benjy_81_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Benjy_81_Upholstered_Sofa_1.jpg",
+        "Benjy_81_Upholstered_Sofa_3.jpg",
+        "Benjy_81_Upholstered_Sofa_4.jpg",
+        "Benjy_81_Upholstered_Sofa_5.jpg",
+        "Benjy_81_Upholstered_Sofa_6.jpg",
+        "Benjy_81_Upholstered_Sofa_7.jpg"
+      ]
+    },
+    {
+      "model_id": "bloom_2_-_piece_upholstered_sectional",
+      "primary_file": "Bloom_2_-_Piece_Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "Bloom_2_-_Piece_Upholstered_Sectional_1.jpg",
+        "Bloom_2_-_Piece_Upholstered_Sectional_3.jpg",
+        "Bloom_2_-_Piece_Upholstered_Sectional_8.jpg"
+      ]
+    },
+    {
+      "model_id": "bobbie_98_upholstered_sofa",
+      "primary_file": "Bobbie_98_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Bobbie_98_Upholstered_Sofa_1.jpg",
+        "Bobbie_98_Upholstered_Sofa_2.jpg",
+        "Bobbie_98_Upholstered_Sofa_3.jpg",
+        "Bobbie_98_Upholstered_Sofa_5.jpg"
+      ]
+    },
+    {
+      "model_id": "brimley_99.25_leather_sofa",
+      "primary_file": "Brimley_99.25_Leather_Sofa_8.jpg",
+      "all_views": [
+        "Brimley_99.25_Leather_Sofa_8.jpg"
+      ]
+    },
+    {
+      "model_id": "britt_3_-_piece_modular_upholstered_sectional",
+      "primary_file": "Britt_3_-_Piece_Modular_Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "Britt_3_-_Piece_Modular_Upholstered_Sectional_1.jpg",
+        "Britt_3_-_Piece_Modular_Upholstered_Sectional_2.jpg",
+        "Britt_3_-_Piece_Modular_Upholstered_Sectional_3.jpg",
+        "Britt_3_-_Piece_Modular_Upholstered_Sectional_4.jpg",
+        "Britt_3_-_Piece_Modular_Upholstered_Sectional_5.jpg",
+        "Britt_3_-_Piece_Modular_Upholstered_Sectional_6.jpg"
+      ]
+    },
+    {
+      "model_id": "cache_sofa",
+      "primary_file": "Cache_Sofa_1.jpg",
+      "all_views": [
+        "Cache_Sofa_1.jpg",
+        "Cache_Sofa_3.jpg",
+        "Cache_Sofa_4.jpg",
+        "Cache_Sofa_5.jpg",
+        "Cache_Sofa_6.jpg",
+        "Cache_Sofa_9.jpg"
+      ]
+    },
+    {
+      "model_id": "calle_88.5_slipcovered_sleeper_sofa",
+      "primary_file": "Calle_88.5_Slipcovered_Sleeper_Sofa_10.jpg",
+      "all_views": [
+        "Calle_88.5_Slipcovered_Sleeper_Sofa_10.jpg",
+        "Calle_88.5_Slipcovered_Sleeper_Sofa_4.jpg",
+        "Calle_88.5_Slipcovered_Sleeper_Sofa_5.jpg"
+      ]
+    },
+    {
+      "model_id": "captain_3_-_piece_modular_upholstered_sectional",
+      "primary_file": "Captain_3_-_Piece_Modular_Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "Captain_3_-_Piece_Modular_Upholstered_Sectional_1.jpg",
+        "Captain_3_-_Piece_Modular_Upholstered_Sectional_4.jpg"
+      ]
+    },
+    {
+      "model_id": "carlin_3_-_piece_modular_upholstered_sectional",
+      "primary_file": "Carlin_3_-_Piece_Modular_Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "Carlin_3_-_Piece_Modular_Upholstered_Sectional_1.jpg",
+        "Carlin_3_-_Piece_Modular_Upholstered_Sectional_2.jpg",
+        "Carlin_3_-_Piece_Modular_Upholstered_Sectional_3.jpg"
+      ]
+    },
+    {
+      "model_id": "cherryholt_86_upholstered_sofa",
+      "primary_file": "Cherryholt_86_Upholstered_Sofa_9.jpg",
+      "all_views": [
+        "Cherryholt_86_Upholstered_Sofa_9.jpg"
+      ]
+    },
+    {
+      "model_id": "cielo_2_-_piece_upholstered_sectional",
+      "primary_file": "Cielo_2_-_Piece_Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "Cielo_2_-_Piece_Upholstered_Sectional_1.jpg",
+        "Cielo_2_-_Piece_Upholstered_Sectional_2.jpg",
+        "Cielo_2_-_Piece_Upholstered_Sectional_3.jpg",
+        "Cielo_2_-_Piece_Upholstered_Sectional_4.jpg"
+      ]
+    },
+    {
+      "model_id": "cielo_3_-_piece_modular_upholstered_sectional",
+      "primary_file": "Cielo_3_-_Piece_Modular_Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "Cielo_3_-_Piece_Modular_Upholstered_Sectional_1.jpg",
+        "Cielo_3_-_Piece_Modular_Upholstered_Sectional_2.jpg",
+        "Cielo_3_-_Piece_Modular_Upholstered_Sectional_3.jpg",
+        "Cielo_3_-_Piece_Modular_Upholstered_Sectional_4.jpg",
+        "Cielo_3_-_Piece_Modular_Upholstered_Sectional_5.jpg",
+        "Cielo_3_-_Piece_Modular_Upholstered_Sectional_6.jpg",
+        "Cielo_3_-_Piece_Modular_Upholstered_Sectional_7.jpg"
+      ]
+    },
+    {
+      "model_id": "cielo_4_-_piece_upholstered_sectional",
+      "primary_file": "Cielo_4_-_Piece_Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "Cielo_4_-_Piece_Upholstered_Sectional_1.jpg",
+        "Cielo_4_-_Piece_Upholstered_Sectional_2.jpg",
+        "Cielo_4_-_Piece_Upholstered_Sectional_3.jpg",
+        "Cielo_4_-_Piece_Upholstered_Sectional_4.jpg"
+      ]
+    },
+    {
+      "model_id": "clark_81_leather_sofa",
+      "primary_file": "Clark_81_Leather_Sofa_1.jpg",
+      "all_views": [
+        "Clark_81_Leather_Sofa_1.jpg",
+        "Clark_81_Leather_Sofa_2.jpg",
+        "Clark_81_Leather_Sofa_3.jpg"
+      ]
+    },
+    {
+      "model_id": "clay_78_upholstered_sofa",
+      "primary_file": "Clay_78_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Clay_78_Upholstered_Sofa_1.jpg",
+        "Clay_78_Upholstered_Sofa_2.jpg",
+        "Clay_78_Upholstered_Sofa_3.jpg"
+      ]
+    },
+    {
+      "model_id": "claymont_79_upholstered_sofa",
+      "primary_file": "Claymont_79_Upholstered_Sofa_4.jpg",
+      "all_views": [
+        "Claymont_79_Upholstered_Sofa_4.jpg",
+        "Claymont_79_Upholstered_Sofa_5.jpg",
+        "Claymont_79_Upholstered_Sofa_6.jpg"
+      ]
+    },
+    {
+      "model_id": "cleo_84_upholstered_sleeper_sofa",
+      "primary_file": "Cleo_84_Upholstered_Sleeper_Sofa_1.jpg",
+      "all_views": [
+        "Cleo_84_Upholstered_Sleeper_Sofa_1.jpg",
+        "Cleo_84_Upholstered_Sleeper_Sofa_3.jpg"
+      ]
+    },
+    {
+      "model_id": "clifford_2_-_piece_leather_sectional",
+      "primary_file": "Clifford_2_-_Piece_Leather_Sectional_4.jpg",
+      "all_views": [
+        "Clifford_2_-_Piece_Leather_Sectional_4.jpg",
+        "Clifford_2_-_Piece_Leather_Sectional_5.jpg",
+        "Clifford_2_-_Piece_Leather_Sectional_6.jpg"
+      ]
+    },
+    {
+      "model_id": "clifford_3-piece_upholstered_sectional",
+      "primary_file": "Clifford_3-piece_Upholstered_Sectional.jpg",
+      "all_views": [
+        "Clifford_3-piece_Upholstered_Sectional.jpg"
+      ]
+    },
+    {
+      "model_id": "clifford_87_leather_sofa",
+      "primary_file": "Clifford_87_Leather_Sofa_1.jpg",
+      "all_views": [
+        "Clifford_87_Leather_Sofa_1.jpg",
+        "Clifford_87_Leather_Sofa_3.jpg"
+      ]
+    },
+    {
+      "model_id": "clifford_87_upholstered_sofa",
+      "primary_file": "Clifford_87_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Clifford_87_Upholstered_Sofa_1.jpg",
+        "Clifford_87_Upholstered_Sofa_2.jpg"
+      ]
+    },
+    {
+      "model_id": "clifford_upholstered_studio_sofa",
+      "primary_file": "Clifford_Upholstered_Studio_Sofa_4.jpg",
+      "all_views": [
+        "Clifford_Upholstered_Studio_Sofa_4.jpg"
+      ]
+    },
+    {
+      "model_id": "concord_2_-_piece_upholstered_reversible_sectional",
+      "primary_file": "Concord_2_-_Piece_Upholstered_Reversible_Sectional_1.jpg",
+      "all_views": [
+        "Concord_2_-_Piece_Upholstered_Reversible_Sectional_1.jpg",
+        "Concord_2_-_Piece_Upholstered_Reversible_Sectional_3.jpg",
+        "Concord_2_-_Piece_Upholstered_Reversible_Sectional_9.jpg"
+      ]
+    },
+    {
+      "model_id": "cornelia_84_leather_sofa",
+      "primary_file": "Cornelia_84_Leather_Sofa_3.jpg",
+      "all_views": [
+        "Cornelia_84_Leather_Sofa_3.jpg",
+        "Cornelia_84_Leather_Sofa_4.jpg"
+      ]
+    },
+    {
+      "model_id": "crew_83_upholstered_sofa",
+      "primary_file": "Crew_83_Upholstered_Sofa_8.jpg",
+      "all_views": [
+        "Crew_83_Upholstered_Sofa_8.jpg",
+        "Crew_83_Upholstered_Sofa_9.jpg"
+      ]
+    },
+    {
+      "model_id": "curt_2_-_piece_upholstered_sectional",
+      "primary_file": "Curt_2_-_Piece_Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "Curt_2_-_Piece_Upholstered_Sectional_1.jpg",
+        "Curt_2_-_Piece_Upholstered_Sectional_10.jpg",
+        "Curt_2_-_Piece_Upholstered_Sectional_4.jpg",
+        "Curt_2_-_Piece_Upholstered_Sectional_5.jpg",
+        "Curt_2_-_Piece_Upholstered_Sectional_7.jpg",
+        "Curt_2_-_Piece_Upholstered_Sectional_8.jpg"
+      ]
+    },
+    {
+      "model_id": "dahlia_2_-_piece_upholstered_sectional",
+      "primary_file": "Dahlia_2_-_Piece_Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "Dahlia_2_-_Piece_Upholstered_Sectional_1.jpg",
+        "Dahlia_2_-_Piece_Upholstered_Sectional_3.jpg",
+        "Dahlia_2_-_Piece_Upholstered_Sectional_4.jpg",
+        "Dahlia_2_-_Piece_Upholstered_Sectional_5.jpg",
+        "Dahlia_2_-_Piece_Upholstered_Sectional_6.jpg",
+        "Dahlia_2_-_Piece_Upholstered_Sectional_7.jpg"
+      ]
+    },
+    {
+      "model_id": "dandy_96_sofa",
+      "primary_file": "Dandy_96_Sofa_1.jpg",
+      "all_views": [
+        "Dandy_96_Sofa_1.jpg",
+        "Dandy_96_Sofa_2.jpg",
+        "Dandy_96_Sofa_3.jpg",
+        "Dandy_96_Sofa_4.jpg"
+      ]
+    },
+    {
+      "model_id": "dani_top_grain_genuine_leather_scandinavian_sofa",
+      "primary_file": "Dani_Top_Grain_Genuine_Leather_Scandinavian_Sofa_1.jpg",
+      "all_views": [
+        "Dani_Top_Grain_Genuine_Leather_Scandinavian_Sofa_1.jpg",
+        "Dani_Top_Grain_Genuine_Leather_Scandinavian_Sofa_3.jpg",
+        "Dani_Top_Grain_Genuine_Leather_Scandinavian_Sofa_4.jpg",
+        "Dani_Top_Grain_Genuine_Leather_Scandinavian_Sofa_5.jpg",
+        "Dani_Top_Grain_Genuine_Leather_Scandinavian_Sofa_6.jpg"
+      ]
+    },
+    {
+      "model_id": "dannie_2_-_piece_sectional_sofa",
+      "primary_file": "Dannie_2_-_Piece_Sectional_Sofa_1.jpg",
+      "all_views": [
+        "Dannie_2_-_Piece_Sectional_Sofa_1.jpg",
+        "Dannie_2_-_Piece_Sectional_Sofa_5.jpg"
+      ]
+    },
+    {
+      "model_id": "dantel_77.8_upholstered_sofa",
+      "primary_file": "Dantel_77.8_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Dantel_77.8_Upholstered_Sofa_1.jpg",
+        "Dantel_77.8_Upholstered_Sofa_3.jpg",
+        "Dantel_77.8_Upholstered_Sofa_4.jpg",
+        "Dantel_77.8_Upholstered_Sofa_5.jpg",
+        "Dantel_77.8_Upholstered_Sofa_6.jpg"
+      ]
+    },
+    {
+      "model_id": "danyell_97_upholstered_sofa",
+      "primary_file": "Danyell_97_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Danyell_97_Upholstered_Sofa_1.jpg",
+        "Danyell_97_Upholstered_Sofa_4.jpg",
+        "Danyell_97_Upholstered_Sofa_5.jpg"
+      ]
+    },
+    {
+      "model_id": "davis_85_upholstered_sofa",
+      "primary_file": "Davis_85_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Davis_85_Upholstered_Sofa_1.jpg",
+        "Davis_85_Upholstered_Sofa_2.jpg",
+        "Davis_85_Upholstered_Sofa_4.jpg",
+        "Davis_85_Upholstered_Sofa_5.jpg",
+        "Davis_85_Upholstered_Sofa_6.jpg",
+        "Davis_85_Upholstered_Sofa_7.jpg"
+      ]
+    },
+    {
+      "model_id": "daylen_2_-_piece_leather_sectional",
+      "primary_file": "Daylen_2_-_Piece_Leather_Sectional_1.jpg",
+      "all_views": [
+        "Daylen_2_-_Piece_Leather_Sectional_1.jpg",
+        "Daylen_2_-_Piece_Leather_Sectional_4.jpg",
+        "Daylen_2_-_Piece_Leather_Sectional_5.jpg",
+        "Daylen_2_-_Piece_Leather_Sectional_6.jpg",
+        "Daylen_2_-_Piece_Leather_Sectional_7.jpg"
+      ]
+    },
+    {
+      "model_id": "demaris_84_leather_sofa",
+      "primary_file": "Demaris_84_Leather_Sofa_1.jpg",
+      "all_views": [
+        "Demaris_84_Leather_Sofa_1.jpg",
+        "Demaris_84_Leather_Sofa_2.jpg",
+        "Demaris_84_Leather_Sofa_3.jpg",
+        "Demaris_84_Leather_Sofa_4.jpg",
+        "Demaris_84_Leather_Sofa_5.jpg",
+        "Demaris_84_Leather_Sofa_6.jpg",
+        "Demaris_84_Leather_Sofa_7.jpg"
+      ]
+    },
+    {
+      "model_id": "denali_2_-_piece_leather_sectional",
+      "primary_file": "Denali_2_-_Piece_Leather_Sectional_10.jpg",
+      "all_views": [
+        "Denali_2_-_Piece_Leather_Sectional_10.jpg",
+        "Denali_2_-_Piece_Leather_Sectional_8.jpg",
+        "Denali_2_-_Piece_Leather_Sectional_9.jpg"
+      ]
+    },
+    {
+      "model_id": "devale_80_upholstered_sofa",
+      "primary_file": "Devale_80_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Devale_80_Upholstered_Sofa_1.jpg",
+        "Devale_80_Upholstered_Sofa_2.jpg",
+        "Devale_80_Upholstered_Sofa_4.jpg",
+        "Devale_80_Upholstered_Sofa_5.jpg"
+      ]
+    },
+    {
+      "model_id": "diana_84_leather_sofa",
+      "primary_file": "Diana_84_Leather_Sofa_1.jpg",
+      "all_views": [
+        "Diana_84_Leather_Sofa_1.jpg",
+        "Diana_84_Leather_Sofa_3.jpg",
+        "Diana_84_Leather_Sofa_4.jpg",
+        "Diana_84_Leather_Sofa_5.jpg"
+      ]
+    },
+    {
+      "model_id": "dillington_101_leather_sofa",
+      "primary_file": "Dillington_101_Leather_Sofa.jpg",
+      "all_views": [
+        "Dillington_101_Leather_Sofa.jpg"
+      ]
+    },
+    {
+      "model_id": "donna_96.05_upholstered_sofa",
+      "primary_file": "Donna_96.05_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Donna_96.05_Upholstered_Sofa_1.jpg",
+        "Donna_96.05_Upholstered_Sofa_2.jpg",
+        "Donna_96.05_Upholstered_Sofa_3.jpg",
+        "Donna_96.05_Upholstered_Sofa_4.jpg"
+      ]
+    },
+    {
+      "model_id": "douglass_3_-_piece_modular_upholstered_reversible_sectional",
+      "primary_file": "Douglass_3_-_Piece_Modular_Upholstered_Reversible_Sectional_1.jpg",
+      "all_views": [
+        "Douglass_3_-_Piece_Modular_Upholstered_Reversible_Sectional_1.jpg",
+        "Douglass_3_-_Piece_Modular_Upholstered_Reversible_Sectional_2.jpg",
+        "Douglass_3_-_Piece_Modular_Upholstered_Reversible_Sectional_3.jpg",
+        "Douglass_3_-_Piece_Modular_Upholstered_Reversible_Sectional_4.jpg",
+        "Douglass_3_-_Piece_Modular_Upholstered_Reversible_Sectional_5.jpg",
+        "Douglass_3_-_Piece_Modular_Upholstered_Reversible_Sectional_6.jpg"
+      ]
+    },
+    {
+      "model_id": "douglass_4_-_piece_modular_upholstered_reversible_sectional",
+      "primary_file": "Douglass_4_-_Piece_Modular_Upholstered_Reversible_Sectional_1.jpg",
+      "all_views": [
+        "Douglass_4_-_Piece_Modular_Upholstered_Reversible_Sectional_1.jpg",
+        "Douglass_4_-_Piece_Modular_Upholstered_Reversible_Sectional_2.jpg",
+        "Douglass_4_-_Piece_Modular_Upholstered_Reversible_Sectional_3.jpg",
+        "Douglass_4_-_Piece_Modular_Upholstered_Reversible_Sectional_4.jpg",
+        "Douglass_4_-_Piece_Modular_Upholstered_Reversible_Sectional_5.jpg",
+        "Douglass_4_-_Piece_Modular_Upholstered_Reversible_Sectional_6.jpg"
+      ]
+    },
+    {
+      "model_id": "douglass_5_-_piece_modular_upholstered_reversible_sectional",
+      "primary_file": "Douglass_5_-_Piece_Modular_Upholstered_Reversible_Sectional_1.jpg",
+      "all_views": [
+        "Douglass_5_-_Piece_Modular_Upholstered_Reversible_Sectional_1.jpg",
+        "Douglass_5_-_Piece_Modular_Upholstered_Reversible_Sectional_3.jpg",
+        "Douglass_5_-_Piece_Modular_Upholstered_Reversible_Sectional_4.jpg",
+        "Douglass_5_-_Piece_Modular_Upholstered_Reversible_Sectional_5.jpg",
+        "Douglass_5_-_Piece_Modular_Upholstered_Reversible_Sectional_6.jpg"
+      ]
+    },
+    {
+      "model_id": "elsmere_81_upholstered_sleeper_sofa",
+      "primary_file": "Elsmere_81_Upholstered_Sleeper_Sofa_1.jpg",
+      "all_views": [
+        "Elsmere_81_Upholstered_Sleeper_Sofa_1.jpg",
+        "Elsmere_81_Upholstered_Sleeper_Sofa_2.jpg",
+        "Elsmere_81_Upholstered_Sleeper_Sofa_3.jpg"
+      ]
+    },
+    {
+      "model_id": "erice_5_-_piece_upholstered_sectional",
+      "primary_file": "Erice_5_-_Piece_Upholstered_Sectional_8.jpg",
+      "all_views": [
+        "Erice_5_-_Piece_Upholstered_Sectional_8.jpg"
+      ]
+    },
+    {
+      "model_id": "esi_94_upholstered_sofa",
+      "primary_file": "Esi_94_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Esi_94_Upholstered_Sofa_1.jpg",
+        "Esi_94_Upholstered_Sofa_3.jpg"
+      ]
+    },
+    {
+      "model_id": "fasolak_89_upholstered_sofa",
+      "primary_file": "Fasolak_89_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Fasolak_89_Upholstered_Sofa_1.jpg",
+        "Fasolak_89_Upholstered_Sofa_2.jpg",
+        "Fasolak_89_Upholstered_Sofa_3.jpg",
+        "Fasolak_89_Upholstered_Sofa_4.jpg"
+      ]
+    },
+    {
+      "model_id": "fenne_82_upholstered_sofa",
+      "primary_file": "Fenne_82_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Fenne_82_Upholstered_Sofa_1.jpg",
+        "Fenne_82_Upholstered_Sofa_2.jpg",
+        "Fenne_82_Upholstered_Sofa_3.jpg",
+        "Fenne_82_Upholstered_Sofa_5.jpg",
+        "Fenne_82_Upholstered_Sofa_7.jpg"
+      ]
+    },
+    {
+      "model_id": "fremon_3_-_piece_modular_upholstered_reversible_sectional",
+      "primary_file": "Fremon_3_-_Piece_Modular_Upholstered_Reversible_Sectional_1.jpg",
+      "all_views": [
+        "Fremon_3_-_Piece_Modular_Upholstered_Reversible_Sectional_1.jpg",
+        "Fremon_3_-_Piece_Modular_Upholstered_Reversible_Sectional_2.jpg",
+        "Fremon_3_-_Piece_Modular_Upholstered_Reversible_Sectional_3.jpg",
+        "Fremon_3_-_Piece_Modular_Upholstered_Reversible_Sectional_4.jpg",
+        "Fremon_3_-_Piece_Modular_Upholstered_Reversible_Sectional_5.jpg",
+        "Fremon_3_-_Piece_Modular_Upholstered_Reversible_Sectional_6.jpg",
+        "Fremon_3_-_Piece_Modular_Upholstered_Reversible_Sectional_7.jpg"
+      ]
+    },
+    {
+      "model_id": "fremon_3_-_piece_upholstered_reversible_sectional",
+      "primary_file": "Fremon_3_-_Piece_Upholstered_Reversible_Sectional_1.jpg",
+      "all_views": [
+        "Fremon_3_-_Piece_Upholstered_Reversible_Sectional_1.jpg",
+        "Fremon_3_-_Piece_Upholstered_Reversible_Sectional_2.jpg",
+        "Fremon_3_-_Piece_Upholstered_Reversible_Sectional_3.jpg",
+        "Fremon_3_-_Piece_Upholstered_Reversible_Sectional_4.jpg",
+        "Fremon_3_-_Piece_Upholstered_Reversible_Sectional_5.jpg",
+        "Fremon_3_-_Piece_Upholstered_Reversible_Sectional_6.jpg"
+      ]
+    },
+    {
+      "model_id": "fremon_5_-_piece_upholstered_sectional",
+      "primary_file": "Fremon_5_-_Piece_Upholstered_Sectional_8.jpg",
+      "all_views": [
+        "Fremon_5_-_Piece_Upholstered_Sectional_8.jpg",
+        "Fremon_5_-_Piece_Upholstered_Sectional_9.jpg"
+      ]
+    },
+    {
+      "model_id": "hailee_2_-_piece_modular_leather_reversible_sectional",
+      "primary_file": "Hailee_2_-_Piece_Modular_Leather_Reversible_Sectional_1.jpg",
+      "all_views": [
+        "Hailee_2_-_Piece_Modular_Leather_Reversible_Sectional_1.jpg",
+        "Hailee_2_-_Piece_Modular_Leather_Reversible_Sectional_4.jpg",
+        "Hailee_2_-_Piece_Modular_Leather_Reversible_Sectional_5.jpg"
+      ]
+    },
+    {
+      "model_id": "intention_2_-_piece_modular_upholstered_reversible_sectional",
+      "primary_file": "Intention_2_-_Piece_Modular_Upholstered_Reversible_Sectional_1.jpg",
+      "all_views": [
+        "Intention_2_-_Piece_Modular_Upholstered_Reversible_Sectional_1.jpg",
+        "Intention_2_-_Piece_Modular_Upholstered_Reversible_Sectional_9.jpg"
+      ]
+    },
+    {
+      "model_id": "jalan_4_-_piece_modular_upholstered_sectional",
+      "primary_file": "Jalan_4_-_Piece_Modular_Upholstered_Sectional.jpg",
+      "all_views": [
+        "Jalan_4_-_Piece_Modular_Upholstered_Sectional.jpg",
+        "Jalan_4_-_Piece_Modular_Upholstered_Sectional_1.jpg",
+        "Jalan_4_-_Piece_Modular_Upholstered_Sectional_3.jpg",
+        "Jalan_4_-_Piece_Modular_Upholstered_Sectional_4.jpg",
+        "Jalan_4_-_Piece_Modular_Upholstered_Sectional_5.jpg"
+      ]
+    },
+    {
+      "model_id": "jarrid_5_-_piece_modular_upholstered_sectional",
+      "primary_file": "Jarrid_5_-_Piece_Modular_Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "Jarrid_5_-_Piece_Modular_Upholstered_Sectional_1.jpg",
+        "Jarrid_5_-_Piece_Modular_Upholstered_Sectional_2.jpg",
+        "Jarrid_5_-_Piece_Modular_Upholstered_Sectional_3.jpg"
+      ]
+    },
+    {
+      "model_id": "jarrid_5_-_piece_upholstered_sectional",
+      "primary_file": "Jarrid_5_-_Piece_Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "Jarrid_5_-_Piece_Upholstered_Sectional_1.jpg",
+        "Jarrid_5_-_Piece_Upholstered_Sectional_2.jpg",
+        "Jarrid_5_-_Piece_Upholstered_Sectional_3.jpg",
+        "Jarrid_5_-_Piece_Upholstered_Sectional_4.jpg",
+        "Jarrid_5_-_Piece_Upholstered_Sectional_5.jpg"
+      ]
+    },
+    {
+      "model_id": "jarrid_6_-_piece_modular_upholstered_sectional",
+      "primary_file": "Jarrid_6_-_Piece_Modular_Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "Jarrid_6_-_Piece_Modular_Upholstered_Sectional_1.jpg",
+        "Jarrid_6_-_Piece_Modular_Upholstered_Sectional_2.jpg",
+        "Jarrid_6_-_Piece_Modular_Upholstered_Sectional_3.jpg",
+        "Jarrid_6_-_Piece_Modular_Upholstered_Sectional_4.jpg"
+      ]
+    },
+    {
+      "model_id": "kinsley_2_-_piece_upholstered_sectional",
+      "primary_file": "Kinsley_2_-_Piece_Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "Kinsley_2_-_Piece_Upholstered_Sectional_1.jpg",
+        "Kinsley_2_-_Piece_Upholstered_Sectional_2.jpg",
+        "Kinsley_2_-_Piece_Upholstered_Sectional_3.jpg",
+        "Kinsley_2_-_Piece_Upholstered_Sectional_4.jpg",
+        "Kinsley_2_-_Piece_Upholstered_Sectional_5.jpg"
+      ]
+    },
+    {
+      "model_id": "kirkwood_4_-_piece_upholstered_sectional",
+      "primary_file": "Kirkwood_4_-_Piece_Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "Kirkwood_4_-_Piece_Upholstered_Sectional_1.jpg",
+        "Kirkwood_4_-_Piece_Upholstered_Sectional_2.jpg"
+      ]
+    },
+    {
+      "model_id": "lana_upholstered_reversible_sectional",
+      "primary_file": "Lana_Upholstered_Reversible_Sectional_10.jpg",
+      "all_views": [
+        "Lana_Upholstered_Reversible_Sectional_10.jpg",
+        "Lana_Upholstered_Reversible_Sectional_11.jpg",
+        "Lana_Upholstered_Reversible_Sectional_9.jpg"
+      ]
+    },
+    {
+      "model_id": "lobos_upholstered_reversible_sectional",
+      "primary_file": "Lobos_Upholstered_Reversible_Sectional_10.jpg",
+      "all_views": [
+        "Lobos_Upholstered_Reversible_Sectional_10.jpg",
+        "Lobos_Upholstered_Reversible_Sectional_12.jpg"
+      ]
+    },
+    {
+      "model_id": "lonsdale_reversible_chaise_sectional",
+      "primary_file": "Lonsdale_Reversible_Chaise_Sectional_1.jpg",
+      "all_views": [
+        "Lonsdale_Reversible_Chaise_Sectional_1.jpg",
+        "Lonsdale_Reversible_Chaise_Sectional_10.jpg",
+        "Lonsdale_Reversible_Chaise_Sectional_11.jpg",
+        "Lonsdale_Reversible_Chaise_Sectional_12.jpg",
+        "Lonsdale_Reversible_Chaise_Sectional_7.jpg"
+      ]
+    },
+    {
+      "model_id": "lytle_3_-_piece_modular_upholstered_reversible_sectional",
+      "primary_file": "Lytle_3_-_Piece_Modular_Upholstered_Reversible_Sectional_1.jpg",
+      "all_views": [
+        "Lytle_3_-_Piece_Modular_Upholstered_Reversible_Sectional_1.jpg",
+        "Lytle_3_-_Piece_Modular_Upholstered_Reversible_Sectional_2.jpg",
+        "Lytle_3_-_Piece_Modular_Upholstered_Reversible_Sectional_3.jpg"
+      ]
+    },
+    {
+      "model_id": "lytle_modular_upholstered_sectional",
+      "primary_file": "Lytle_Modular_Upholstered_Sectional.jpg",
+      "all_views": [
+        "Lytle_Modular_Upholstered_Sectional.jpg",
+        "Lytle_Modular_Upholstered_Sectional_1.jpg",
+        "Lytle_Modular_Upholstered_Sectional_2.jpg",
+        "Lytle_Modular_Upholstered_Sectional_3.jpg"
+      ]
+    },
+    {
+      "model_id": "mar_3_-_piece_modular_upholstered_sectional",
+      "primary_file": "Mar_3_-_Piece_Modular_Upholstered_Sectional_14.jpg",
+      "all_views": [
+        "Mar_3_-_Piece_Modular_Upholstered_Sectional_14.jpg",
+        "Mar_3_-_Piece_Modular_Upholstered_Sectional_8.jpg",
+        "Mar_3_-_Piece_Modular_Upholstered_Sectional_9.jpg"
+      ]
+    },
+    {
+      "model_id": "natasha_2_-_piece_upholstered_sectional",
+      "primary_file": "Natasha_2_-_Piece_Upholstered_Sectional_10.jpg",
+      "all_views": [
+        "Natasha_2_-_Piece_Upholstered_Sectional_10.jpg",
+        "Natasha_2_-_Piece_Upholstered_Sectional_11.jpg",
+        "Natasha_2_-_Piece_Upholstered_Sectional_12.jpg",
+        "Natasha_2_-_Piece_Upholstered_Sectional_8.jpg"
+      ]
+    },
+    {
+      "model_id": "north_4_-_piece_modular_leather_sectional",
+      "primary_file": "North_4_-_Piece_Modular_Leather_Sectional_1.jpg",
+      "all_views": [
+        "North_4_-_Piece_Modular_Leather_Sectional_1.jpg",
+        "North_4_-_Piece_Modular_Leather_Sectional_3.jpg",
+        "North_4_-_Piece_Modular_Leather_Sectional_4.jpg"
+      ]
+    },
+    {
+      "model_id": "penelope_2_-_piece_upholstered_sectional",
+      "primary_file": "Penelope_2_-_Piece_Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "Penelope_2_-_Piece_Upholstered_Sectional_1.jpg",
+        "Penelope_2_-_Piece_Upholstered_Sectional_10.jpg",
+        "Penelope_2_-_Piece_Upholstered_Sectional_2.jpg",
+        "Penelope_2_-_Piece_Upholstered_Sectional_3.jpg",
+        "Penelope_2_-_Piece_Upholstered_Sectional_8.jpg",
+        "Penelope_2_-_Piece_Upholstered_Sectional_9.jpg"
+      ]
+    },
+    {
+      "model_id": "penelope_3_-_piece_upholstered_sectional",
+      "primary_file": "Penelope_3_-_Piece_Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "Penelope_3_-_Piece_Upholstered_Sectional_1.jpg",
+        "Penelope_3_-_Piece_Upholstered_Sectional_2.jpg",
+        "Penelope_3_-_Piece_Upholstered_Sectional_3.jpg"
+      ]
+    },
+    {
+      "model_id": "polaris_2_-_piece_upholstered_sectional",
+      "primary_file": "Polaris_2_-_Piece_Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "Polaris_2_-_Piece_Upholstered_Sectional_1.jpg",
+        "Polaris_2_-_Piece_Upholstered_Sectional_2.jpg",
+        "Polaris_2_-_Piece_Upholstered_Sectional_3.jpg",
+        "Polaris_2_-_Piece_Upholstered_Sectional_8.jpg"
+      ]
+    },
+    {
+      "model_id": "pratt_4_-_piece_modular_upholstered_reversible_sectional",
+      "primary_file": "Pratt_4_-_Piece_Modular_Upholstered_Reversible_Sectional_1.jpg",
+      "all_views": [
+        "Pratt_4_-_Piece_Modular_Upholstered_Reversible_Sectional_1.jpg",
+        "Pratt_4_-_Piece_Modular_Upholstered_Reversible_Sectional_12.jpg",
+        "Pratt_4_-_Piece_Modular_Upholstered_Reversible_Sectional_13.jpg",
+        "Pratt_4_-_Piece_Modular_Upholstered_Reversible_Sectional_14.jpg",
+        "Pratt_4_-_Piece_Modular_Upholstered_Reversible_Sectional_3.jpg",
+        "Pratt_4_-_Piece_Modular_Upholstered_Reversible_Sectional_4.jpg",
+        "Pratt_4_-_Piece_Modular_Upholstered_Reversible_Sectional_5.jpg",
+        "Pratt_4_-_Piece_Modular_Upholstered_Reversible_Sectional_6.jpg",
+        "Pratt_4_-_Piece_Modular_Upholstered_Reversible_Sectional_7.jpg"
+      ]
+    },
+    {
+      "model_id": "pratt_5_-_piece_modular_upholstered_reversible_sectional",
+      "primary_file": "Pratt_5_-_Piece_Modular_Upholstered_Reversible_Sectional_1.jpg",
+      "all_views": [
+        "Pratt_5_-_Piece_Modular_Upholstered_Reversible_Sectional_1.jpg",
+        "Pratt_5_-_Piece_Modular_Upholstered_Reversible_Sectional_2.jpg",
+        "Pratt_5_-_Piece_Modular_Upholstered_Reversible_Sectional_3.jpg"
+      ]
+    },
+    {
+      "model_id": "ramirez_2_-_piece_upholstered_sectional",
+      "primary_file": "Ramirez_2_-_Piece_Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "Ramirez_2_-_Piece_Upholstered_Sectional_1.jpg",
+        "Ramirez_2_-_Piece_Upholstered_Sectional_2.jpg",
+        "Ramirez_2_-_Piece_Upholstered_Sectional_3.jpg",
+        "Ramirez_2_-_Piece_Upholstered_Sectional_4.jpg",
+        "Ramirez_2_-_Piece_Upholstered_Sectional_5.jpg",
+        "Ramirez_2_-_Piece_Upholstered_Sectional_6.jpg",
+        "Ramirez_2_-_Piece_Upholstered_Sectional_7.jpg"
+      ]
+    },
+    {
+      "model_id": "ritchie_4_-_piece_modular_leather_sectional",
+      "primary_file": "Ritchie_4_-_Piece_Modular_Leather_Sectional_1.jpg",
+      "all_views": [
+        "Ritchie_4_-_Piece_Modular_Leather_Sectional_1.jpg",
+        "Ritchie_4_-_Piece_Modular_Leather_Sectional_3.jpg",
+        "Ritchie_4_-_Piece_Modular_Leather_Sectional_4.jpg",
+        "Ritchie_4_-_Piece_Modular_Leather_Sectional_6.jpg"
+      ]
+    },
+    {
+      "model_id": "ritchie_modular_leather_reversible_sectional",
+      "primary_file": "Ritchie_Modular_Leather_Reversible_Sectional_1.jpg",
+      "all_views": [
+        "Ritchie_Modular_Leather_Reversible_Sectional_1.jpg",
+        "Ritchie_Modular_Leather_Reversible_Sectional_3.jpg",
+        "Ritchie_Modular_Leather_Reversible_Sectional_4.jpg"
+      ]
+    },
+    {
+      "model_id": "ritchie_modular_leather_sectional",
+      "primary_file": "Ritchie_Modular_Leather_Sectional_1.jpg",
+      "all_views": [
+        "Ritchie_Modular_Leather_Sectional_1.jpg",
+        "Ritchie_Modular_Leather_Sectional_3.jpg",
+        "Ritchie_Modular_Leather_Sectional_4.jpg",
+        "Ritchie_Modular_Leather_Sectional_5.jpg",
+        "Ritchie_Modular_Leather_Sectional_6.jpg"
+      ]
+    },
+    {
+      "model_id": "sectional_13_aarhus_3_-_piece_mod",
+      "primary_file": "sectional_13_Aarhus_3_-_Piece_Mod.jpg",
+      "all_views": [
+        "sectional_13_Aarhus_3_-_Piece_Mod.jpg"
+      ]
+    },
+    {
+      "model_id": "sectional_14_almaaz_upholstered_s",
+      "primary_file": "sectional_14_Almaaz_Upholstered_S.jpg",
+      "all_views": [
+        "sectional_14_Almaaz_Upholstered_S.jpg"
+      ]
+    },
+    {
+      "model_id": "sectional_19_aarhus_3_-_piece_mod",
+      "primary_file": "sectional_19_Aarhus_3_-_Piece_Mod.jpg",
+      "all_views": [
+        "sectional_19_Aarhus_3_-_Piece_Mod.jpg"
+      ]
+    },
+    {
+      "model_id": "sectional_21_cielo_2_-_piece_upho",
+      "primary_file": "sectional_21_Cielo_2_-_Piece_Upho.jpg",
+      "all_views": [
+        "sectional_21_Cielo_2_-_Piece_Upho.jpg"
+      ]
+    },
+    {
+      "model_id": "sectional_3_carlin_3_-_piece_mod",
+      "primary_file": "sectional_3_Carlin_3_-_Piece_Mod.jpg",
+      "all_views": [
+        "sectional_3_Carlin_3_-_Piece_Mod.jpg"
+      ]
+    },
+    {
+      "model_id": "sectional_4_arit_3_-_piece_uphol",
+      "primary_file": "sectional_4_Arit_3_-_Piece_Uphol.jpg",
+      "all_views": [
+        "sectional_4_Arit_3_-_Piece_Uphol.jpg"
+      ]
+    },
+    {
+      "model_id": "sectional_5_aarhus_3_-_piece_mod",
+      "primary_file": "sectional_5_Aarhus_3_-_Piece_Mod.jpg",
+      "all_views": [
+        "sectional_5_Aarhus_3_-_Piece_Mod.jpg"
+      ]
+    },
+    {
+      "model_id": "studio_2_-_piece_leather_sectional",
+      "primary_file": "Studio_2_-_Piece_Leather_Sectional_1.jpg",
+      "all_views": [
+        "Studio_2_-_Piece_Leather_Sectional_1.jpg",
+        "Studio_2_-_Piece_Leather_Sectional_4.jpg",
+        "Studio_2_-_Piece_Leather_Sectional_5.jpg"
+      ]
+    },
+    {
+      "model_id": "sultan_3_-_piece_leather_sectional",
+      "primary_file": "Sultan_3_-_Piece_Leather_Sectional_1.jpg",
+      "all_views": [
+        "Sultan_3_-_Piece_Leather_Sectional_1.jpg",
+        "Sultan_3_-_Piece_Leather_Sectional_3.jpg",
+        "Sultan_3_-_Piece_Leather_Sectional_4.jpg"
+      ]
+    },
+    {
+      "model_id": "sultan_4_-_piece_leather_sectional",
+      "primary_file": "Sultan_4_-_Piece_Leather_Sectional_1.jpg",
+      "all_views": [
+        "Sultan_4_-_Piece_Leather_Sectional_1.jpg",
+        "Sultan_4_-_Piece_Leather_Sectional_2.jpg",
+        "Sultan_4_-_Piece_Leather_Sectional_3.jpg"
+      ]
+    },
+    {
+      "model_id": "tila_4_-_piece_modular_upholstered_sectional",
+      "primary_file": "Tila_4_-_Piece_Modular_Upholstered_Sectional_4.jpg",
+      "all_views": [
+        "Tila_4_-_Piece_Modular_Upholstered_Sectional_4.jpg",
+        "Tila_4_-_Piece_Modular_Upholstered_Sectional_6.jpg",
+        "Tila_4_-_Piece_Modular_Upholstered_Sectional_7.jpg"
+      ]
+    },
+    {
+      "model_id": "tyndall_upholstered_reversible_sectional",
+      "primary_file": "Tyndall_Upholstered_Reversible_Sectional_1.jpg",
+      "all_views": [
+        "Tyndall_Upholstered_Reversible_Sectional_1.jpg",
+        "Tyndall_Upholstered_Reversible_Sectional_3.jpg",
+        "Tyndall_Upholstered_Reversible_Sectional_4.jpg",
+        "Tyndall_Upholstered_Reversible_Sectional_5.jpg",
+        "Tyndall_Upholstered_Reversible_Sectional_6.jpg",
+        "Tyndall_Upholstered_Reversible_Sectional_7.jpg"
+      ]
+    },
+    {
+      "model_id": "upholstered_sectional",
+      "primary_file": "Upholstered_Sectional_1.jpg",
+      "all_views": [
+        "Upholstered_Sectional_1.jpg",
+        "Upholstered_Sectional_3.jpg",
+        "Upholstered_Sectional_4.jpg",
+        "Upholstered_Sectional_5.jpg",
+        "Upholstered_Sectional_6.jpg"
+      ]
+    },
+    {
+      "model_id": "yashim_3_-_piece_leather_sectional",
+      "primary_file": "Yashim_3_-_Piece_Leather_Sectional_1.jpg",
+      "all_views": [
+        "Yashim_3_-_Piece_Leather_Sectional_1.jpg",
+        "Yashim_3_-_Piece_Leather_Sectional_2.jpg",
+        "Yashim_3_-_Piece_Leather_Sectional_3.jpg",
+        "Yashim_3_-_Piece_Leather_Sectional_4.jpg"
+      ]
+    },
+    {
+      "model_id": "yashim_4_-_piece_leather_sectional",
+      "primary_file": "Yashim_4_-_Piece_Leather_Sectional_8.jpg",
+      "all_views": [
+        "Yashim_4_-_Piece_Leather_Sectional_8.jpg",
+        "Yashim_4_-_Piece_Leather_Sectional_9.jpg"
+      ]
+    },
+    {
+      "model_id": "zoyah_2_-_piece_upholstered_sectional",
+      "primary_file": "Zoyah_2_-_Piece_Upholstered_Sectional_4.jpg",
+      "all_views": [
+        "Zoyah_2_-_Piece_Upholstered_Sectional_4.jpg",
+        "Zoyah_2_-_Piece_Upholstered_Sectional_5.jpg",
+        "Zoyah_2_-_Piece_Upholstered_Sectional_9.jpg"
+      ]
+    }
+  ],
+  "D2_Dining_and_Armchairs": [
+    {
+      "model_id": "anish_upholstered_armchair",
+      "primary_file": "Anish_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Anish_Upholstered_Armchair_1.jpg",
+        "Anish_Upholstered_Armchair_3.jpg",
+        "Anish_Upholstered_Armchair_4.jpg"
+      ]
+    },
+    {
+      "model_id": "arlo_genuine_leather_mid_century_arm_chair",
+      "primary_file": "Arlo_Genuine_Leather_Mid_Century_Arm_Chair_1.jpg",
+      "all_views": [
+        "Arlo_Genuine_Leather_Mid_Century_Arm_Chair_1.jpg",
+        "Arlo_Genuine_Leather_Mid_Century_Arm_Chair_3.jpg",
+        "Arlo_Genuine_Leather_Mid_Century_Arm_Chair_4.jpg",
+        "Arlo_Genuine_Leather_Mid_Century_Arm_Chair_5.jpg"
+      ]
+    },
+    {
+      "model_id": "astor_upholstered_armchair",
+      "primary_file": "Astor_Upholstered_Armchair_4.jpg",
+      "all_views": [
+        "Astor_Upholstered_Armchair_4.jpg",
+        "Astor_Upholstered_Armchair_5.jpg",
+        "Astor_Upholstered_Armchair_6.jpg"
+      ]
+    },
+    {
+      "model_id": "bantry_vegan_leather_armchair",
+      "primary_file": "Bantry_Vegan_Leather_Armchair_1.jpg",
+      "all_views": [
+        "Bantry_Vegan_Leather_Armchair_1.jpg",
+        "Bantry_Vegan_Leather_Armchair_6.jpg",
+        "Bantry_Vegan_Leather_Armchair_7.jpg"
+      ]
+    },
+    {
+      "model_id": "barlet_upholstered_armchair",
+      "primary_file": "Barlet_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Barlet_Upholstered_Armchair_1.jpg",
+        "Barlet_Upholstered_Armchair_3.jpg"
+      ]
+    },
+    {
+      "model_id": "barlow_upholstered_armchair",
+      "primary_file": "Barlow_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Barlow_Upholstered_Armchair_1.jpg",
+        "Barlow_Upholstered_Armchair_3.jpg",
+        "Barlow_Upholstered_Armchair_7.jpg"
+      ]
+    },
+    {
+      "model_id": "barrow_leather_armchair",
+      "primary_file": "Barrow_Leather_Armchair_1.jpg",
+      "all_views": [
+        "Barrow_Leather_Armchair_1.jpg",
+        "Barrow_Leather_Armchair_4.jpg",
+        "Barrow_Leather_Armchair_5.jpg"
+      ]
+    },
+    {
+      "model_id": "barrow_upholstered_armchair",
+      "primary_file": "Barrow_Upholstered_Armchair_8.jpg",
+      "all_views": [
+        "Barrow_Upholstered_Armchair_8.jpg",
+        "Barrow_Upholstered_Armchair_9.jpg"
+      ]
+    },
+    {
+      "model_id": "bellis_leather_armchair",
+      "primary_file": "Bellis_Leather_Armchair_5.jpg",
+      "all_views": [
+        "Bellis_Leather_Armchair_5.jpg",
+        "Bellis_Leather_Armchair_6.jpg",
+        "Bellis_Leather_Armchair_7.jpg"
+      ]
+    },
+    {
+      "model_id": "brandt_upholstered_swivel_armchair",
+      "primary_file": "Brandt_Upholstered_Swivel_Armchair_11.jpg",
+      "all_views": [
+        "Brandt_Upholstered_Swivel_Armchair_11.jpg",
+        "Brandt_Upholstered_Swivel_Armchair_4.jpg",
+        "Brandt_Upholstered_Swivel_Armchair_5.jpg",
+        "Brandt_Upholstered_Swivel_Armchair_6.jpg",
+        "Brandt_Upholstered_Swivel_Armchair_7.jpg"
+      ]
+    },
+    {
+      "model_id": "budliegh_upholstered_armchair",
+      "primary_file": "Budliegh_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Budliegh_Upholstered_Armchair_1.jpg",
+        "Budliegh_Upholstered_Armchair_2.jpg",
+        "Budliegh_Upholstered_Armchair_3.jpg"
+      ]
+    },
+    {
+      "model_id": "bunbury_upholstered_armchair",
+      "primary_file": "Bunbury_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Bunbury_Upholstered_Armchair_1.jpg",
+        "Bunbury_Upholstered_Armchair_5.jpg",
+        "Bunbury_Upholstered_Armchair_6.jpg"
+      ]
+    },
+    {
+      "model_id": "cache_lounge_chair",
+      "primary_file": "Cache_Lounge_Chair_1.jpg",
+      "all_views": [
+        "Cache_Lounge_Chair_1.jpg",
+        "Cache_Lounge_Chair_4.jpg",
+        "Cache_Lounge_Chair_5.jpg",
+        "Cache_Lounge_Chair_6.jpg",
+        "Cache_Lounge_Chair_7.jpg"
+      ]
+    },
+    {
+      "model_id": "carmelo_upholstered_armchair",
+      "primary_file": "Carmelo_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Carmelo_Upholstered_Armchair_1.jpg",
+        "Carmelo_Upholstered_Armchair_3.jpg",
+        "Carmelo_Upholstered_Armchair_4.jpg",
+        "Carmelo_Upholstered_Armchair_5.jpg"
+      ]
+    },
+    {
+      "model_id": "carmyn_coffee_table",
+      "primary_file": "Carmyn_Coffee_Table_1.jpg",
+      "all_views": [
+        "Carmyn_Coffee_Table_1.jpg",
+        "Carmyn_Coffee_Table_10.jpg",
+        "Carmyn_Coffee_Table_11.jpg",
+        "Carmyn_Coffee_Table_4.jpg",
+        "Carmyn_Coffee_Table_5.jpg",
+        "Carmyn_Coffee_Table_6.jpg"
+      ]
+    },
+    {
+      "model_id": "chair_10_cache_lounge_chair",
+      "primary_file": "chair_10_Cache_Lounge_Chair_6.jpg",
+      "all_views": [
+        "chair_10_Cache_Lounge_Chair_6.jpg"
+      ]
+    },
+    {
+      "model_id": "chair_11_cache_lounge_chair",
+      "primary_file": "chair_11_Cache_Lounge_Chair_4.jpg",
+      "all_views": [
+        "chair_11_Cache_Lounge_Chair_4.jpg"
+      ]
+    },
+    {
+      "model_id": "chair_16_bunbury_upholstered",
+      "primary_file": "chair_16_Bunbury_Upholstered.jpg",
+      "all_views": [
+        "chair_16_Bunbury_Upholstered.jpg"
+      ]
+    },
+    {
+      "model_id": "chair_22_barlet_upholstered_a",
+      "primary_file": "chair_22_Barlet_Upholstered_A.jpg",
+      "all_views": [
+        "chair_22_Barlet_Upholstered_A.jpg"
+      ]
+    },
+    {
+      "model_id": "chair_2_budliegh_upholstered",
+      "primary_file": "chair_2_Budliegh_Upholstered.jpg",
+      "all_views": [
+        "chair_2_Budliegh_Upholstered.jpg"
+      ]
+    },
+    {
+      "model_id": "chair_8_finlay_upholstered_a",
+      "primary_file": "chair_8_Finlay_Upholstered_A.jpg",
+      "all_views": [
+        "chair_8_Finlay_Upholstered_A.jpg"
+      ]
+    },
+    {
+      "model_id": "chair_anish",
+      "primary_file": "chair_anish_angle1.jpg",
+      "all_views": [
+        "chair_anish_angle1.jpg",
+        "chair_anish_angle2.jpg"
+      ]
+    },
+    {
+      "model_id": "chair_arlo_leather",
+      "primary_file": "chair_arlo_leather_angle1.jpg",
+      "all_views": [
+        "chair_arlo_leather_angle1.jpg",
+        "chair_arlo_leather_angle2.jpg"
+      ]
+    },
+    {
+      "model_id": "chair_astor",
+      "primary_file": "chair_astor_angle1.jpg",
+      "all_views": [
+        "chair_astor_angle1.jpg",
+        "chair_astor_angle2.jpg"
+      ]
+    },
+    {
+      "model_id": "chair_bantry",
+      "primary_file": "chair_bantry_angle1.jpg",
+      "all_views": [
+        "chair_bantry_angle1.jpg",
+        "chair_bantry_angle2.jpg"
+      ]
+    },
+    {
+      "model_id": "chaz_upholstered_armchair",
+      "primary_file": "Chaz_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Chaz_Upholstered_Armchair_1.jpg"
+      ]
+    },
+    {
+      "model_id": "ciro_upholstered_armchair",
+      "primary_file": "Ciro_Upholstered_Armchair_8.jpg",
+      "all_views": [
+        "Ciro_Upholstered_Armchair_8.jpg",
+        "Ciro_Upholstered_Armchair_9.jpg"
+      ]
+    },
+    {
+      "model_id": "cleo_upholstered_accent_chair",
+      "primary_file": "Cleo_Upholstered_Accent_Chair_4.jpg",
+      "all_views": [
+        "Cleo_Upholstered_Accent_Chair_4.jpg"
+      ]
+    },
+    {
+      "model_id": "clifford_leather_armchair",
+      "primary_file": "Clifford_Leather_Armchair_1.jpg",
+      "all_views": [
+        "Clifford_Leather_Armchair_1.jpg",
+        "Clifford_Leather_Armchair_2.jpg",
+        "Clifford_Leather_Armchair_3.jpg",
+        "Clifford_Leather_Armchair_4.jpg"
+      ]
+    },
+    {
+      "model_id": "clifford_upholstered_armchair",
+      "primary_file": "Clifford_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Clifford_Upholstered_Armchair_1.jpg",
+        "Clifford_Upholstered_Armchair_2.jpg",
+        "Clifford_Upholstered_Armchair_3.jpg"
+      ]
+    },
+    {
+      "model_id": "clinton_leather_armchair",
+      "primary_file": "Clinton_Leather_Armchair.jpg",
+      "all_views": [
+        "Clinton_Leather_Armchair.jpg"
+      ]
+    },
+    {
+      "model_id": "conan_upholstered_armchair",
+      "primary_file": "Conan_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Conan_Upholstered_Armchair_1.jpg",
+        "Conan_Upholstered_Armchair_3.jpg",
+        "Conan_Upholstered_Armchair_4.jpg",
+        "Conan_Upholstered_Armchair_5.jpg"
+      ]
+    },
+    {
+      "model_id": "damien_leather_armchair",
+      "primary_file": "Damien_Leather_Armchair_4.jpg",
+      "all_views": [
+        "Damien_Leather_Armchair_4.jpg",
+        "Damien_Leather_Armchair_5.jpg",
+        "Damien_Leather_Armchair_6.jpg",
+        "Damien_Leather_Armchair_7.jpg"
+      ]
+    },
+    {
+      "model_id": "daphanie_upholstered_armchair",
+      "primary_file": "Daphanie_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Daphanie_Upholstered_Armchair_1.jpg",
+        "Daphanie_Upholstered_Armchair_3.jpg",
+        "Daphanie_Upholstered_Armchair_4.jpg",
+        "Daphanie_Upholstered_Armchair_5.jpg"
+      ]
+    },
+    {
+      "model_id": "desi_retro_button_tufted_armchair",
+      "primary_file": "Desi_Retro_Button_Tufted_Armchair_1.jpg",
+      "all_views": [
+        "Desi_Retro_Button_Tufted_Armchair_1.jpg",
+        "Desi_Retro_Button_Tufted_Armchair_4.jpg",
+        "Desi_Retro_Button_Tufted_Armchair_5.jpg",
+        "Desi_Retro_Button_Tufted_Armchair_6.jpg",
+        "Desi_Retro_Button_Tufted_Armchair_7.jpg"
+      ]
+    },
+    {
+      "model_id": "dimeo_upholstered_armchair",
+      "primary_file": "Dimeo_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Dimeo_Upholstered_Armchair_1.jpg",
+        "Dimeo_Upholstered_Armchair_3.jpg",
+        "Dimeo_Upholstered_Armchair_4.jpg"
+      ]
+    },
+    {
+      "model_id": "duncan_leather_armchair",
+      "primary_file": "Duncan_Leather_Armchair_1.jpg",
+      "all_views": [
+        "Duncan_Leather_Armchair_1.jpg",
+        "Duncan_Leather_Armchair_3.jpg",
+        "Duncan_Leather_Armchair_4.jpg"
+      ]
+    },
+    {
+      "model_id": "duval_vegan_leather_armchair",
+      "primary_file": "Duval_Vegan_Leather_Armchair_4.jpg",
+      "all_views": [
+        "Duval_Vegan_Leather_Armchair_4.jpg",
+        "Duval_Vegan_Leather_Armchair_5.jpg"
+      ]
+    },
+    {
+      "model_id": "eclipse_upholstered_armchair",
+      "primary_file": "Eclipse_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Eclipse_Upholstered_Armchair_1.jpg",
+        "Eclipse_Upholstered_Armchair_3.jpg",
+        "Eclipse_Upholstered_Armchair_4.jpg",
+        "Eclipse_Upholstered_Armchair_6.jpg",
+        "Eclipse_Upholstered_Armchair_7.jpg"
+      ]
+    },
+    {
+      "model_id": "eliott_contemporary_teak_wood_woven_round_chair",
+      "primary_file": "Eliott_Contemporary_Teak_Wood_Woven_Round_Chair_1.jpg",
+      "all_views": [
+        "Eliott_Contemporary_Teak_Wood_Woven_Round_Chair_1.jpg",
+        "Eliott_Contemporary_Teak_Wood_Woven_Round_Chair_2.jpg",
+        "Eliott_Contemporary_Teak_Wood_Woven_Round_Chair_3.jpg",
+        "Eliott_Contemporary_Teak_Wood_Woven_Round_Chair_8.jpg"
+      ]
+    },
+    {
+      "model_id": "evin_upholstered_armchair",
+      "primary_file": "Evin_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Evin_Upholstered_Armchair_1.jpg",
+        "Evin_Upholstered_Armchair_2.jpg",
+        "Evin_Upholstered_Armchair_3.jpg",
+        "Evin_Upholstered_Armchair_4.jpg"
+      ]
+    },
+    {
+      "model_id": "finlay_upholstered_armchair",
+      "primary_file": "Finlay_Upholstered_Armchair_10.jpg",
+      "all_views": [
+        "Finlay_Upholstered_Armchair_10.jpg",
+        "Finlay_Upholstered_Armchair_8.jpg",
+        "Finlay_Upholstered_Armchair_9.jpg"
+      ]
+    },
+    {
+      "model_id": "flavio_27_w_armchair",
+      "primary_file": "Flavio_27_W_Armchair_1.jpg",
+      "all_views": [
+        "Flavio_27_W_Armchair_1.jpg",
+        "Flavio_27_W_Armchair_5.jpg",
+        "Flavio_27_W_Armchair_6.jpg",
+        "Flavio_27_W_Armchair_7.jpg"
+      ]
+    },
+    {
+      "model_id": "french_upholstered_armchair",
+      "primary_file": "French_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "French_Upholstered_Armchair_1.jpg",
+        "French_Upholstered_Armchair_3.jpg",
+        "French_Upholstered_Armchair_4.jpg"
+      ]
+    },
+    {
+      "model_id": "gelman_upholstered_armchair",
+      "primary_file": "Gelman_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Gelman_Upholstered_Armchair_1.jpg",
+        "Gelman_Upholstered_Armchair_4.jpg",
+        "Gelman_Upholstered_Armchair_5.jpg"
+      ]
+    },
+    {
+      "model_id": "hailee_41.5_w_tufted_genuine_leather_armchair",
+      "primary_file": "Hailee_41.5_W_Tufted_Genuine_Leather_Armchair_1.jpg",
+      "all_views": [
+        "Hailee_41.5_W_Tufted_Genuine_Leather_Armchair_1.jpg",
+        "Hailee_41.5_W_Tufted_Genuine_Leather_Armchair_5.jpg",
+        "Hailee_41.5_W_Tufted_Genuine_Leather_Armchair_6.jpg",
+        "Hailee_41.5_W_Tufted_Genuine_Leather_Armchair_7.jpg"
+      ]
+    },
+    {
+      "model_id": "haru_upholstered_armchair",
+      "primary_file": "Haru_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Haru_Upholstered_Armchair_1.jpg",
+        "Haru_Upholstered_Armchair_10.jpg",
+        "Haru_Upholstered_Armchair_6.jpg"
+      ]
+    },
+    {
+      "model_id": "hawke_upholstered_armchair",
+      "primary_file": "Hawke_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Hawke_Upholstered_Armchair_1.jpg",
+        "Hawke_Upholstered_Armchair_3.jpg",
+        "Hawke_Upholstered_Armchair_4.jpg",
+        "Hawke_Upholstered_Armchair_5.jpg",
+        "Hawke_Upholstered_Armchair_6.jpg"
+      ]
+    },
+    {
+      "model_id": "intrigue_upholstered_armchair",
+      "primary_file": "Intrigue_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Intrigue_Upholstered_Armchair_1.jpg",
+        "Intrigue_Upholstered_Armchair_3.jpg",
+        "Intrigue_Upholstered_Armchair_4.jpg"
+      ]
+    },
+    {
+      "model_id": "ivory_armchair_-_contemporary_wide_lounge_chair_-_comfortable_stylish_home_or_office_accent_furniture_-_upholstered_trendy_cream_colored_chair",
+      "primary_file": "Ivory_Armchair_-_Contemporary_Wide_Lounge_Chair_-_Comfortable_Stylish_Home_or_Office_Accent_Furniture_-_Upholstered_Trendy_Cream_Colored_Chair_1.jpg",
+      "all_views": [
+        "Ivory_Armchair_-_Contemporary_Wide_Lounge_Chair_-_Comfortable_Stylish_Home_or_Office_Accent_Furniture_-_Upholstered_Trendy_Cream_Colored_Chair_1.jpg",
+        "Ivory_Armchair_-_Contemporary_Wide_Lounge_Chair_-_Comfortable_Stylish_Home_or_Office_Accent_Furniture_-_Upholstered_Trendy_Cream_Colored_Chair_3.jpg",
+        "Ivory_Armchair_-_Contemporary_Wide_Lounge_Chair_-_Comfortable_Stylish_Home_or_Office_Accent_Furniture_-_Upholstered_Trendy_Cream_Colored_Chair_4.jpg"
+      ]
+    },
+    {
+      "model_id": "jerame_upholstered_armchair",
+      "primary_file": "Jerame_Upholstered_Armchair_8.jpg",
+      "all_views": [
+        "Jerame_Upholstered_Armchair_8.jpg"
+      ]
+    },
+    {
+      "model_id": "kagan_upholstered_armchair",
+      "primary_file": "Kagan_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Kagan_Upholstered_Armchair_1.jpg",
+        "Kagan_Upholstered_Armchair_2.jpg",
+        "Kagan_Upholstered_Armchair_3.jpg",
+        "Kagan_Upholstered_Armchair_4.jpg"
+      ]
+    },
+    {
+      "model_id": "kaid_upholstered_armchair",
+      "primary_file": "Kaid_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Kaid_Upholstered_Armchair_1.jpg",
+        "Kaid_Upholstered_Armchair_3.jpg",
+        "Kaid_Upholstered_Armchair_4.jpg",
+        "Kaid_Upholstered_Armchair_5.jpg",
+        "Kaid_Upholstered_Armchair_6.jpg",
+        "Kaid_Upholstered_Armchair_7.jpg"
+      ]
+    },
+    {
+      "model_id": "kala_upholstered_armchair",
+      "primary_file": "Kala_Upholstered_Armchair_5.jpg",
+      "all_views": [
+        "Kala_Upholstered_Armchair_5.jpg",
+        "Kala_Upholstered_Armchair_6.jpg"
+      ]
+    },
+    {
+      "model_id": "karin_upholstered_armchair",
+      "primary_file": "Karin_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Karin_Upholstered_Armchair_1.jpg",
+        "Karin_Upholstered_Armchair_4.jpg",
+        "Karin_Upholstered_Armchair_5.jpg"
+      ]
+    },
+    {
+      "model_id": "kenan_upholstered_armchair",
+      "primary_file": "Kenan_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Kenan_Upholstered_Armchair_1.jpg",
+        "Kenan_Upholstered_Armchair_3.jpg",
+        "Kenan_Upholstered_Armchair_4.jpg"
+      ]
+    },
+    {
+      "model_id": "kenji_upholstered_armchair",
+      "primary_file": "Kenji_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Kenji_Upholstered_Armchair_1.jpg",
+        "Kenji_Upholstered_Armchair_4.jpg",
+        "Kenji_Upholstered_Armchair_5.jpg"
+      ]
+    },
+    {
+      "model_id": "khala_upholstered_armchair",
+      "primary_file": "Khala_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Khala_Upholstered_Armchair_1.jpg",
+        "Khala_Upholstered_Armchair_2.jpg",
+        "Khala_Upholstered_Armchair_3.jpg",
+        "Khala_Upholstered_Armchair_4.jpg"
+      ]
+    },
+    {
+      "model_id": "kibo_upholstered_armchair",
+      "primary_file": "Kibo_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Kibo_Upholstered_Armchair_1.jpg",
+        "Kibo_Upholstered_Armchair_5.jpg",
+        "Kibo_Upholstered_Armchair_6.jpg"
+      ]
+    },
+    {
+      "model_id": "kinston_upholstered_armchair",
+      "primary_file": "Kinston_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Kinston_Upholstered_Armchair_1.jpg",
+        "Kinston_Upholstered_Armchair_3.jpg",
+        "Kinston_Upholstered_Armchair_4.jpg"
+      ]
+    },
+    {
+      "model_id": "lafayette_upholstered_armchair",
+      "primary_file": "Lafayette_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Lafayette_Upholstered_Armchair_1.jpg",
+        "Lafayette_Upholstered_Armchair_3.jpg",
+        "Lafayette_Upholstered_Armchair_4.jpg",
+        "Lafayette_Upholstered_Armchair_5.jpg",
+        "Lafayette_Upholstered_Armchair_6.jpg"
+      ]
+    },
+    {
+      "model_id": "laguna_upholstered_armchair",
+      "primary_file": "Laguna_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Laguna_Upholstered_Armchair_1.jpg",
+        "Laguna_Upholstered_Armchair_3.jpg",
+        "Laguna_Upholstered_Armchair_4.jpg",
+        "Laguna_Upholstered_Armchair_5.jpg",
+        "Laguna_Upholstered_Armchair_6.jpg",
+        "Laguna_Upholstered_Armchair_7.jpg"
+      ]
+    },
+    {
+      "model_id": "lavonte_upholstered_armchair",
+      "primary_file": "Lavonte_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Lavonte_Upholstered_Armchair_1.jpg",
+        "Lavonte_Upholstered_Armchair_3.jpg",
+        "Lavonte_Upholstered_Armchair_4.jpg",
+        "Lavonte_Upholstered_Armchair_5.jpg",
+        "Lavonte_Upholstered_Armchair_7.jpg"
+      ]
+    },
+    {
+      "model_id": "ledger_upholstered_armchair",
+      "primary_file": "Ledger_Upholstered_Armchair_8.jpg",
+      "all_views": [
+        "Ledger_Upholstered_Armchair_8.jpg",
+        "Ledger_Upholstered_Armchair_9.jpg"
+      ]
+    },
+    {
+      "model_id": "leno_armchair",
+      "primary_file": "Leno_Armchair_1.jpg",
+      "all_views": [
+        "Leno_Armchair_1.jpg",
+        "Leno_Armchair_2.jpg",
+        "Leno_Armchair_3.jpg"
+      ]
+    },
+    {
+      "model_id": "leonel_upholstered_armchair",
+      "primary_file": "Leonel_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Leonel_Upholstered_Armchair_1.jpg",
+        "Leonel_Upholstered_Armchair_3.jpg",
+        "Leonel_Upholstered_Armchair_4.jpg"
+      ]
+    },
+    {
+      "model_id": "libra_upholstered_armchair",
+      "primary_file": "Libra_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Libra_Upholstered_Armchair_1.jpg",
+        "Libra_Upholstered_Armchair_4.jpg",
+        "Libra_Upholstered_Armchair_5.jpg"
+      ]
+    },
+    {
+      "model_id": "linus_upholstered_armchair",
+      "primary_file": "Linus_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Linus_Upholstered_Armchair_1.jpg",
+        "Linus_Upholstered_Armchair_3.jpg",
+        "Linus_Upholstered_Armchair_4.jpg",
+        "Linus_Upholstered_Armchair_5.jpg"
+      ]
+    },
+    {
+      "model_id": "liv_upholstered_armchair",
+      "primary_file": "Liv_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Liv_Upholstered_Armchair_1.jpg",
+        "Liv_Upholstered_Armchair_3.jpg",
+        "Liv_Upholstered_Armchair_4.jpg",
+        "Liv_Upholstered_Armchair_5.jpg",
+        "Liv_Upholstered_Armchair_6.jpg"
+      ]
+    },
+    {
+      "model_id": "lobos_upholstered_armchair",
+      "primary_file": "Lobos_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Lobos_Upholstered_Armchair_1.jpg",
+        "Lobos_Upholstered_Armchair_3.jpg",
+        "Lobos_Upholstered_Armchair_4.jpg",
+        "Lobos_Upholstered_Armchair_5.jpg",
+        "Lobos_Upholstered_Armchair_6.jpg",
+        "Lobos_Upholstered_Armchair_7.jpg"
+      ]
+    },
+    {
+      "model_id": "lodi_vegan_leather_swivel_armchair",
+      "primary_file": "Lodi_Vegan_Leather_Swivel_Armchair_1.jpg",
+      "all_views": [
+        "Lodi_Vegan_Leather_Swivel_Armchair_1.jpg",
+        "Lodi_Vegan_Leather_Swivel_Armchair_4.jpg",
+        "Lodi_Vegan_Leather_Swivel_Armchair_7.jpg"
+      ]
+    },
+    {
+      "model_id": "maren_leather_armchair",
+      "primary_file": "Maren_Leather_Armchair_1.jpg",
+      "all_views": [
+        "Maren_Leather_Armchair_1.jpg",
+        "Maren_Leather_Armchair_3.jpg",
+        "Maren_Leather_Armchair_4.jpg",
+        "Maren_Leather_Armchair_5.jpg"
+      ]
+    },
+    {
+      "model_id": "maris_upholstered_armchair",
+      "primary_file": "Maris_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Maris_Upholstered_Armchair_1.jpg",
+        "Maris_Upholstered_Armchair_2.jpg",
+        "Maris_Upholstered_Armchair_3.jpg",
+        "Maris_Upholstered_Armchair_4.jpg"
+      ]
+    },
+    {
+      "model_id": "marla_vegan_leather_armchair",
+      "primary_file": "Marla_Vegan_Leather_Armchair_5.jpg",
+      "all_views": [
+        "Marla_Vegan_Leather_Armchair_5.jpg",
+        "Marla_Vegan_Leather_Armchair_6.jpg"
+      ]
+    },
+    {
+      "model_id": "metaza_upholstered_armchair",
+      "primary_file": "Metaza_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Metaza_Upholstered_Armchair_1.jpg",
+        "Metaza_Upholstered_Armchair_2.jpg",
+        "Metaza_Upholstered_Armchair_3.jpg"
+      ]
+    },
+    {
+      "model_id": "miller_upholstered_armchair",
+      "primary_file": "Miller_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Miller_Upholstered_Armchair_1.jpg",
+        "Miller_Upholstered_Armchair_4.jpg",
+        "Miller_Upholstered_Armchair_5.jpg",
+        "Miller_Upholstered_Armchair_6.jpg",
+        "Miller_Upholstered_Armchair_7.jpg"
+      ]
+    },
+    {
+      "model_id": "neil_leather_armchair",
+      "primary_file": "Neil_Leather_Armchair_1.jpg",
+      "all_views": [
+        "Neil_Leather_Armchair_1.jpg",
+        "Neil_Leather_Armchair_2.jpg",
+        "Neil_Leather_Armchair_3.jpg",
+        "Neil_Leather_Armchair_4.jpg",
+        "Neil_Leather_Armchair_5.jpg"
+      ]
+    },
+    {
+      "model_id": "nobles_upholstered_armchair",
+      "primary_file": "Nobles_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Nobles_Upholstered_Armchair_1.jpg",
+        "Nobles_Upholstered_Armchair_3.jpg",
+        "Nobles_Upholstered_Armchair_4.jpg",
+        "Nobles_Upholstered_Armchair_5.jpg"
+      ]
+    },
+    {
+      "model_id": "norwood_leather_armchair",
+      "primary_file": "Norwood_Leather_Armchair_1.jpg",
+      "all_views": [
+        "Norwood_Leather_Armchair_1.jpg",
+        "Norwood_Leather_Armchair_3.jpg",
+        "Norwood_Leather_Armchair_4.jpg",
+        "Norwood_Leather_Armchair_5.jpg"
+      ]
+    },
+    {
+      "model_id": "offline_outdoor_lounge_chair",
+      "primary_file": "Offline_Outdoor_Lounge_Chair_1.jpg",
+      "all_views": [
+        "Offline_Outdoor_Lounge_Chair_1.jpg",
+        "Offline_Outdoor_Lounge_Chair_2.jpg",
+        "Offline_Outdoor_Lounge_Chair_3.jpg",
+        "Offline_Outdoor_Lounge_Chair_4.jpg",
+        "Offline_Outdoor_Lounge_Chair_5.jpg"
+      ]
+    },
+    {
+      "model_id": "ottawa_leather_armchair",
+      "primary_file": "Ottawa_Leather_Armchair_1.jpg",
+      "all_views": [
+        "Ottawa_Leather_Armchair_1.jpg",
+        "Ottawa_Leather_Armchair_3.jpg",
+        "Ottawa_Leather_Armchair_4.jpg",
+        "Ottawa_Leather_Armchair_6.jpg"
+      ]
+    },
+    {
+      "model_id": "patel_leather_armchair",
+      "primary_file": "Patel_Leather_Armchair_1.jpg",
+      "all_views": [
+        "Patel_Leather_Armchair_1.jpg",
+        "Patel_Leather_Armchair_2.jpg",
+        "Patel_Leather_Armchair_3.jpg"
+      ]
+    },
+    {
+      "model_id": "paula_leather_armchair",
+      "primary_file": "Paula_Leather_Armchair_1.jpg",
+      "all_views": [
+        "Paula_Leather_Armchair_1.jpg",
+        "Paula_Leather_Armchair_3.jpg",
+        "Paula_Leather_Armchair_4.jpg"
+      ]
+    },
+    {
+      "model_id": "peregrine_upholstered_armchair",
+      "primary_file": "Peregrine_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Peregrine_Upholstered_Armchair_1.jpg",
+        "Peregrine_Upholstered_Armchair_3.jpg",
+        "Peregrine_Upholstered_Armchair_4.jpg"
+      ]
+    },
+    {
+      "model_id": "rabun_leather_armchair",
+      "primary_file": "Rabun_Leather_Armchair_1.jpg",
+      "all_views": [
+        "Rabun_Leather_Armchair_1.jpg",
+        "Rabun_Leather_Armchair_5.jpg",
+        "Rabun_Leather_Armchair_6.jpg"
+      ]
+    },
+    {
+      "model_id": "rae_85_square_arm_sofa_with_reversible_cushions",
+      "primary_file": "Rae_85_Square_Arm_Sofa_with_Reversible_Cushions_4.jpg",
+      "all_views": [
+        "Rae_85_Square_Arm_Sofa_with_Reversible_Cushions_4.jpg"
+      ]
+    },
+    {
+      "model_id": "ruth_leather_armchair",
+      "primary_file": "Ruth_Leather_Armchair_1.jpg",
+      "all_views": [
+        "Ruth_Leather_Armchair_1.jpg",
+        "Ruth_Leather_Armchair_3.jpg",
+        "Ruth_Leather_Armchair_4.jpg"
+      ]
+    },
+    {
+      "model_id": "sigrid_leather_armchair",
+      "primary_file": "Sigrid_Leather_Armchair_1.jpg",
+      "all_views": [
+        "Sigrid_Leather_Armchair_1.jpg",
+        "Sigrid_Leather_Armchair_2.jpg",
+        "Sigrid_Leather_Armchair_3.jpg"
+      ]
+    },
+    {
+      "model_id": "sonora_leather_armchair",
+      "primary_file": "Sonora_Leather_Armchair_5.jpg",
+      "all_views": [
+        "Sonora_Leather_Armchair_5.jpg",
+        "Sonora_Leather_Armchair_6.jpg",
+        "Sonora_Leather_Armchair_7.jpg",
+        "Sonora_Leather_Armchair_8.jpg"
+      ]
+    },
+    {
+      "model_id": "spearman_111_leather_sofa",
+      "primary_file": "Spearman_111_Leather_Sofa_4.jpg",
+      "all_views": [
+        "Spearman_111_Leather_Sofa_4.jpg",
+        "Spearman_111_Leather_Sofa_5.jpg",
+        "Spearman_111_Leather_Sofa_6.jpg"
+      ]
+    },
+    {
+      "model_id": "stack_upholstered_armchair",
+      "primary_file": "Stack_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Stack_Upholstered_Armchair_1.jpg",
+        "Stack_Upholstered_Armchair_3.jpg",
+        "Stack_Upholstered_Armchair_4.jpg"
+      ]
+    },
+    {
+      "model_id": "taube_upholstered_armchair",
+      "primary_file": "Taube_Upholstered_Armchair_3.jpg",
+      "all_views": [
+        "Taube_Upholstered_Armchair_3.jpg",
+        "Taube_Upholstered_Armchair_4.jpg",
+        "Taube_Upholstered_Armchair_5.jpg"
+      ]
+    },
+    {
+      "model_id": "tyndall_upholstered_armchair",
+      "primary_file": "Tyndall_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Tyndall_Upholstered_Armchair_1.jpg",
+        "Tyndall_Upholstered_Armchair_3.jpg",
+        "Tyndall_Upholstered_Armchair_4.jpg"
+      ]
+    },
+    {
+      "model_id": "upholstered_armchair",
+      "primary_file": "Upholstered_Armchair_7.jpg",
+      "all_views": [
+        "Upholstered_Armchair_7.jpg"
+      ]
+    },
+    {
+      "model_id": "vegan_leather_armchair",
+      "primary_file": "Vegan_Leather_Armchair_4.jpg",
+      "all_views": [
+        "Vegan_Leather_Armchair_4.jpg"
+      ]
+    },
+    {
+      "model_id": "vivi_upholstered_armchair",
+      "primary_file": "Vivi_Upholstered_Armchair_4.jpg",
+      "all_views": [
+        "Vivi_Upholstered_Armchair_4.jpg",
+        "Vivi_Upholstered_Armchair_5.jpg",
+        "Vivi_Upholstered_Armchair_7.jpg"
+      ]
+    },
+    {
+      "model_id": "westgate_leather_armchair",
+      "primary_file": "Westgate_Leather_Armchair_1.jpg",
+      "all_views": [
+        "Westgate_Leather_Armchair_1.jpg",
+        "Westgate_Leather_Armchair_11.jpg",
+        "Westgate_Leather_Armchair_2.jpg",
+        "Westgate_Leather_Armchair_3.jpg",
+        "Westgate_Leather_Armchair_4.jpg",
+        "Westgate_Leather_Armchair_7.jpg"
+      ]
+    },
+    {
+      "model_id": "westport_upholstered_armchair",
+      "primary_file": "Westport_Upholstered_Armchair_4.jpg",
+      "all_views": [
+        "Westport_Upholstered_Armchair_4.jpg"
+      ]
+    },
+    {
+      "model_id": "yassine_upholstered_armchair",
+      "primary_file": "Yassine_Upholstered_Armchair_1.jpg",
+      "all_views": [
+        "Yassine_Upholstered_Armchair_1.jpg",
+        "Yassine_Upholstered_Armchair_2.jpg",
+        "Yassine_Upholstered_Armchair_3.jpg",
+        "Yassine_Upholstered_Armchair_4.jpg",
+        "Yassine_Upholstered_Armchair_5.jpg",
+        "Yassine_Upholstered_Armchair_7.jpg"
+      ]
+    }
+  ],
+  "D3_Coffee_and_Accent_Tables": [
+    {
+      "model_id": "acadia_coffee_table",
+      "primary_file": "Acadia_Coffee_Table_1.jpg",
+      "all_views": [
+        "Acadia_Coffee_Table_1.jpg"
+      ]
+    },
+    {
+      "model_id": "addis_coffee_table",
+      "primary_file": "Addis_Coffee_Table_10.jpg",
+      "all_views": [
+        "Addis_Coffee_Table_10.jpg"
+      ]
+    },
+    {
+      "model_id": "afeefah_nesting_coffee_table",
+      "primary_file": "Afeefah_Nesting_Coffee_Table_1.jpg",
+      "all_views": [
+        "Afeefah_Nesting_Coffee_Table_1.jpg"
+      ]
+    },
+    {
+      "model_id": "amyiah_coffee_table",
+      "primary_file": "Amyiah_Coffee_Table_1.jpg",
+      "all_views": [
+        "Amyiah_Coffee_Table_1.jpg",
+        "Amyiah_Coffee_Table_3.jpg",
+        "Amyiah_Coffee_Table_4.jpg",
+        "Amyiah_Coffee_Table_6.jpg"
+      ]
+    },
+    {
+      "model_id": "aneudy_coffee_table",
+      "primary_file": "Aneudy_Coffee_Table_1.jpg",
+      "all_views": [
+        "Aneudy_Coffee_Table_1.jpg",
+        "Aneudy_Coffee_Table_2.jpg",
+        "Aneudy_Coffee_Table_3.jpg",
+        "Aneudy_Coffee_Table_4.jpg",
+        "Aneudy_Coffee_Table_5.jpg"
+      ]
+    },
+    {
+      "model_id": "angus_coffee_table",
+      "primary_file": "Angus_Coffee_Table_1.jpg",
+      "all_views": [
+        "Angus_Coffee_Table_1.jpg"
+      ]
+    },
+    {
+      "model_id": "antrim_coffee_table",
+      "primary_file": "Antrim_Coffee_Table_4.jpg",
+      "all_views": [
+        "Antrim_Coffee_Table_4.jpg",
+        "Antrim_Coffee_Table_5.jpg"
+      ]
+    },
+    {
+      "model_id": "apt_coffee_table",
+      "primary_file": "Apt_Coffee_Table_1.jpg",
+      "all_views": [
+        "Apt_Coffee_Table_1.jpg",
+        "Apt_Coffee_Table_3.jpg",
+        "Apt_Coffee_Table_5.jpg",
+        "Apt_Coffee_Table_6.jpg",
+        "Apt_Coffee_Table_7.jpg"
+      ]
+    },
+    {
+      "model_id": "asta_black_oak_coffee_table",
+      "primary_file": "Asta_Black_Oak_Coffee_Table_1.jpg",
+      "all_views": [
+        "Asta_Black_Oak_Coffee_Table_1.jpg",
+        "Asta_Black_Oak_Coffee_Table_3.jpg"
+      ]
+    },
+    {
+      "model_id": "aster_coffee_table",
+      "primary_file": "Aster_Coffee_Table_4.jpg",
+      "all_views": [
+        "Aster_Coffee_Table_4.jpg",
+        "Aster_Coffee_Table_7.jpg"
+      ]
+    },
+    {
+      "model_id": "astros_coffee_table",
+      "primary_file": "Astros_Coffee_Table_4.jpg",
+      "all_views": [
+        "Astros_Coffee_Table_4.jpg"
+      ]
+    },
+    {
+      "model_id": "austin_coffee_table",
+      "primary_file": "Austin_Coffee_Table_1.jpg",
+      "all_views": [
+        "Austin_Coffee_Table_1.jpg",
+        "Austin_Coffee_Table_3.jpg",
+        "Austin_Coffee_Table_4.jpg"
+      ]
+    },
+    {
+      "model_id": "avory_frame_coffee_table",
+      "primary_file": "Avory_Frame_Coffee_Table_1.jpg",
+      "all_views": [
+        "Avory_Frame_Coffee_Table_1.jpg",
+        "Avory_Frame_Coffee_Table_3.jpg",
+        "Avory_Frame_Coffee_Table_7.jpg"
+      ]
+    },
+    {
+      "model_id": "ayres_coffee_table",
+      "primary_file": "Ayres_Coffee_Table_1.jpg",
+      "all_views": [
+        "Ayres_Coffee_Table_1.jpg",
+        "Ayres_Coffee_Table_6.jpg",
+        "Ayres_Coffee_Table_8.jpg",
+        "Ayres_Coffee_Table_9.jpg"
+      ]
+    },
+    {
+      "model_id": "barbour_coffee_table",
+      "primary_file": "Barbour_Coffee_Table_1.jpg",
+      "all_views": [
+        "Barbour_Coffee_Table_1.jpg"
+      ]
+    },
+    {
+      "model_id": "beckton_coffee_table",
+      "primary_file": "Beckton_Coffee_Table_1.jpg",
+      "all_views": [
+        "Beckton_Coffee_Table_1.jpg",
+        "Beckton_Coffee_Table_3.jpg"
+      ]
+    },
+    {
+      "model_id": "beorn_coffee_table",
+      "primary_file": "Beorn_Coffee_Table_1.jpg",
+      "all_views": [
+        "Beorn_Coffee_Table_1.jpg",
+        "Beorn_Coffee_Table_2.jpg",
+        "Beorn_Coffee_Table_3.jpg",
+        "Beorn_Coffee_Table_6.jpg"
+      ]
+    },
+    {
+      "model_id": "bergeron_coffee_table",
+      "primary_file": "Bergeron_Coffee_Table_1.jpg",
+      "all_views": [
+        "Bergeron_Coffee_Table_1.jpg",
+        "Bergeron_Coffee_Table_2.jpg",
+        "Bergeron_Coffee_Table_5.jpg",
+        "Bergeron_Coffee_Table_7.jpg",
+        "Bergeron_Coffee_Table_8.jpg"
+      ]
+    },
+    {
+      "model_id": "block_1_coffee_table",
+      "primary_file": "Block_1_Coffee_Table_1.jpg",
+      "all_views": [
+        "Block_1_Coffee_Table_1.jpg"
+      ]
+    },
+    {
+      "model_id": "bollinger_coffee_table",
+      "primary_file": "Bollinger_Coffee_Table_4.jpg",
+      "all_views": [
+        "Bollinger_Coffee_Table_4.jpg"
+      ]
+    },
+    {
+      "model_id": "braddock_coffee_table",
+      "primary_file": "Braddock_Coffee_Table_1.jpg",
+      "all_views": [
+        "Braddock_Coffee_Table_1.jpg",
+        "Braddock_Coffee_Table_5.jpg",
+        "Braddock_Coffee_Table_6.jpg"
+      ]
+    },
+    {
+      "model_id": "brantley_coffee_table",
+      "primary_file": "Brantley_Coffee_Table_1.jpg",
+      "all_views": [
+        "Brantley_Coffee_Table_1.jpg"
+      ]
+    },
+    {
+      "model_id": "bremer_coffee_table",
+      "primary_file": "Bremer_Coffee_Table_1.jpg",
+      "all_views": [
+        "Bremer_Coffee_Table_1.jpg",
+        "Bremer_Coffee_Table_2.jpg"
+      ]
+    },
+    {
+      "model_id": "brier_solid_wood_3_legs_coffee_table",
+      "primary_file": "Brier_Solid_Wood_3_Legs_Coffee_Table_6.jpg",
+      "all_views": [
+        "Brier_Solid_Wood_3_Legs_Coffee_Table_6.jpg",
+        "Brier_Solid_Wood_3_Legs_Coffee_Table_7.jpg"
+      ]
+    },
+    {
+      "model_id": "brinley_coffee_table",
+      "primary_file": "Brinley_Coffee_Table_1.jpg",
+      "all_views": [
+        "Brinley_Coffee_Table_1.jpg"
+      ]
+    },
+    {
+      "model_id": "broc_coffee_table",
+      "primary_file": "Broc_Coffee_Table_1.jpg",
+      "all_views": [
+        "Broc_Coffee_Table_1.jpg"
+      ]
+    },
+    {
+      "model_id": "bron_coffee_table",
+      "primary_file": "Bron_Coffee_Table_1.jpg",
+      "all_views": [
+        "Bron_Coffee_Table_1.jpg",
+        "Bron_Coffee_Table_3.jpg"
+      ]
+    },
+    {
+      "model_id": "bryon_coffee_table",
+      "primary_file": "Bryon_Coffee_Table_1.jpg",
+      "all_views": [
+        "Bryon_Coffee_Table_1.jpg",
+        "Bryon_Coffee_Table_3.jpg"
+      ]
+    },
+    {
+      "model_id": "buchanan_coffee_table",
+      "primary_file": "Buchanan_Coffee_Table_1.jpg",
+      "all_views": [
+        "Buchanan_Coffee_Table_1.jpg",
+        "Buchanan_Coffee_Table_8.jpg"
+      ]
+    },
+    {
+      "model_id": "cameran_solid_wood_4_legs_coffee_table",
+      "primary_file": "Cameran_Solid_Wood_4_Legs_Coffee_Table_5.jpg",
+      "all_views": [
+        "Cameran_Solid_Wood_4_Legs_Coffee_Table_5.jpg",
+        "Cameran_Solid_Wood_4_Legs_Coffee_Table_6.jpg"
+      ]
+    },
+    {
+      "model_id": "caroline_coffee_table",
+      "primary_file": "Caroline_Coffee_Table_1.jpg",
+      "all_views": [
+        "Caroline_Coffee_Table_1.jpg"
+      ]
+    },
+    {
+      "model_id": "carson_coffee_table",
+      "primary_file": "Carson_Coffee_Table_3.jpg",
+      "all_views": [
+        "Carson_Coffee_Table_3.jpg",
+        "Carson_Coffee_Table_4.jpg"
+      ]
+    },
+    {
+      "model_id": "cate_nesting_coffee_table",
+      "primary_file": "Cate_Nesting_Coffee_Table_1.jpg",
+      "all_views": [
+        "Cate_Nesting_Coffee_Table_1.jpg",
+        "Cate_Nesting_Coffee_Table_3.jpg"
+      ]
+    },
+    {
+      "model_id": "cedric_frame_coffee_table_with_storage",
+      "primary_file": "Cedric_Frame_Coffee_Table_with_Storage_1.jpg",
+      "all_views": [
+        "Cedric_Frame_Coffee_Table_with_Storage_1.jpg"
+      ]
+    },
+    {
+      "model_id": "channing_coffee_table",
+      "primary_file": "Channing_Coffee_Table_1.jpg",
+      "all_views": [
+        "Channing_Coffee_Table_1.jpg",
+        "Channing_Coffee_Table_7.jpg"
+      ]
+    },
+    {
+      "model_id": "chris_coffee_table",
+      "primary_file": "Chris_Coffee_Table_4.jpg",
+      "all_views": [
+        "Chris_Coffee_Table_4.jpg"
+      ]
+    },
+    {
+      "model_id": "circula_large_coffee_table",
+      "primary_file": "Circula_Large_Coffee_Table_1.jpg",
+      "all_views": [
+        "Circula_Large_Coffee_Table_1.jpg",
+        "Circula_Large_Coffee_Table_10.jpg",
+        "Circula_Large_Coffee_Table_11.jpg",
+        "Circula_Large_Coffee_Table_13.jpg",
+        "Circula_Large_Coffee_Table_14.jpg",
+        "Circula_Large_Coffee_Table_15.jpg",
+        "Circula_Large_Coffee_Table_16.jpg",
+        "Circula_Large_Coffee_Table_17.jpg",
+        "Circula_Large_Coffee_Table_2.jpg",
+        "Circula_Large_Coffee_Table_5.jpg",
+        "Circula_Large_Coffee_Table_6.jpg",
+        "Circula_Large_Coffee_Table_7.jpg"
+      ]
+    },
+    {
+      "model_id": "cloud_9_coffee_table",
+      "primary_file": "Cloud_9_Coffee_Table_9.jpg",
+      "all_views": [
+        "Cloud_9_Coffee_Table_9.jpg"
+      ]
+    },
+    {
+      "model_id": "coco_coffee_table",
+      "primary_file": "Coco_Coffee_Table_1.jpg",
+      "all_views": [
+        "Coco_Coffee_Table_1.jpg",
+        "Coco_Coffee_Table_3.jpg"
+      ]
+    },
+    {
+      "model_id": "coffee_table_3.1",
+      "primary_file": "Coffee_Table_3.1.jpg",
+      "all_views": [
+        "Coffee_Table_3.1.jpg"
+      ]
+    },
+    {
+      "model_id": "coffee_table_3.8",
+      "primary_file": "Coffee_Table_3.8.jpg",
+      "all_views": [
+        "Coffee_Table_3.8.jpg"
+      ]
+    },
+    {
+      "model_id": "coffee_table",
+      "primary_file": "Coffee_Table_8.jpg",
+      "all_views": [
+        "Coffee_Table_8.jpg",
+        "Coffee_Table_9.jpg"
+      ]
+    },
+    {
+      "model_id": "coffee_table_with_open_storage_in_oak_white",
+      "primary_file": "Coffee_Table_with_Open_Storage_in_Oak_White_4.jpg",
+      "all_views": [
+        "Coffee_Table_with_Open_Storage_in_Oak_White_4.jpg",
+        "Coffee_Table_with_Open_Storage_in_Oak_White_6.jpg",
+        "Coffee_Table_with_Open_Storage_in_Oak_White_8.jpg"
+      ]
+    },
+    {
+      "model_id": "genine_block_coffee_table_with_storage",
+      "primary_file": "Genine_Block_Coffee_Table_with_Storage_1.jpg",
+      "all_views": [
+        "Genine_Block_Coffee_Table_with_Storage_1.jpg",
+        "Genine_Block_Coffee_Table_with_Storage_2.jpg",
+        "Genine_Block_Coffee_Table_with_Storage_3.jpg"
+      ]
+    },
+    {
+      "model_id": "level_coffee_table_with_storage",
+      "primary_file": "Level_Coffee_Table_with_Storage_1.jpg",
+      "all_views": [
+        "Level_Coffee_Table_with_Storage_1.jpg",
+        "Level_Coffee_Table_with_Storage_4.jpg"
+      ]
+    },
+    {
+      "model_id": "montego_frame_coffee_table_with_storage",
+      "primary_file": "Montego_Frame_Coffee_Table_with_Storage_1.jpg",
+      "all_views": [
+        "Montego_Frame_Coffee_Table_with_Storage_1.jpg",
+        "Montego_Frame_Coffee_Table_with_Storage_3.jpg"
+      ]
+    },
+    {
+      "model_id": "oakley_4_legs_coffee_table_with_storage",
+      "primary_file": "Oakley_4_Legs_Coffee_Table_with_Storage_10.jpg",
+      "all_views": [
+        "Oakley_4_Legs_Coffee_Table_with_Storage_10.jpg",
+        "Oakley_4_Legs_Coffee_Table_with_Storage_9.jpg"
+      ]
+    },
+    {
+      "model_id": "table_15_circula_large_coffee",
+      "primary_file": "table_15_Circula_Large_Coffee.jpg",
+      "all_views": [
+        "table_15_Circula_Large_Coffee.jpg"
+      ]
+    },
+    {
+      "model_id": "table_20_avory_frame_coffee_t",
+      "primary_file": "table_20_Avory_Frame_Coffee_T.jpg",
+      "all_views": [
+        "table_20_Avory_Frame_Coffee_T.jpg"
+      ]
+    },
+    {
+      "model_id": "table_9_addis_coffee_table",
+      "primary_file": "table_9_Addis_Coffee_Table_1.jpg",
+      "all_views": [
+        "table_9_Addis_Coffee_Table_1.jpg"
+      ]
+    }
+  ],
+  "D4_Couches_and_Loveseats": [
+    {
+      "model_id": "88_luxury_modern_channel_tufted_boucle_fabric_couch",
+      "primary_file": "88_Luxury_Modern_Channel_Tufted_Boucle_Fabric_Couch_1.jpg",
+      "all_views": [
+        "88_Luxury_Modern_Channel_Tufted_Boucle_Fabric_Couch_1.jpg",
+        "88_Luxury_Modern_Channel_Tufted_Boucle_Fabric_Couch_2.jpg",
+        "88_Luxury_Modern_Channel_Tufted_Boucle_Fabric_Couch_3.jpg",
+        "88_Luxury_Modern_Channel_Tufted_Boucle_Fabric_Couch_4.jpg"
+      ]
+    },
+    {
+      "model_id": "adamson_68_upholstered_loveseat",
+      "primary_file": "Adamson_68_Upholstered_Loveseat_1.jpg",
+      "all_views": [
+        "Adamson_68_Upholstered_Loveseat_1.jpg",
+        "Adamson_68_Upholstered_Loveseat_2.jpg",
+        "Adamson_68_Upholstered_Loveseat_4.jpg",
+        "Adamson_68_Upholstered_Loveseat_5.jpg"
+      ]
+    },
+    {
+      "model_id": "callista_56_leather_loveseat",
+      "primary_file": "Callista_56_Leather_Loveseat_4.jpg",
+      "all_views": [
+        "Callista_56_Leather_Loveseat_4.jpg",
+        "Callista_56_Leather_Loveseat_5.jpg",
+        "Callista_56_Leather_Loveseat_6.jpg"
+      ]
+    },
+    {
+      "model_id": "clyde_56_upholstered_loveseat",
+      "primary_file": "Clyde_56_Upholstered_Loveseat_1.jpg",
+      "all_views": [
+        "Clyde_56_Upholstered_Loveseat_1.jpg",
+        "Clyde_56_Upholstered_Loveseat_4.jpg",
+        "Clyde_56_Upholstered_Loveseat_5.jpg",
+        "Clyde_56_Upholstered_Loveseat_6.jpg"
+      ]
+    },
+    {
+      "model_id": "desi_retro_button_tufted_loveseat",
+      "primary_file": "Desi_Retro_Button_Tufted_Loveseat_8.jpg",
+      "all_views": [
+        "Desi_Retro_Button_Tufted_Loveseat_8.jpg"
+      ]
+    },
+    {
+      "model_id": "franklin_fabric_sofa",
+      "primary_file": "Franklin_Fabric_Sofa_1.jpg",
+      "all_views": [
+        "Franklin_Fabric_Sofa_1.jpg",
+        "Franklin_Fabric_Sofa_10.jpg",
+        "Franklin_Fabric_Sofa_11.jpg",
+        "Franklin_Fabric_Sofa_12.jpg",
+        "Franklin_Fabric_Sofa_13.jpg",
+        "Franklin_Fabric_Sofa_14.jpg",
+        "Franklin_Fabric_Sofa_15.jpg",
+        "Franklin_Fabric_Sofa_2.jpg",
+        "Franklin_Fabric_Sofa_3.jpg",
+        "Franklin_Fabric_Sofa_4.jpg",
+        "Franklin_Fabric_Sofa_5.jpg",
+        "Franklin_Fabric_Sofa_6.jpg",
+        "Franklin_Fabric_Sofa_7.jpg"
+      ]
+    },
+    {
+      "model_id": "franklin_sofa",
+      "primary_file": "Franklin_Sofa_1.jpg",
+      "all_views": [
+        "Franklin_Sofa_1.jpg",
+        "Franklin_Sofa_3.jpg",
+        "Franklin_Sofa_4.jpg",
+        "Franklin_Sofa_5.jpg",
+        "Franklin_Sofa_6.jpg",
+        "Franklin_Sofa_8.jpg"
+      ]
+    },
+    {
+      "model_id": "genoa_89.5_upholstered_sofa",
+      "primary_file": "Genoa_89.5_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Genoa_89.5_Upholstered_Sofa_1.jpg",
+        "Genoa_89.5_Upholstered_Sofa_3.jpg",
+        "Genoa_89.5_Upholstered_Sofa_4.jpg",
+        "Genoa_89.5_Upholstered_Sofa_5.jpg"
+      ]
+    },
+    {
+      "model_id": "glenn_85.43_upholstered_sofa",
+      "primary_file": "Glenn_85.43_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Glenn_85.43_Upholstered_Sofa_1.jpg",
+        "Glenn_85.43_Upholstered_Sofa_3.jpg",
+        "Glenn_85.43_Upholstered_Sofa_4.jpg",
+        "Glenn_85.43_Upholstered_Sofa_5.jpg"
+      ]
+    },
+    {
+      "model_id": "hailee_84_leather_sofa",
+      "primary_file": "Hailee_84_Leather_Sofa_4.jpg",
+      "all_views": [
+        "Hailee_84_Leather_Sofa_4.jpg",
+        "Hailee_84_Leather_Sofa_5.jpg",
+        "Hailee_84_Leather_Sofa_6.jpg",
+        "Hailee_84_Leather_Sofa_7.jpg"
+      ]
+    },
+    {
+      "model_id": "japandi_125_upholstered_sofa",
+      "primary_file": "Japandi_125_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Japandi_125_Upholstered_Sofa_1.jpg",
+        "Japandi_125_Upholstered_Sofa_2.jpg",
+        "Japandi_125_Upholstered_Sofa_5.jpg",
+        "Japandi_125_Upholstered_Sofa_6.jpg",
+        "Japandi_125_Upholstered_Sofa_7.jpg"
+      ]
+    },
+    {
+      "model_id": "jeanette_95_leather_sofa",
+      "primary_file": "Jeanette_95_Leather_Sofa_1.jpg",
+      "all_views": [
+        "Jeanette_95_Leather_Sofa_1.jpg",
+        "Jeanette_95_Leather_Sofa_4.jpg",
+        "Jeanette_95_Leather_Sofa_5.jpg",
+        "Jeanette_95_Leather_Sofa_6.jpg",
+        "Jeanette_95_Leather_Sofa_8.jpg"
+      ]
+    },
+    {
+      "model_id": "jones_86_upholstered_sofa",
+      "primary_file": "Jones_86_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Jones_86_Upholstered_Sofa_1.jpg",
+        "Jones_86_Upholstered_Sofa_10.jpg",
+        "Jones_86_Upholstered_Sofa_11.jpg",
+        "Jones_86_Upholstered_Sofa_3.jpg",
+        "Jones_86_Upholstered_Sofa_4.jpg",
+        "Jones_86_Upholstered_Sofa_7.jpg"
+      ]
+    },
+    {
+      "model_id": "josiah_88_leather_sofa",
+      "primary_file": "Josiah_88_Leather_Sofa_8.jpg",
+      "all_views": [
+        "Josiah_88_Leather_Sofa_8.jpg",
+        "Josiah_88_Leather_Sofa_9.jpg"
+      ]
+    },
+    {
+      "model_id": "katavia_87_leather_sofa",
+      "primary_file": "Katavia_87_Leather_Sofa_1.jpg",
+      "all_views": [
+        "Katavia_87_Leather_Sofa_1.jpg",
+        "Katavia_87_Leather_Sofa_2.jpg",
+        "Katavia_87_Leather_Sofa_3.jpg",
+        "Katavia_87_Leather_Sofa_4.jpg",
+        "Katavia_87_Leather_Sofa_5.jpg"
+      ]
+    },
+    {
+      "model_id": "katavia_87_upholstered_sofa",
+      "primary_file": "Katavia_87_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Katavia_87_Upholstered_Sofa_1.jpg",
+        "Katavia_87_Upholstered_Sofa_3.jpg",
+        "Katavia_87_Upholstered_Sofa_4.jpg",
+        "Katavia_87_Upholstered_Sofa_5.jpg"
+      ]
+    },
+    {
+      "model_id": "kaycee_90.3_upholstered_sofa",
+      "primary_file": "Kaycee_90.3_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Kaycee_90.3_Upholstered_Sofa_1.jpg",
+        "Kaycee_90.3_Upholstered_Sofa_3.jpg",
+        "Kaycee_90.3_Upholstered_Sofa_4.jpg"
+      ]
+    },
+    {
+      "model_id": "kearney_61_upholstered_loveseat",
+      "primary_file": "Kearney_61_Upholstered_Loveseat_1.jpg",
+      "all_views": [
+        "Kearney_61_Upholstered_Loveseat_1.jpg",
+        "Kearney_61_Upholstered_Loveseat_3.jpg",
+        "Kearney_61_Upholstered_Loveseat_4.jpg",
+        "Kearney_61_Upholstered_Loveseat_5.jpg",
+        "Kearney_61_Upholstered_Loveseat_6.jpg"
+      ]
+    },
+    {
+      "model_id": "kenji_84_upholstered_sofa",
+      "primary_file": "Kenji_84_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Kenji_84_Upholstered_Sofa_1.jpg",
+        "Kenji_84_Upholstered_Sofa_3.jpg"
+      ]
+    },
+    {
+      "model_id": "khari_85_upholstered_sofa",
+      "primary_file": "Khari_85_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Khari_85_Upholstered_Sofa_1.jpg",
+        "Khari_85_Upholstered_Sofa_3.jpg",
+        "Khari_85_Upholstered_Sofa_4.jpg",
+        "Khari_85_Upholstered_Sofa_5.jpg"
+      ]
+    },
+    {
+      "model_id": "kul_91_upholstered_sofa",
+      "primary_file": "Kul_91_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Kul_91_Upholstered_Sofa_1.jpg",
+        "Kul_91_Upholstered_Sofa_8.jpg"
+      ]
+    },
+    {
+      "model_id": "kye_44_upholstered_loveseat",
+      "primary_file": "Kye_44_Upholstered_Loveseat_6.jpg",
+      "all_views": [
+        "Kye_44_Upholstered_Loveseat_6.jpg",
+        "Kye_44_Upholstered_Loveseat_7.jpg"
+      ]
+    },
+    {
+      "model_id": "lakeith_82_upholstered_sofa",
+      "primary_file": "Lakeith_82_Upholstered_Sofa_3.jpg",
+      "all_views": [
+        "Lakeith_82_Upholstered_Sofa_3.jpg"
+      ]
+    },
+    {
+      "model_id": "langston_97_leather_sofa",
+      "primary_file": "Langston_97_Leather_Sofa_1.jpg",
+      "all_views": [
+        "Langston_97_Leather_Sofa_1.jpg",
+        "Langston_97_Leather_Sofa_2.jpg",
+        "Langston_97_Leather_Sofa_3.jpg",
+        "Langston_97_Leather_Sofa_4.jpg",
+        "Langston_97_Leather_Sofa_7.jpg"
+      ]
+    },
+    {
+      "model_id": "lavonte_96_upholstered_sofa",
+      "primary_file": "Lavonte_96_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Lavonte_96_Upholstered_Sofa_1.jpg",
+        "Lavonte_96_Upholstered_Sofa_2.jpg",
+        "Lavonte_96_Upholstered_Sofa_3.jpg",
+        "Lavonte_96_Upholstered_Sofa_4.jpg",
+        "Lavonte_96_Upholstered_Sofa_5.jpg"
+      ]
+    },
+    {
+      "model_id": "lexi_89_upholstered_sofa",
+      "primary_file": "Lexi_89_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Lexi_89_Upholstered_Sofa_1.jpg",
+        "Lexi_89_Upholstered_Sofa_4.jpg",
+        "Lexi_89_Upholstered_Sofa_5.jpg",
+        "Lexi_89_Upholstered_Sofa_6.jpg",
+        "Lexi_89_Upholstered_Sofa_7.jpg"
+      ]
+    },
+    {
+      "model_id": "libra_84_upholstered_sofa",
+      "primary_file": "Libra_84_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Libra_84_Upholstered_Sofa_1.jpg",
+        "Libra_84_Upholstered_Sofa_11.jpg",
+        "Libra_84_Upholstered_Sofa_3.jpg",
+        "Libra_84_Upholstered_Sofa_4.jpg",
+        "Libra_84_Upholstered_Sofa_5.jpg",
+        "Libra_84_Upholstered_Sofa_6.jpg",
+        "Libra_84_Upholstered_Sofa_7.jpg"
+      ]
+    },
+    {
+      "model_id": "loveseat_17_desi_retro_button_tu",
+      "primary_file": "loveseat_17_Desi_Retro_Button_Tu.jpg",
+      "all_views": [
+        "loveseat_17_Desi_Retro_Button_Tu.jpg"
+      ]
+    },
+    {
+      "model_id": "mackey_83_vegan_leather_sofa",
+      "primary_file": "Mackey_83_Vegan_Leather_Sofa_1.jpg",
+      "all_views": [
+        "Mackey_83_Vegan_Leather_Sofa_1.jpg",
+        "Mackey_83_Vegan_Leather_Sofa_6.jpg",
+        "Mackey_83_Vegan_Leather_Sofa_8.jpg",
+        "Mackey_83_Vegan_Leather_Sofa_9.jpg"
+      ]
+    },
+    {
+      "model_id": "marley_121.5_upholstered_sofa",
+      "primary_file": "Marley_121.5_Upholstered_Sofa_10.jpg",
+      "all_views": [
+        "Marley_121.5_Upholstered_Sofa_10.jpg"
+      ]
+    },
+    {
+      "model_id": "matthew_86_upholstered_sofa",
+      "primary_file": "Matthew_86_Upholstered_Sofa.jpg",
+      "all_views": [
+        "Matthew_86_Upholstered_Sofa.jpg"
+      ]
+    },
+    {
+      "model_id": "miller_84_upholstered_sofa",
+      "primary_file": "Miller_84_Upholstered_Sofa_4.jpg",
+      "all_views": [
+        "Miller_84_Upholstered_Sofa_4.jpg",
+        "Miller_84_Upholstered_Sofa_5.jpg",
+        "Miller_84_Upholstered_Sofa_6.jpg"
+      ]
+    },
+    {
+      "model_id": "mono_81_sleeper_sofa",
+      "primary_file": "Mono_81_Sleeper_Sofa_1.jpg",
+      "all_views": [
+        "Mono_81_Sleeper_Sofa_1.jpg",
+        "Mono_81_Sleeper_Sofa_2.jpg",
+        "Mono_81_Sleeper_Sofa_3.jpg"
+      ]
+    },
+    {
+      "model_id": "norwood_83_upholstered_sofa",
+      "primary_file": "Norwood_83_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Norwood_83_Upholstered_Sofa_1.jpg",
+        "Norwood_83_Upholstered_Sofa_3.jpg",
+        "Norwood_83_Upholstered_Sofa_4.jpg",
+        "Norwood_83_Upholstered_Sofa_5.jpg",
+        "Norwood_83_Upholstered_Sofa_7.jpg"
+      ]
+    },
+    {
+      "model_id": "olin_81.25_upholstered_sofa",
+      "primary_file": "Olin_81.25_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Olin_81.25_Upholstered_Sofa_1.jpg",
+        "Olin_81.25_Upholstered_Sofa_3.jpg",
+        "Olin_81.25_Upholstered_Sofa_4.jpg"
+      ]
+    },
+    {
+      "model_id": "one_night_stand_80_sleeper_sofa",
+      "primary_file": "One_Night_Stand_80_Sleeper_Sofa_1.jpg",
+      "all_views": [
+        "One_Night_Stand_80_Sleeper_Sofa_1.jpg",
+        "One_Night_Stand_80_Sleeper_Sofa_3.jpg",
+        "One_Night_Stand_80_Sleeper_Sofa_4.jpg",
+        "One_Night_Stand_80_Sleeper_Sofa_5.jpg",
+        "One_Night_Stand_80_Sleeper_Sofa_6.jpg"
+      ]
+    },
+    {
+      "model_id": "ostia_101_upholstered_sofa",
+      "primary_file": "Ostia_101_Upholstered_Sofa_9.jpg",
+      "all_views": [
+        "Ostia_101_Upholstered_Sofa_9.jpg"
+      ]
+    },
+    {
+      "model_id": "palermo_67_leather_loveseat",
+      "primary_file": "Palermo_67_Leather_Loveseat_1.jpg",
+      "all_views": [
+        "Palermo_67_Leather_Loveseat_1.jpg",
+        "Palermo_67_Leather_Loveseat_2.jpg",
+        "Palermo_67_Leather_Loveseat_3.jpg",
+        "Palermo_67_Leather_Loveseat_5.jpg"
+      ]
+    },
+    {
+      "model_id": "penny_81_leather_sofa",
+      "primary_file": "Penny_81_Leather_Sofa_4.jpg",
+      "all_views": [
+        "Penny_81_Leather_Sofa_4.jpg"
+      ]
+    },
+    {
+      "model_id": "portola_85_vegan_leather_sofa",
+      "primary_file": "Portola_85_Vegan_Leather_Sofa_10.jpg",
+      "all_views": [
+        "Portola_85_Vegan_Leather_Sofa_10.jpg"
+      ]
+    },
+    {
+      "model_id": "rae_60_upholstered_loveseat",
+      "primary_file": "Rae_60_Upholstered_Loveseat_4.jpg",
+      "all_views": [
+        "Rae_60_Upholstered_Loveseat_4.jpg",
+        "Rae_60_Upholstered_Loveseat_5.jpg",
+        "Rae_60_Upholstered_Loveseat_6.jpg"
+      ]
+    },
+    {
+      "model_id": "risco_78_upholstered_sofa",
+      "primary_file": "Risco_78_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Risco_78_Upholstered_Sofa_1.jpg",
+        "Risco_78_Upholstered_Sofa_2.jpg",
+        "Risco_78_Upholstered_Sofa_3.jpg"
+      ]
+    },
+    {
+      "model_id": "roderic_89_vegan_leather_sofa",
+      "primary_file": "Roderic_89_Vegan_Leather_Sofa_1.jpg",
+      "all_views": [
+        "Roderic_89_Vegan_Leather_Sofa_1.jpg"
+      ]
+    },
+    {
+      "model_id": "ruth_84_leather_sofa",
+      "primary_file": "Ruth_84_Leather_Sofa_1.jpg",
+      "all_views": [
+        "Ruth_84_Leather_Sofa_1.jpg",
+        "Ruth_84_Leather_Sofa_3.jpg",
+        "Ruth_84_Leather_Sofa_4.jpg"
+      ]
+    },
+    {
+      "model_id": "schoonmaker_80_leather_sleeper_sofa",
+      "primary_file": "Schoonmaker_80_Leather_Sleeper_Sofa_4.jpg",
+      "all_views": [
+        "Schoonmaker_80_Leather_Sleeper_Sofa_4.jpg",
+        "Schoonmaker_80_Leather_Sleeper_Sofa_5.jpg",
+        "Schoonmaker_80_Leather_Sleeper_Sofa_6.jpg"
+      ]
+    },
+    {
+      "model_id": "sherard_86_leather_sofa",
+      "primary_file": "Sherard_86_Leather_Sofa_1.jpg",
+      "all_views": [
+        "Sherard_86_Leather_Sofa_1.jpg",
+        "Sherard_86_Leather_Sofa_2.jpg",
+        "Sherard_86_Leather_Sofa_3.jpg",
+        "Sherard_86_Leather_Sofa_4.jpg"
+      ]
+    },
+    {
+      "model_id": "silverlake_sofa",
+      "primary_file": "Silverlake_Sofa_1.jpg",
+      "all_views": [
+        "Silverlake_Sofa_1.jpg",
+        "Silverlake_Sofa_2.jpg",
+        "Silverlake_Sofa_3.jpg",
+        "Silverlake_Sofa_4.jpg"
+      ]
+    },
+    {
+      "model_id": "sofa_101",
+      "primary_file": "sofa_101_angle1.jpg",
+      "all_views": [
+        "sofa_101_angle1.jpg",
+        "sofa_101_angle2.jpg"
+      ]
+    },
+    {
+      "model_id": "sofa_24_97_upholstered_sofa_",
+      "primary_file": "sofa_24_97_Upholstered_Sofa_.jpg",
+      "all_views": [
+        "sofa_24_97_Upholstered_Sofa_.jpg"
+      ]
+    },
+    {
+      "model_id": "solid_71_outdoor_sofa",
+      "primary_file": "Solid_71_Outdoor_Sofa_7.jpg",
+      "all_views": [
+        "Solid_71_Outdoor_Sofa_7.jpg",
+        "Solid_71_Outdoor_Sofa_8.jpg",
+        "Solid_71_Outdoor_Sofa_9.jpg"
+      ]
+    },
+    {
+      "model_id": "sumo_83_upholstered_loveseat",
+      "primary_file": "Sumo_83_Upholstered_Loveseat_8.jpg",
+      "all_views": [
+        "Sumo_83_Upholstered_Loveseat_8.jpg",
+        "Sumo_83_Upholstered_Loveseat_9.jpg"
+      ]
+    },
+    {
+      "model_id": "tribeca_82_upholstered_sofa",
+      "primary_file": "Tribeca_82_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Tribeca_82_Upholstered_Sofa_1.jpg",
+        "Tribeca_82_Upholstered_Sofa_3.jpg",
+        "Tribeca_82_Upholstered_Sofa_4.jpg"
+      ]
+    },
+    {
+      "model_id": "tyndall_91_upholstered_sofa",
+      "primary_file": "Tyndall_91_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Tyndall_91_Upholstered_Sofa_1.jpg",
+        "Tyndall_91_Upholstered_Sofa_3.jpg",
+        "Tyndall_91_Upholstered_Sofa_4.jpg",
+        "Tyndall_91_Upholstered_Sofa_5.jpg",
+        "Tyndall_91_Upholstered_Sofa_6.jpg",
+        "Tyndall_91_Upholstered_Sofa_7.jpg"
+      ]
+    },
+    {
+      "model_id": "valluga_84_upholstered_sofa",
+      "primary_file": "Valluga_84_Upholstered_Sofa_4.jpg",
+      "all_views": [
+        "Valluga_84_Upholstered_Sofa_4.jpg"
+      ]
+    },
+    {
+      "model_id": "westview_83.85_upholstered_sofa",
+      "primary_file": "Westview_83.85_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Westview_83.85_Upholstered_Sofa_1.jpg",
+        "Westview_83.85_Upholstered_Sofa_2.jpg",
+        "Westview_83.85_Upholstered_Sofa_3.jpg"
+      ]
+    },
+    {
+      "model_id": "wilmette_82_upholstered_sofa",
+      "primary_file": "Wilmette_82_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Wilmette_82_Upholstered_Sofa_1.jpg",
+        "Wilmette_82_Upholstered_Sofa_3.jpg",
+        "Wilmette_82_Upholstered_Sofa_4.jpg"
+      ]
+    },
+    {
+      "model_id": "zamaree_114_upholstered_sofa",
+      "primary_file": "Zamaree_114_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Zamaree_114_Upholstered_Sofa_1.jpg",
+        "Zamaree_114_Upholstered_Sofa_2.jpg",
+        "Zamaree_114_Upholstered_Sofa_3.jpg"
+      ]
+    },
+    {
+      "model_id": "zolar_88_upholstered_sofa",
+      "primary_file": "Zolar_88_Upholstered_Sofa_1.jpg",
+      "all_views": [
+        "Zolar_88_Upholstered_Sofa_1.jpg",
+        "Zolar_88_Upholstered_Sofa_2.jpg",
+        "Zolar_88_Upholstered_Sofa_3.jpg"
+      ]
+    }
+  ],
+  "D5_Modern_Suites_and_Studios": [
+    {
+      "model_id": "048a1506-2400px.webp",
+      "primary_file": "048A1506-2400px.webp.jpg",
+      "all_views": [
+        "048A1506-2400px.webp.jpg"
+      ]
+    },
+    {
+      "model_id": "0916-giovanna-battaglia-stockholm-apartment-tout.webp",
+      "primary_file": "0916-giovanna-battaglia-stockholm-apartment-tout.webp.jpg",
+      "all_views": [
+        "0916-giovanna-battaglia-stockholm-apartment-tout.webp.jpg"
+      ]
+    },
+    {
+      "model_id": "0916-vriens-mcgrath-los-angeles-tout.webp",
+      "primary_file": "0916-vriens-mcgrath-los-angeles-tout.webp.jpg",
+      "all_views": [
+        "0916-vriens-mcgrath-los-angeles-tout.webp.jpg"
+      ]
+    },
+    {
+      "model_id": "100218_cg_christinabryant_st.frank5789_photo_by_codyguilfoyle.webp",
+      "primary_file": "100218_CG_ChristinaBryant_St.Frank5789_photo_by_CodyGuilfoyle.webp.jpg",
+      "all_views": [
+        "100218_CG_ChristinaBryant_St.Frank5789_photo_by_CodyGuilfoyle.webp.jpg"
+      ]
+    },
+    {
+      "model_id": "541750b44b6b03eb553644d6-h1000_pwscf3.webp",
+      "primary_file": "541750b44b6b03eb553644d6-h1000_pwscf3.webp.jpg",
+      "all_views": [
+        "541750b44b6b03eb553644d6-h1000_pwscf3.webp.jpg"
+      ]
+    },
+    {
+      "model_id": "dw17_well_jrothenberg_0872.webp",
+      "primary_file": "DW17_WELL_JRothenberg_0872.webp.jpg",
+      "all_views": [
+        "DW17_WELL_JRothenberg_0872.webp.jpg"
+      ]
+    },
+    {
+      "model_id": "emr_2516.webp",
+      "primary_file": "EMR_2516.webp.jpg",
+      "all_views": [
+        "EMR_2516.webp.jpg"
+      ]
+    },
+    {
+      "model_id": "fall18_lourdes_03_159-copy.webp",
+      "primary_file": "FALL18_LOURDES_03_159-copy.webp.jpg",
+      "all_views": [
+        "FALL18_LOURDES_03_159-copy.webp.jpg"
+      ]
+    },
+    {
+      "model_id": "garancedore_photo_by_jasonfrankrothenberg_08.webp",
+      "primary_file": "GaranceDore_photo_by_JasonFrankRothenberg_08.webp.jpg",
+      "all_views": [
+        "GaranceDore_photo_by_JasonFrankRothenberg_08.webp.jpg"
+      ]
+    },
+    {
+      "model_id": "hopkinsroseinteriors_onemuseumplace_032522_mmp_98613.webp",
+      "primary_file": "HopkinsRoseInteriors_OneMuseumPlace_032522_MMP_98613.webp.jpg",
+      "all_views": [
+        "HopkinsRoseInteriors_OneMuseumPlace_032522_MMP_98613.webp.jpg"
+      ]
+    },
+    {
+      "model_id": "jane_beiles.webp",
+      "primary_file": "Jane_Beiles.webp.jpg",
+      "all_views": [
+        "Jane_Beiles.webp.jpg"
+      ]
+    },
+    {
+      "model_id": "living room_12_100218_cg_christinab",
+      "primary_file": "living room_12_100218_CG_ChristinaB.jpg",
+      "all_views": [
+        "living room_12_100218_CG_ChristinaB.jpg"
+      ]
+    },
+    {
+      "model_id": "living room_1",
+      "primary_file": "living room_1_original_(14).avif.jpg",
+      "all_views": [
+        "living room_1_original_(14).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "living room_23",
+      "primary_file": "living room_23_original_(59).avif.jpg",
+      "all_views": [
+        "living room_23_original_(59).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "living room_25",
+      "primary_file": "living room_25_original_(55).avif.jpg",
+      "all_views": [
+        "living room_25_original_(55).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "living room_6",
+      "primary_file": "living room_6_original_(4).avif.jpg",
+      "all_views": [
+        "living room_6_original_(4).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "living room_7_living-room-rug-idea",
+      "primary_file": "living room_7_living-room-rug-idea.jpg",
+      "all_views": [
+        "living room_7_living-room-rug-idea.jpg"
+      ]
+    },
+    {
+      "model_id": "living-room-rug-ideas-domino-4.webp",
+      "primary_file": "living-room-rug-ideas-domino-4.webp.jpg",
+      "all_views": [
+        "living-room-rug-ideas-domino-4.webp.jpg"
+      ]
+    },
+    {
+      "model_id": "living-room-rug-ideas-domino-5.webp",
+      "primary_file": "living-room-rug-ideas-domino-5.webp.jpg",
+      "all_views": [
+        "living-room-rug-ideas-domino-5.webp.jpg"
+      ]
+    },
+    {
+      "model_id": "living-room-rug-ideas-domino-6.webp",
+      "primary_file": "living-room-rug-ideas-domino-6.webp.jpg",
+      "all_views": [
+        "living-room-rug-ideas-domino-6.webp.jpg"
+      ]
+    },
+    {
+      "model_id": "living-room-rug-ideas-domino-7.webp",
+      "primary_file": "living-room-rug-ideas-domino-7.webp.jpg",
+      "all_views": [
+        "living-room-rug-ideas-domino-7.webp.jpg"
+      ]
+    },
+    {
+      "model_id": "mar_100_upholstered",
+      "primary_file": "Mar_100_Upholstered_4.jpg",
+      "all_views": [
+        "Mar_100_Upholstered_4.jpg",
+        "Mar_100_Upholstered_5.jpg"
+      ]
+    },
+    {
+      "model_id": "mariamnaficy_photo_by_thayergowdy_010-copy.webp",
+      "primary_file": "MariamNaficy_photo_by_ThayerGowdy_010-copy.webp.jpg",
+      "all_views": [
+        "MariamNaficy_photo_by_ThayerGowdy_010-copy.webp.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(1).avif",
+      "primary_file": "original_(1).avif.jpg",
+      "all_views": [
+        "original_(1).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(10).avif",
+      "primary_file": "original_(10).avif.jpg",
+      "all_views": [
+        "original_(10).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(100).avif",
+      "primary_file": "original_(100).avif.jpg",
+      "all_views": [
+        "original_(100).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(11).avif",
+      "primary_file": "original_(11).avif.jpg",
+      "all_views": [
+        "original_(11).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(12).avif",
+      "primary_file": "original_(12).avif.jpg",
+      "all_views": [
+        "original_(12).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(13).avif",
+      "primary_file": "original_(13).avif.jpg",
+      "all_views": [
+        "original_(13).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(14).avif",
+      "primary_file": "original_(14).avif.jpg",
+      "all_views": [
+        "original_(14).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(15).avif",
+      "primary_file": "original_(15).avif.jpg",
+      "all_views": [
+        "original_(15).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(16).avif",
+      "primary_file": "original_(16).avif.jpg",
+      "all_views": [
+        "original_(16).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(17).avif",
+      "primary_file": "original_(17).avif.jpg",
+      "all_views": [
+        "original_(17).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(18).avif",
+      "primary_file": "original_(18).avif.jpg",
+      "all_views": [
+        "original_(18).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(19).avif",
+      "primary_file": "original_(19).avif.jpg",
+      "all_views": [
+        "original_(19).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(2).avif",
+      "primary_file": "original_(2).avif.jpg",
+      "all_views": [
+        "original_(2).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(20).avif",
+      "primary_file": "original_(20).avif.jpg",
+      "all_views": [
+        "original_(20).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(21).avif",
+      "primary_file": "original_(21).avif.jpg",
+      "all_views": [
+        "original_(21).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(22).avif",
+      "primary_file": "original_(22).avif.jpg",
+      "all_views": [
+        "original_(22).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(23).avif",
+      "primary_file": "original_(23).avif.jpg",
+      "all_views": [
+        "original_(23).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(24).avif",
+      "primary_file": "original_(24).avif.jpg",
+      "all_views": [
+        "original_(24).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(25).avif",
+      "primary_file": "original_(25).avif.jpg",
+      "all_views": [
+        "original_(25).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(26).avif",
+      "primary_file": "original_(26).avif.jpg",
+      "all_views": [
+        "original_(26).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(27).avif",
+      "primary_file": "original_(27).avif.jpg",
+      "all_views": [
+        "original_(27).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(28).avif",
+      "primary_file": "original_(28).avif.jpg",
+      "all_views": [
+        "original_(28).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(29).avif",
+      "primary_file": "original_(29).avif.jpg",
+      "all_views": [
+        "original_(29).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(3).avif",
+      "primary_file": "original_(3).avif.jpg",
+      "all_views": [
+        "original_(3).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(30).avif",
+      "primary_file": "original_(30).avif.jpg",
+      "all_views": [
+        "original_(30).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(31).avif",
+      "primary_file": "original_(31).avif.jpg",
+      "all_views": [
+        "original_(31).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(32).avif",
+      "primary_file": "original_(32).avif.jpg",
+      "all_views": [
+        "original_(32).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(33).avif",
+      "primary_file": "original_(33).avif.jpg",
+      "all_views": [
+        "original_(33).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(34).avif",
+      "primary_file": "original_(34).avif.jpg",
+      "all_views": [
+        "original_(34).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(35).avif",
+      "primary_file": "original_(35).avif.jpg",
+      "all_views": [
+        "original_(35).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(36).avif",
+      "primary_file": "original_(36).avif.jpg",
+      "all_views": [
+        "original_(36).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(37).avif",
+      "primary_file": "original_(37).avif.jpg",
+      "all_views": [
+        "original_(37).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(38).avif",
+      "primary_file": "original_(38).avif.jpg",
+      "all_views": [
+        "original_(38).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(39).avif",
+      "primary_file": "original_(39).avif.jpg",
+      "all_views": [
+        "original_(39).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(4).avif",
+      "primary_file": "original_(4).avif.jpg",
+      "all_views": [
+        "original_(4).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(40).avif",
+      "primary_file": "original_(40).avif.jpg",
+      "all_views": [
+        "original_(40).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(41).avif",
+      "primary_file": "original_(41).avif.jpg",
+      "all_views": [
+        "original_(41).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(42).avif",
+      "primary_file": "original_(42).avif.jpg",
+      "all_views": [
+        "original_(42).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(43).avif",
+      "primary_file": "original_(43).avif.jpg",
+      "all_views": [
+        "original_(43).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(44).avif",
+      "primary_file": "original_(44).avif.jpg",
+      "all_views": [
+        "original_(44).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(45).avif",
+      "primary_file": "original_(45).avif.jpg",
+      "all_views": [
+        "original_(45).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(46).avif",
+      "primary_file": "original_(46).avif.jpg",
+      "all_views": [
+        "original_(46).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(47).avif",
+      "primary_file": "original_(47).avif.jpg",
+      "all_views": [
+        "original_(47).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(48).avif",
+      "primary_file": "original_(48).avif.jpg",
+      "all_views": [
+        "original_(48).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(49).avif",
+      "primary_file": "original_(49).avif.jpg",
+      "all_views": [
+        "original_(49).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(5).avif",
+      "primary_file": "original_(5).avif.jpg",
+      "all_views": [
+        "original_(5).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(50).avif",
+      "primary_file": "original_(50).avif.jpg",
+      "all_views": [
+        "original_(50).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(51).avif",
+      "primary_file": "original_(51).avif.jpg",
+      "all_views": [
+        "original_(51).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(52).avif",
+      "primary_file": "original_(52).avif.jpg",
+      "all_views": [
+        "original_(52).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(53).avif",
+      "primary_file": "original_(53).avif.jpg",
+      "all_views": [
+        "original_(53).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(54).avif",
+      "primary_file": "original_(54).avif.jpg",
+      "all_views": [
+        "original_(54).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(55).avif",
+      "primary_file": "original_(55).avif.jpg",
+      "all_views": [
+        "original_(55).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(56).avif",
+      "primary_file": "original_(56).avif.jpg",
+      "all_views": [
+        "original_(56).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(57).avif",
+      "primary_file": "original_(57).avif.jpg",
+      "all_views": [
+        "original_(57).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(58).avif",
+      "primary_file": "original_(58).avif.jpg",
+      "all_views": [
+        "original_(58).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(59).avif",
+      "primary_file": "original_(59).avif.jpg",
+      "all_views": [
+        "original_(59).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(6).avif",
+      "primary_file": "original_(6).avif.jpg",
+      "all_views": [
+        "original_(6).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(60).avif",
+      "primary_file": "original_(60).avif.jpg",
+      "all_views": [
+        "original_(60).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(61).avif",
+      "primary_file": "original_(61).avif.jpg",
+      "all_views": [
+        "original_(61).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(62).avif",
+      "primary_file": "original_(62).avif.jpg",
+      "all_views": [
+        "original_(62).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(63).avif",
+      "primary_file": "original_(63).avif.jpg",
+      "all_views": [
+        "original_(63).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(64).avif",
+      "primary_file": "original_(64).avif.jpg",
+      "all_views": [
+        "original_(64).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(65).avif",
+      "primary_file": "original_(65).avif.jpg",
+      "all_views": [
+        "original_(65).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(66).avif",
+      "primary_file": "original_(66).avif.jpg",
+      "all_views": [
+        "original_(66).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(67).avif",
+      "primary_file": "original_(67).avif.jpg",
+      "all_views": [
+        "original_(67).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(68).avif",
+      "primary_file": "original_(68).avif.jpg",
+      "all_views": [
+        "original_(68).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(69).avif",
+      "primary_file": "original_(69).avif.jpg",
+      "all_views": [
+        "original_(69).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(7).avif",
+      "primary_file": "original_(7).avif.jpg",
+      "all_views": [
+        "original_(7).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(70).avif",
+      "primary_file": "original_(70).avif.jpg",
+      "all_views": [
+        "original_(70).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(71).avif",
+      "primary_file": "original_(71).avif.jpg",
+      "all_views": [
+        "original_(71).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(72).avif",
+      "primary_file": "original_(72).avif.jpg",
+      "all_views": [
+        "original_(72).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(73).avif",
+      "primary_file": "original_(73).avif.jpg",
+      "all_views": [
+        "original_(73).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(74).avif",
+      "primary_file": "original_(74).avif.jpg",
+      "all_views": [
+        "original_(74).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(75).avif",
+      "primary_file": "original_(75).avif.jpg",
+      "all_views": [
+        "original_(75).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(76).avif",
+      "primary_file": "original_(76).avif.jpg",
+      "all_views": [
+        "original_(76).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(77).avif",
+      "primary_file": "original_(77).avif.jpg",
+      "all_views": [
+        "original_(77).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(78).avif",
+      "primary_file": "original_(78).avif.jpg",
+      "all_views": [
+        "original_(78).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(79).avif",
+      "primary_file": "original_(79).avif.jpg",
+      "all_views": [
+        "original_(79).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(8).avif",
+      "primary_file": "original_(8).avif.jpg",
+      "all_views": [
+        "original_(8).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(80).avif",
+      "primary_file": "original_(80).avif.jpg",
+      "all_views": [
+        "original_(80).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(81).avif",
+      "primary_file": "original_(81).avif.jpg",
+      "all_views": [
+        "original_(81).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(82).avif",
+      "primary_file": "original_(82).avif.jpg",
+      "all_views": [
+        "original_(82).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(83).avif",
+      "primary_file": "original_(83).avif.jpg",
+      "all_views": [
+        "original_(83).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "original_(84).avif",
+      "primary_file": "original_(84).avif.jpg",
+      "all_views": [
+        "original_(84).avif.jpg"
+      ]
+    },
+    {
+      "model_id": "storage_18_oakley_4_legs_coffee",
+      "primary_file": "storage_18_Oakley_4_Legs_Coffee.jpg",
+      "all_views": [
+        "storage_18_Oakley_4_Legs_Coffee.jpg"
+      ]
+    }
+  ]
+}

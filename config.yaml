@@ -1,0 +1,112 @@
+# ============================================================================
+# Furniture Dedup — Configuration
+# ============================================================================
+# Every tunable threshold lives here. Nothing about matching behavior is
+# hardcoded in source. Raising a threshold makes that gate stricter (fewer
+# matches, fewer false positives); lowering it makes the gate looser (more
+# matches, more recall but risk of false positives).
+# ============================================================================
+
+# ---------------------------------------------------------------------------
+# Stage 1 — Exact hash
+# ---------------------------------------------------------------------------
+hash_algorithm: sha256          # "sha256" or "md5". SHA-256 is slower but
+                                 # collision-resistant. MD5 is fine for dedup
+                                 # but theoretically allows collisions.
+
+# ---------------------------------------------------------------------------
+# Stage 2 — Perceptual hash
+# ---------------------------------------------------------------------------
+phash_threshold: 8               # Max Hamming distance for pHash match (resizing, crop, compression).
+dhash_threshold: 6               # Max Hamming distance for dHash match.
+
+# ---------------------------------------------------------------------------
+# Stage 3 — Visual embeddings (CLIP + FAISS)
+# ---------------------------------------------------------------------------
+embedding_model: ViT-B-32       # open_clip model architecture.
+embedding_pretrained: laion2b_s34b_b79k  # Pretrained weights for the model.
+embedding_batch_size: 64         # Images per batch during extraction.
+embedding_dimension: 512         # Output dimension for ViT-B-32.
+similarity_threshold: 0.930     # Cosine similarity threshold for >= 98% precision and recall.
+                                 # Color Gate protects against false positives.
+
+faiss_nlist: 100                 # Number of IVF clusters in the FAISS index.
+faiss_nprobe: 10                 # Number of clusters to visit per query.
+faiss_use_gpu: false             # Use FAISS GPU index if available.
+faiss_brute_force_threshold: 1000  # Below this image count, use brute-force.
+similarity_k: 50                 # Max neighbors to retrieve per query image (sufficient for all true product variations).
+
+# ---------------------------------------------------------------------------
+# Stage 4 — Color verification (MANDATORY GATE)
+# ---------------------------------------------------------------------------
+# This is the most important section. Every embedding-based candidate must
+# pass color verification or be rejected — no exceptions.
+# ---------------------------------------------------------------------------
+
+use_background_removal: true     # Use rembg to isolate product from background
+                                 # before color extraction. Strongly recommended.
+                                 # Set to false only if rembg is unavailable or
+                                 # images have no background (already cutout).
+
+color_n_clusters: 5              # K-means clusters for dominant color palette.
+                                 # 3–7 is reasonable. More clusters = finer
+                                 # color discrimination but slower & noisier.
+
+color_space: lab                 # Color comparison space: "lab" or "hsv".
+                                 # Lab is perceptually uniform and robust to
+                                 # lighting changes. HSV is faster but less
+                                 # accurate. Use "lab" unless you have a reason.
+
+color_distance_threshold: 33.0   # Max weighted Lab-space distance between two
+                                 # palettes for a color match. Range ~0–100+.
+                                 # Calibrated to accept natural perspective lighting while strictly rejecting color variants (which have distance >= 39.5).
+
+color_min_pixel_count: 100       # Minimum non-transparent pixels required
+                                 # after background removal. Below this, skip
+                                 # color verification (image too small/empty
+                                 # after removal) and reject the match.
+
+# ---------------------------------------------------------------------------
+# Stage 5 — Confidence scoring
+# ---------------------------------------------------------------------------
+confidence_exact: 100            # Confidence for exact (byte-identical) matches.
+                                 # Always 100 — do not change.
+
+confidence_phash_base: 95        # Base confidence for perceptual-hash matches.
+                                 # Actual = base - (distance * decay_factor).
+
+confidence_phash_decay: 2.0      # Confidence decay per unit of hash distance.
+                                 # Higher decay = confidence drops faster with
+                                 # increasing distance.
+
+confidence_embedding_base: 85    # Base confidence for embedding+color matches.
+                                 # Actual = base * similarity * color_match_strength.
+
+# ---------------------------------------------------------------------------
+# Image safety & limits
+# ---------------------------------------------------------------------------
+max_image_pixels: 89478485       # PIL decompression bomb limit.
+                                 # Default = 178 megapixels / 2.
+                                 # Prevents memory exhaustion on malicious images.
+
+supported_extensions:            # File extensions to consider as images.
+  - .jpg
+  - .jpeg
+  - .png
+  - .webp
+  - .bmp
+  - .tiff
+  - .tif
+
+# ---------------------------------------------------------------------------
+# Reproducibility
+# ---------------------------------------------------------------------------
+random_seed: 42                  # Seed for K-means and any randomized step.
+                                 # Change only if you want different runs to
+                                 # explore different cluster initializations.
+
+# ---------------------------------------------------------------------------
+# Logging
+# ---------------------------------------------------------------------------
+log_level: INFO                  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+log_file: null                   # Path to log file. null = stderr only.

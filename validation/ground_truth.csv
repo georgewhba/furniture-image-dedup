@@ -1,0 +1,15 @@
+image_a,image_b,is_duplicate,category
+sofa_beige_front.jpg,sofa_beige_side.jpg,true,same_product_same_color
+sofa_beige_front.jpg,sofa_beige_crop.jpg,true,crop_variant
+sofa_beige_front.jpg,sofa_beige_compressed.jpg,true,recompression
+sofa_beige_front.jpg,sofa_navy_front.jpg,false,same_product_different_color
+sofa_beige_front.jpg,sofa_navy_side.jpg,false,same_product_different_color
+sofa_beige_front.jpg,chair_beige.jpg,false,different_product_similar_color
+sofa_navy_front.jpg,sofa_navy_side.jpg,true,same_product_same_color
+sofa_navy_front.jpg,sofa_navy_compressed.jpg,true,recompression
+table_oak_front.jpg,table_oak_angle.jpg,true,same_product_same_color
+table_oak_front.jpg,table_walnut_front.jpg,false,same_product_different_color
+chair_gray_front.jpg,chair_gray_side.jpg,true,same_product_same_color
+chair_gray_front.jpg,chair_black_front.jpg,false,same_product_different_color
+lamp_white.jpg,lamp_white_copy.jpg,true,exact_copy
+lamp_white.jpg,lamp_black.jpg,false,same_product_different_color

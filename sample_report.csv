@@ -1,0 +1,5 @@
+﻿group_id,file_path,file_name,confidence,match_type,group_size
+1,furniture_dedup\sample_images\sofa_beige_1.jpg,sofa_beige_1.jpg,100,exact,2
+1,furniture_dedup\sample_images\sofa_beige_1_copy.jpg,sofa_beige_1_copy.jpg,100,exact,2
+2,furniture_dedup\sample_images\sofa_beige_recompressed.jpg,sofa_beige_recompressed.jpg,88,near_exact,2
+2,furniture_dedup\sample_images\sofa_navy_variant.jpg,sofa_navy_variant.jpg,88,near_exact,2
