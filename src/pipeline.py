@@ -20,6 +20,7 @@ from __future__ import annotations
 import logging
 import time
 from pathlib import Path
+from typing import Any, Callable
 
 import numpy as np
 from PIL import Image
@@ -123,6 +124,7 @@ def run(
     sample_size: int | None = None,
     resume: bool = False,
     verbose: bool = False,
+    progress_callback: Any | None = None,
 ) -> list[DuplicateGroup]:
     """Execute the full six-stage deduplication pipeline.
 
@@ -158,12 +160,19 @@ def run(
         logger.warning("No valid images found in %s", input_dir)
         return []
 
+    total_images = len(image_paths)
+    if progress_callback:
+        progress_callback(f"تم اكتشاف {total_images:,} صورة مدعومة...", 0.05)
+
     # ------------------------------------------------------------------
     # Step 1: Cache + Content hashes
     # ------------------------------------------------------------------
     logger.info("=" * 60)
     logger.info("STAGE 1: Exact hash deduplication")
     logger.info("=" * 60)
+
+    if progress_callback:
+        progress_callback(f"المرحلة 1/6: بدء فحص الهاش الدقيق لـ {total_images:,} صورة...", 0.08)
 
     cache = ImageCache(cache_dir)
 
@@ -172,7 +181,7 @@ def run(
     new_files: list[str] = []
     cached_files: list[str] = []
 
-    for path in tqdm(image_paths, desc="Computing content hashes", unit="file"):
+    for idx, path in enumerate(tqdm(image_paths, desc="Computing content hashes", unit="file")):
         fpath = str(path)
         try:
             content_hash = compute_content_hash(path)
@@ -184,6 +193,10 @@ def run(
         except OSError as exc:
             logger.warning("Cannot read file: %s — %s", path, exc)
 
+        if progress_callback and (idx % max(1, total_images // 20) == 0 or idx == total_images - 1):
+            p_val = 0.08 + 0.06 * ((idx + 1) / total_images)
+            progress_callback(f"المرحلة 1/6: فحص بصمة الملفات — صورة {idx + 1:,} من {total_images:,}", p_val)
+
     logger.info("Cache: %d cached, %d new/changed", len(cached_files), len(new_files))
 
     # Compute exact hashes for new files
@@ -194,13 +207,18 @@ def run(
         if cached and cached["exact_hash"]:
             file_exact_hashes[fpath] = cached["exact_hash"]
 
-    for fpath in tqdm(new_files, desc="Computing exact hashes", unit="file"):
+    total_new = max(1, len(new_files))
+    for idx, fpath in enumerate(tqdm(new_files, desc="Computing exact hashes", unit="file")):
         try:
             h = compute_file_hash(Path(fpath), algorithm=config.hash_algorithm)
             file_exact_hashes[fpath] = h
             cache.put(fpath, file_content_hashes[fpath], exact_hash=h)
         except OSError as exc:
             logger.warning("Hash failed: %s — %s", fpath, exc)
+
+        if progress_callback and (idx % max(1, total_new // 20) == 0 or idx == total_new - 1):
+            p_val = 0.14 + 0.06 * ((idx + 1) / total_new)
+            progress_callback(f"المرحلة 1/6: حساب الهاش الدقيق (SHA-256) — صورة {idx + 1:,} من {total_new:,}", p_val)
 
     cache.flush()
 
@@ -254,7 +272,8 @@ def run(
     # Compute for uncached
     to_compute = [f for f in ungrouped if f not in hash_pairs]
     count = 0
-    for fpath in tqdm(to_compute, desc="Computing perceptual hashes", unit="file"):
+    total_p = max(1, len(to_compute))
+    for idx, fpath in enumerate(tqdm(to_compute, desc="Computing perceptual hashes", unit="file")):
         img = _safe_open_image(Path(fpath))
         if img is None:
             continue
@@ -274,6 +293,10 @@ def run(
             logger.warning("Perceptual hash failed: %s — %s", fpath, exc)
         finally:
             img.close()
+
+        if progress_callback and (idx % max(1, total_p // 20) == 0 or idx == total_p - 1):
+            p_val = 0.20 + 0.15 * ((idx + 1) / total_p)
+            progress_callback(f"المرحلة 2/6: حساب الهاش الإدراكي (pHash) — صورة {idx + 1:,} من {total_p:,}", p_val)
 
     cache.flush()
 
@@ -383,10 +406,9 @@ def run(
 
             # Process in batches to avoid loading all images at once
             batch_size = config.embedding_batch_size
-            for batch_start in tqdm(
-                range(0, len(to_embed), batch_size),
-                desc="Extracting embeddings",
-                unit="batch",
+            total_batches = max(1, (len(to_embed) + batch_size - 1) // batch_size)
+            for b_idx, batch_start in enumerate(
+                range(0, len(to_embed), batch_size)
             ):
                 batch_paths = to_embed[batch_start : batch_start + batch_size]
                 batch_images: list[Image.Image] = []
@@ -412,12 +434,23 @@ def run(
                     for img in batch_images:
                         img.close()
 
+                if progress_callback:
+                    p_val = 0.35 + 0.30 * ((b_idx + 1) / total_batches)
+                    cur_img_count = min(batch_start + batch_size, len(to_embed))
+                    progress_callback(
+                        f"المرحلة 3/6: استخراج متجهات الذكاء الاصطناعي (CLIP) — صورة {cur_img_count:,} من {len(to_embed):,} (دفعة {b_idx + 1}/{total_batches})",
+                        p_val,
+                    )
+
                 if (batch_start // batch_size) % 10 == 0:
                     cache.flush()
 
             cache.flush()
 
         # Build ordered arrays for FAISS
+        if progress_callback:
+            progress_callback("المرحلة 3/6: البحث السريع عن المرشحين المتشابهين عبر FAISS...", 0.65)
+
         ordered_paths = [f for f in ungrouped_for_embedding if f in embeddings_map]
         if len(ordered_paths) >= 2:
             ordered_embeddings = np.vstack([embeddings_map[f] for f in ordered_paths])
@@ -436,8 +469,13 @@ def run(
 
     passed_candidates = 0
     rejected_candidates = 0
+    total_cands = max(1, len(embedding_candidates))
 
-    for cand in tqdm(embedding_candidates, desc="Color verification", unit="pair"):
+    for c_idx, cand in enumerate(tqdm(embedding_candidates, desc="Color verification", unit="pair")):
+        if progress_callback and (c_idx % max(1, total_cands // 20) == 0 or c_idx == total_cands - 1):
+            p_val = 0.66 + 0.22 * ((c_idx + 1) / total_cands)
+            progress_callback(f"المرحلة 4/6: التحقق اللوني الصارم (CIE-Lab) — زوج {c_idx + 1:,} من {total_cands:,}", p_val)
+
         path_a, path_b = cand["pair"]
         similarity = cand["similarity"]
 
@@ -502,6 +540,9 @@ def run(
     logger.info("STAGE 5: Grouping and scoring")
     logger.info("=" * 60)
 
+    if progress_callback:
+        progress_callback("المرحلة 5/6: تجميع وتحليل المجموعات وحساب درجات الثقة...", 0.89)
+
     groups = build_groups(all_matches)
 
     # ------------------------------------------------------------------
@@ -510,6 +551,9 @@ def run(
     logger.info("=" * 60)
     logger.info("STAGE 6: Report generation")
     logger.info("=" * 60)
+
+    if progress_callback:
+        progress_callback("المرحلة 6/6: إنشاء وتنسيق تقارير Excel و CSV الاحترافية...", 0.94)
 
     runtime = time.time() - t_start
 
@@ -543,6 +587,9 @@ def run(
     logger.info("Duplicates CSV:               %s", csv_path)
     logger.info("Master Inventory Excel:       %s", inv_xlsx_path)
     logger.info("Master Inventory CSV:         %s", inv_csv_path)
+
+    if progress_callback:
+        progress_callback(f"🎉 اكتمل الفرز بنجاح! تم فحص {len(image_paths):,} صورة في {runtime:.1f} ثانية.", 1.0)
 
     cache.close()
     return groups

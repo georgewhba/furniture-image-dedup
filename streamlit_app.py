@@ -191,8 +191,15 @@ st.sidebar.markdown("<h2 class='rtl-text'>⚙️ إعدادات وخيارات �
 st.sidebar.markdown("### 🎯 نطاق المعالجة")
 sample_mode = st.sidebar.selectbox(
     "حجم البيانات المفحوصة:",
-    options=["كافة الصور (Full Dataset)", "عينة تجريبية أولى (500 صورة)", "عينة تجريبية أولى (1000 صورة)", "عينة سريعة (100 صورة)", "رقم مخصص"],
+    options=[
+        "عينة تجريبية أولى (500 صورة)",
+        "عينة سريعة (100 صورة)",
+        "كافة الصور (Full Dataset)",
+        "عينة موسعة (1000 صورة)",
+        "رقم مخصص",
+    ],
     index=0,
+    help="اختر عدد الصور للملف المفحوص. على السيرفر السحابي المجاني، يُنصح باختيار 100 إلى 500 صورة لتفادي بطء المعالجة وخنق السيرفر.",
 )
 
 sample_size: int | None = None
@@ -200,10 +207,16 @@ if sample_mode == "عينة سريعة (100 صورة)":
     sample_size = 100
 elif sample_mode == "عينة تجريبية أولى (500 صورة)":
     sample_size = 500
-elif sample_mode == "عينة تجريبية أولى (1000 صورة)":
+elif sample_mode == "عينة موسعة (1000 صورة)":
     sample_size = 1000
 elif sample_mode == "رقم مخصص":
     sample_size = st.sidebar.number_input("حدد عدد الصور:", min_value=10, max_value=100000, value=500, step=50)
+
+st.sidebar.info(
+    "💡 **نصيحة للأداء والسرعة:**\n\n"
+    "• **على السحابة (Streamlit Cloud):** اختر (100 - 500 صورة) لتحصل على النتيجة في ثوانٍ معدودة.\n\n"
+    "• **لكتالوج كامل (آلاف الصور):** شغّل الأداة محلياً على جهازك عبر ملف `تشغيل_واجهة_الويب_Streamlit.bat` لاستخدام كامل قوة معالجك ورامات جهازك بدون أي قيود أو خنق!"
+)
 
 # 2. Advanced Color & AI Settings
 st.sidebar.markdown("---")
@@ -213,7 +226,7 @@ st.sidebar.caption("الشرط الجوهري: منع تصنيف كنب أو ك�
 use_bg_removal = st.sidebar.checkbox(
     "عزل خلفية المنتج بالذكاء الاصطناعي (rembg)",
     value=True,
-    help="يقوم بعزل الأثاث عن الخلفية (الجدار، الغرفة) لمقارنة لون المنتج الفعلي فقط ومنع تلوث الألوان.",
+    help="يقوم بعزل الأثاث عن الخلفية (الجدار، الغرفة) لمقارنة لون المنتج الفعلي فقط ومنع تلوث الألوان. إذا كنت تفحص آلاف الصور على معالج ضعيف، إيقافه يسرع الفحص جداً.",
 )
 
 color_distance_threshold = st.sidebar.slider(
@@ -248,7 +261,7 @@ enable_resume = st.sidebar.checkbox("تفعيل الكاش والاستئناف 
 
 
 # ---------------------------------------------------------------------------
-# Helper: Count images
+# Helpers: Image Counting, Extraction & Downloads
 # ---------------------------------------------------------------------------
 
 def count_supported_images(folder: Path) -> int:
@@ -264,13 +277,41 @@ def extract_zip(zip_bytes_or_path: io.BytesIO | Path, dest_dir: Path) -> int:
     return count_supported_images(dest_dir)
 
 
+def parse_gdrive_url(url: str) -> tuple[str | None, bool]:
+    """Extract file ID or folder ID from Google Drive URL. Returns (id, is_folder)."""
+    raw = url.strip()
+    if not raw:
+        return None, False
+    # Folder URL
+    m_folder = re.search(r"drive\.google\.com/drive/folders/([a-zA-Z0-9_-]+)", raw)
+    if m_folder:
+        return m_folder.group(1), True
+    # File URL
+    m_file = re.search(r"drive\.google\.com/file/d/([a-zA-Z0-9_-]+)", raw)
+    if m_file:
+        return m_file.group(1), False
+    # id= param
+    m_id = re.search(r"[?&]id=([a-zA-Z0-9_-]+)", raw)
+    if m_id:
+        return m_id.group(1), False
+    # Raw ID
+    if re.match(r"^[a-zA-Z0-9_-]{25,}$", raw):
+        return raw, False
+    return None, False
+
+
+# Detect environment (Cloud Linux vs Local Windows)
+IS_RUNNING_ON_CLOUD = (not sys.platform.startswith("win")) or bool(os.environ.get("STREAMLIT_SERVER_BASE_URL"))
+
+
 # ---------------------------------------------------------------------------
-# Data Input Modes (4 Comprehensive Tabs)
+# Data Input Modes (5 Comprehensive Tabs)
 # ---------------------------------------------------------------------------
 
-tab_upload, tab_gdrive, tab_kaggle, tab_folder = st.tabs([
-    "📦 رفع ملف مضغوط ZIP (Upload)",
+tab_upload, tab_gdrive, tab_direct, tab_kaggle, tab_folder = st.tabs([
+    "📦 رفع ملف ZIP (Upload)",
     "🌐 رابط Google Drive",
+    "🔗 رابط تنزيل مباشر (Direct URL)",
     "📊 داتاست Kaggle",
     "📁 مجلد محلي على الجهاز (Local Folder)",
 ])
@@ -301,72 +342,136 @@ with tab_gdrive:
     st.markdown("<p class='rtl-text'><b>تنزيل الصور مباشرة من رابط Google Drive:</b></p>", unsafe_allow_html=True)
     st.caption("تأكد أن إذن مشاركة الملف في Google Drive هو: **أي شخص لديه الرابط (Anyone with the link)**.")
     
-    gdrive_url = st.text_input(
+    gdrive_url_input = st.text_input(
         "رابط ملف Google Drive (ZIP أو مجلد):",
         placeholder="https://drive.google.com/file/d/1A2B3C.../view?usp=sharing",
         key="gdrive_input",
     )
 
-    if st.button("📥 تنزيل وفك الضغط من Google Drive", key="btn_gdrive"):
-        if not gdrive_url.strip():
+    if st.button("📥 تنزيل وفك الضغط من Google Drive الآن", key="btn_gdrive"):
+        if not gdrive_url_input.strip():
             st.warning("⚠️ يرجى إدخال رابط Google Drive أولاً.")
         else:
-            try:
-                import gdown
-                temp_dir = Path(tempfile.mkdtemp(prefix="gdrive_download_"))
-                with st.spinner("جاري تنزيل الملفات من Google Drive بسرعة السيرفر... قد يستغرق لحظات حسب الحجم:"):
-                    # Check if it's a folder URL
-                    if "drive/folders" in gdrive_url:
-                        gdown.download_folder(url=gdrive_url, output=str(temp_dir), quiet=False)
+            file_id, is_folder = parse_gdrive_url(gdrive_url_input)
+            if not file_id:
+                st.error("❌ تعذر استخراج معرّف الملف من الرابط. يرجى التأكد من نسخ رابط Google Drive كامل وصحيح.")
+            else:
+                try:
+                    import gdown
+                    temp_dir = Path(tempfile.mkdtemp(prefix="gdrive_download_"))
+                    with st.spinner("جاري تنزيل الملفات من Google Drive بسرعة فائقة... قد يستغرق لحظات:"):
+                        if is_folder:
+                            gdown.download_folder(id=file_id, output=str(temp_dir), quiet=False)
+                        else:
+                            zip_target = temp_dir / "dataset.zip"
+                            downloaded = gdown.download(id=file_id, output=str(zip_target), quiet=False, fuzzy=True)
+                            if downloaded and zip_target.exists():
+                                try:
+                                    extract_zip(zip_target, temp_dir)
+                                    zip_target.unlink(missing_ok=True)
+                                except zipfile.BadZipFile:
+                                    pass
+                    
+                    n_imgs = count_supported_images(temp_dir)
+                    if n_imgs > 0:
+                        st.session_state["target_image_dir"] = str(temp_dir)
+                        st.session_state["image_count"] = n_imgs
+                        st.success(f"🎉 تم تنزيل واستخراج **{n_imgs:,}** صورة من Google Drive بنجاح!")
                     else:
-                        zip_target = temp_dir / "dataset.zip"
-                        downloaded = gdown.download(url=gdrive_url, output=str(zip_target), quiet=False, fuzzy=True)
-                        if downloaded and zip_target.exists():
-                            try:
-                                extract_zip(zip_target, temp_dir)
-                                zip_target.unlink(missing_ok=True)
-                            except zipfile.BadZipFile:
-                                pass
-                
-                n_imgs = count_supported_images(temp_dir)
-                if n_imgs > 0:
+                        st.error("❌ تم التنزيل ولكن لم يتم العثور على صور مدعومة، أو الملف يحتاج إذناً عاماً (Anyone with the link).")
+                except Exception as exc:
+                    st.error(f"❌ حدث خطأ أثناء التنزيل من Google Drive: {exc}\nتأكد من تفعيل إذن المشاركة العامة للملف.")
+
+
+# 3. TAB: Direct Download URL (Dropbox, Mediafire, Any Direct ZIP link)
+with tab_direct:
+    st.markdown("<p class='rtl-text'><b>تنزيل الصور من أي رابط ويب مباشر (Direct ZIP URL):</b></p>", unsafe_allow_html=True)
+    st.caption("يمكنك وضع رابط مباشر لملف ZIP من أي موقع (مثل Dropbox برابط `?dl=1` أو GitHub Release أو رابط سيرفرك الخاص).")
+    
+    direct_url_input = st.text_input(
+        "رابط الويب المباشر لملف الـ ZIP:",
+        placeholder="https://example.com/images.zip أو رابط Dropbox",
+        key="direct_url_input",
+    )
+
+    if st.button("📥 تنزيل وفك الضغط من الرابط المباشر", key="btn_direct_url"):
+        if not direct_url_input.strip():
+            st.warning("⚠️ يرجى إدخال الرابط أولاً.")
+        else:
+            url = direct_url_input.strip()
+            # Convert dropbox links
+            if "dropbox.com" in url and "dl=0" in url:
+                url = url.replace("dl=0", "dl=1")
+            try:
+                temp_dir = Path(tempfile.mkdtemp(prefix="direct_download_"))
+                zip_path = temp_dir / "downloaded.zip"
+                with st.spinner("جاري تنزيل ملف الصور من الرابط..."):
+                    resp = requests.get(url, stream=True, timeout=90)
+                    resp.raise_for_status()
+                    with open(zip_path, "wb") as f:
+                        for chunk in resp.iter_content(chunk_size=1024 * 1024):
+                            if chunk:
+                                f.write(chunk)
+                    unzipped_count = extract_zip(zip_path, temp_dir)
+                    zip_path.unlink(missing_ok=True)
+
+                if unzipped_count > 0:
                     st.session_state["target_image_dir"] = str(temp_dir)
-                    st.session_state["image_count"] = n_imgs
-                    st.success(f"🎉 تم تنزيل واستخراج **{n_imgs:,}** صورة من Google Drive بنجاح!")
+                    st.session_state["image_count"] = unzipped_count
+                    st.success(f"🎉 تم تنزيل واستخراج **{unzipped_count:,}** صورة بنجاح!")
                 else:
-                    st.error("❌ تم التنزيل ولكن لم يتم العثور على صور مدعومة، يرجى التأكد من الرابط ومحتوى الملف.")
+                    st.error("❌ تم التنزيل ولكن الملف لم يحتوِ على صور مدعومة أو لم يكن ملف ZIP صحيحاً.")
             except Exception as exc:
-                st.error(f"❌ حدث خطأ أثناء التنزيل من Google Drive: {exc}")
+                st.error(f"❌ تعذر التنزيل من الرابط: {exc}")
 
 
-# 3. TAB: Kaggle Dataset Link
+# 4. TAB: Kaggle Dataset Link & Authentication
 with tab_kaggle:
-    st.markdown("<p class='rtl-text'><b>تنزيل الصور مباشرة من Kaggle:</b></p>", unsafe_allow_html=True)
-    st.caption("أدخل اسم أو رابط داتاست كاجل (مثال: `owner/dataset-name`).")
+    st.markdown("<p class='rtl-text'><b>تنزيل الصور من موقع كاجل (Kaggle):</b></p>", unsafe_allow_html=True)
+    st.caption("موقع كاجل يتطلب مفتاح API مجاني لتحميل الداتاست برمجياً.")
     
     kaggle_slug_input = st.text_input(
-        "معرّف داتاست كاجل (Dataset Slug / URL):",
+        "معرّف داتاست كاجل (Dataset Slug أو الرابط الكامل):",
         placeholder="مثال: rhtsingh/google-universal-image-embeddings-128x128",
         key="kaggle_input",
     )
 
-    k_col1, k_col2 = st.columns(2)
-    with k_col1:
-        k_user = st.text_input("Kaggle Username (اختياري إن تم إعداده مسبقاً):", type="default")
-    with k_col2:
-        k_key = st.text_input("Kaggle Key / Token (اختياري):", type="password")
+    with st.expander("🔑 إعداد مفتاح كاجل (Kaggle API Key) — مطلوب مرة واحدة فقط", expanded=True):
+        st.markdown(
+            """
+            للحصول على مفتاح كاجل المجاني خلال 10 ثوانٍ:
+            1. ادخل على حسابك في [Kaggle.com](https://www.kaggle.com) ثم اضغط صورتك الشخصية واختر **Settings**.
+            2. انزل إلى قسم **API** واضغط **Create New Token** ليتم تحميل ملف `kaggle.json`.
+            3. ارفع الملف أدناه أو اكتب البيانات يدوياً:
+            """
+        )
+        kaggle_file = st.file_uploader("ارفع ملف kaggle.json هنا:", type=["json"], key="kaggle_json_upload")
+        if kaggle_file is not None:
+            try:
+                import json
+                k_data = json.load(kaggle_file)
+                if "username" in k_data and "key" in k_data:
+                    os.environ["KAGGLE_USERNAME"] = k_data["username"]
+                    os.environ["KAGGLE_KEY"] = k_data["key"]
+                    st.success(f"✅ تم تفعيل حساب كاجل بنجاح: `{k_data['username']}`")
+            except Exception as exc:
+                st.error(f"ملف غير صالح: {exc}")
+
+        k_col1, k_col2 = st.columns(2)
+        with k_col1:
+            k_user = st.text_input("أو اكتب Kaggle Username:", type="default", value=os.environ.get("KAGGLE_USERNAME", ""))
+        with k_col2:
+            k_key = st.text_input("أو اكتب Kaggle Key:", type="password", value=os.environ.get("KAGGLE_KEY", ""))
 
     if st.button("📥 تنزيل وفك ضغط الداتاست من Kaggle", key="btn_kaggle"):
         if not kaggle_slug_input.strip():
-            st.warning("⚠️ يرجى إدخال اسم الداتاست في Kaggle.")
+            st.warning("⚠️ يرجى إدخال اسم أو رابط الداتاست في Kaggle.")
         else:
-            # Set credentials if provided
             if k_user.strip():
                 os.environ["KAGGLE_USERNAME"] = k_user.strip()
             if k_key.strip():
                 os.environ["KAGGLE_KEY"] = k_key.strip()
                 
-            # Extract slug if user pasted full URL
             slug = kaggle_slug_input.strip()
             match = re.search(r"kaggle\.com/(?:datasets/)?([^/]+/[^/?]+)", slug)
             if match:
@@ -378,7 +483,7 @@ with tab_kaggle:
                 api.authenticate()
                 
                 temp_dir = Path(tempfile.mkdtemp(prefix="kaggle_dataset_"))
-                with st.spinner(f"جاري تنزيل الداتاست {slug} من Kaggle..."):
+                with st.spinner(f"جاري تنزيل الداتاست `{slug}` من Kaggle وفك ضغطها..."):
                     api.dataset_download_files(slug, path=str(temp_dir), unzip=True, quiet=False)
                     
                 n_imgs = count_supported_images(temp_dir)
@@ -389,12 +494,35 @@ with tab_kaggle:
                 else:
                     st.error("❌ تم التنزيل ولكن لم يتم العثور على صور مدعومة داخل الداتاست.")
             except Exception as exc:
-                st.error(f"❌ خطأ أثناء الاتصال بـ Kaggle: {exc}\nتأكد من إدخال الـ Username والـ Key الصحيحين في حسابك على Kaggle.")
+                st.error(
+                    f"❌ خطأ أثناء الاتصال بـ Kaggle: {exc}\n\n"
+                    "يرجى التأكد من إدخال Kaggle Username و Key الصحيحين أو رفع ملف kaggle.json أعلاه."
+                )
 
 
-# 4. TAB: Local Folder (For PC / Server execution)
+# 5. TAB: Local Folder (For PC / Local execution)
 with tab_folder:
-    st.markdown("<p class='rtl-text'><b>أدخل مسار مجلد موجود محلياً على جهازك أو السيرفر:</b></p>", unsafe_allow_html=True)
+    st.markdown("<p class='rtl-text'><b>استخدام مجلد صور محلي موجود على جهازك:</b></p>", unsafe_allow_html=True)
+
+    if IS_RUNNING_ON_CLOUD:
+        st.warning(
+            r"""
+            ⚠️ **تنبيه هام للسيرفر السحابي (Cloud):**
+            
+            أنت تتصفح الموقع الآن على **السيرفر السحابي (Streamlit Cloud)** الذي يعمل بنظام Linux في السحابة. السيرفر السحابي لا يملك وصولاً لمسارات القرص الخاص بجهازك الشخصي مثل (`D:\`).
+            
+            🚀 **لتشغيل مجلد من جهازك (`D:\...`) مباشرة وبأقصى سرعة وبدون أي رفع أو خنق للسيرفر:**
+            1. افتح مجلد المشروع على جهازك:  
+               `d:\All_Projects_Organized\projects\telegram_bots\فرز الصور`
+            2. اضغط مرتين لتشغيل الملف:  
+               👉 **`تشغيل_واجهة_الويب_Streamlit.bat`**
+            3. سيفتح لك نفس هذا البرنامج محلياً على جهازك (`http://localhost:8501`) وسيقبل مسار `D:\` فوراً بدون أي مشكلة وبسرعة فائقة!
+            
+            📦 **أو لفرز الصور هنا على السحابة الآن:**  
+            اضغط على مجلد الصور بزر الفأرة الأيمن واختر `Send to -> Compressed (zipped) folder` ثم ارفعه من التبويب الأول (📦 رفع ملف ZIP).
+            """
+        )
+
     folder_input = st.text_input(
         "مسار مجلد الصور المحلي:",
         placeholder=r"مثال: D:\furniture_catalog\images",
@@ -402,14 +530,23 @@ with tab_folder:
     )
 
     if folder_input.strip():
-        resolved_folder = Path(folder_input.strip().strip('"').strip("'"))
-        if resolved_folder.exists() and resolved_folder.is_dir():
-            found_count = count_supported_images(resolved_folder)
-            st.session_state["target_image_dir"] = str(resolved_folder)
-            st.session_state["image_count"] = found_count
-            st.success(f"✅ تم العثور على المجلد بنجاح! يحتوي على **{found_count:,}** صورة مدعومة.")
+        clean_input = folder_input.strip().strip('"').strip("'")
+        
+        # Check if user typed a Windows path on cloud
+        if IS_RUNNING_ON_CLOUD and (re.match(r"^[a-zA-Z]:", clean_input) or "\\" in clean_input):
+            st.error(
+                f"❌ المسار `{clean_input}` هو مسار محلي على قرص جهازك الشخصي، بينما هذا السيرفر يعمل سحابياً بنظام Linux ولا يستطيع قراءة القرص D الخاص بك.\n\n"
+                "👉 **الحل المباشر:** شغل ملف `تشغيل_واجهة_الويب_Streamlit.bat` على جهازك ليعمل التطبيق محلياً ويقرأ المسار فوراً!"
+            )
         else:
-            st.error("❌ المسار غير موجود أو ليس مجلداً صحيحاً، يرجى التأكد من المسار.")
+            resolved_folder = Path(clean_input)
+            if resolved_folder.exists() and resolved_folder.is_dir():
+                found_count = count_supported_images(resolved_folder)
+                st.session_state["target_image_dir"] = str(resolved_folder)
+                st.session_state["image_count"] = found_count
+                st.success(f"✅ تم العثور على المجلد بنجاح! يحتوي على **{found_count:,}** صورة مدعومة.")
+            else:
+                st.error("❌ المسار غير موجود أو ليس مجلداً صحيحاً، يرجى التأكد من صحة المسار.")
 
 
 # ---------------------------------------------------------------------------
@@ -427,7 +564,7 @@ else:
 
 
 # ---------------------------------------------------------------------------
-# Execution Section
+# Execution Section with Live Real-time Progress Tracking
 # ---------------------------------------------------------------------------
 
 run_col1, run_col2, run_col3 = st.columns([1, 2, 1])
@@ -465,29 +602,36 @@ if start_clicked and active_dir_str is not None:
 
     progress_box = st.container()
     with progress_box:
-        st.markdown("<h3 class='rtl-text'>⏳ جاري تنفيذ مراحل الفرز الست...</h3>", unsafe_allow_html=True)
-        status_text = st.empty()
-        prog_bar = st.progress(0.1)
-
-        status_text.info("🔍 جاري تنفيذ المراحل: الهاش الدقيق + الهاش الإدراكي + تمثيلات CLIP + فحص الألوان (CIE-Lab)...")
-        prog_bar.progress(0.3)
+        st.markdown("<h3 class='rtl-text'>⏳ جاري تنفيذ مراحل الفرز والتحليل الست...</h3>", unsafe_allow_html=True)
+        status_slot = st.empty()
+        prog_bar = st.progress(0.02)
+        timer_slot = st.empty()
 
         t_start = time.time()
         try:
-            with st.spinner("جاري استخراج المتجهات البصرية وفحص الألوان..."):
-                groups = run_pipeline(
-                    input_dir=target_path,
-                    output_path=output_xlsx,
-                    config=config,
-                    cache_dir=cache_dir,
-                    sample_size=sample_size,
-                    resume=enable_resume,
-                    verbose=False,
-                )
+            status_slot.info("🚀 جاري بدء المعالجة والتهيئة...")
+            
+            def update_progress(msg: str, val: float):
+                prog_bar.progress(min(1.0, max(0.0, float(val))))
+                elapsed = time.time() - t_start
+                status_slot.markdown(f"🔹 **{msg}**")
+                timer_slot.caption(f"⏱️ الوقت المنقضي: {elapsed:.1f} ثانية | نسبة الإنجاز الإجمالية: {int(val * 100)}%")
+
+            groups = run_pipeline(
+                input_dir=target_path,
+                output_path=output_xlsx,
+                config=config,
+                cache_dir=cache_dir,
+                sample_size=sample_size,
+                resume=enable_resume,
+                verbose=False,
+                progress_callback=update_progress,
+            )
 
             prog_bar.progress(1.0)
             elapsed_time = time.time() - t_start
-            status_text.success(f"🎉 اكتمل الفرز بنجاح في غضون {elapsed_time:.1f} ثانية!")
+            status_slot.success(f"🎉 اكتمل الفرز والتحليل بنجاح تام في غضون {elapsed_time:.1f} ثانية!")
+            timer_slot.empty()
             
             # Save results in session state
             st.session_state["results_groups"] = groups
