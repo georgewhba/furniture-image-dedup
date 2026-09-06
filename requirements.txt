@@ -1,23 +1,21 @@
-# Furniture Dedup — Pinned Dependencies
-# ======================================
-# CPU-only PyTorch. For GPU support, install torch with CUDA from
-# https://pytorch.org/get-started/locally/ instead of this line.
-torch==2.14.0
-open-clip-torch==3.3.0
-faiss-cpu==1.15.0
-imagehash==4.3.2
+# Furniture Dedup — Production Dependencies
+# ==========================================
+torch>=2.1.0
+open-clip-torch>=2.20.0
+faiss-cpu>=1.7.4
+imagehash>=4.3.1
 rembg>=2.0.60
-Pillow==12.3.0
-numpy==2.2.6
-scikit-learn==1.9.0
-scipy==1.15.2
-pandas==2.3.0
-openpyxl==3.1.5
-PyYAML==6.0.3
-tqdm==4.70.0
+Pillow>=10.0.0
+numpy>=1.24.0,<3.0.0
+scikit-learn>=1.3.0
+scipy>=1.11.0
+pandas>=2.0.0
+openpyxl>=3.1.0
+PyYAML>=6.0
+tqdm>=4.65.0
 streamlit>=1.35.0
 
 # Development / testing
-pytest==8.4.0
-black==25.1.0
-ruff==0.11.12
+pytest>=8.0.0
+black>=24.0.0
+ruff>=0.5.0
