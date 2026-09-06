@@ -7,15 +7,18 @@ from __future__ import annotations
 import io
 import logging
 import os
+import re
 import shutil
 import sys
 import tempfile
 import time
 import zipfile
+from dataclasses import replace
 from pathlib import Path
 from typing import Any
 
 import pandas as pd
+import requests
 from PIL import Image
 import streamlit as st
 
@@ -27,6 +30,8 @@ if str(PROJECT_ROOT) not in sys.path:
 from src.config import Config, load_config
 from src.pipeline import run as run_pipeline
 from src.scoring import DuplicateGroup
+
+SUPPORTED_EXTS = {".jpg", ".jpeg", ".png", ".webp", ".bmp", ".tiff"}
 
 
 # ---------------------------------------------------------------------------
@@ -123,15 +128,6 @@ st.markdown(
         margin-top: 0.2rem;
     }
 
-    /* Group card */
-    .group-card {
-        background: #f8fafc;
-        border: 1px solid #cbd5e1;
-        border-radius: 12px;
-        padding: 1.2rem;
-        margin-bottom: 1.5rem;
-        direction: rtl;
-    }
     .badge-confidence-high {
         background-color: #dcfce7;
         color: #166534;
@@ -252,73 +248,188 @@ enable_resume = st.sidebar.checkbox("تفعيل الكاش والاستئناف 
 
 
 # ---------------------------------------------------------------------------
-# Data Input Modes (Tabbed Interface)
+# Helper: Count images
 # ---------------------------------------------------------------------------
 
-tab_folder, tab_upload = st.tabs(["📁 مجلد محلي على الجهاز (Local Folder)", "📦 رفع ملف مضغوط ZIP أو صور (Cloud Upload)"])
+def count_supported_images(folder: Path) -> int:
+    if not folder.exists():
+        return 0
+    return sum(1 for p in folder.rglob("*") if p.is_file() and p.suffix.lower() in SUPPORTED_EXTS)
 
-target_image_dir: Path | None = None
-uploaded_temp_dir: str | None = None
 
-with tab_folder:
-    st.markdown("<p class='rtl-text'><b>أدخل مسار المجلد الموجود على جهازك أو السيرفر:</b></p>", unsafe_allow_html=True)
+def extract_zip(zip_bytes_or_path: io.BytesIO | Path, dest_dir: Path) -> int:
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    with zipfile.ZipFile(zip_bytes_or_path, "r") as zf:
+        zf.extractall(dest_dir)
+    return count_supported_images(dest_dir)
+
+
+# ---------------------------------------------------------------------------
+# Data Input Modes (4 Comprehensive Tabs)
+# ---------------------------------------------------------------------------
+
+tab_upload, tab_gdrive, tab_kaggle, tab_folder = st.tabs([
+    "📦 رفع ملف مضغوط ZIP (Upload)",
+    "🌐 رابط Google Drive",
+    "📊 داتاست Kaggle",
+    "📁 مجلد محلي على الجهاز (Local Folder)",
+])
+
+# 1. TAB: ZIP Upload
+with tab_upload:
+    st.markdown("<p class='rtl-text'><b>رفع ملف مضغوط ZIP يحتوي على الصور:</b></p>", unsafe_allow_html=True)
+    uploaded_zip = st.file_uploader(
+        "اختر ملف مضغوط ZIP للصور:",
+        type=["zip"],
+        help="ارفع ملف مضغوط يحتوي على مجلد الصور.",
+        key="uploader_zip",
+    )
+
+    if uploaded_zip is not None:
+        if "last_uploaded_name" not in st.session_state or st.session_state["last_uploaded_name"] != uploaded_zip.name:
+            temp_dir = Path(tempfile.mkdtemp(prefix="furniture_upload_"))
+            with st.spinner("جاري فك ضغط ملف الصور..."):
+                unzipped_count = extract_zip(io.BytesIO(uploaded_zip.read()), temp_dir)
+            st.session_state["target_image_dir"] = str(temp_dir)
+            st.session_state["last_uploaded_name"] = uploaded_zip.name
+            st.session_state["image_count"] = unzipped_count
+            st.success(f"✅ تم فك الضغط بنجاح! تم استخراج **{unzipped_count:,}** صورة.")
+
+
+# 2. TAB: Google Drive Link
+with tab_gdrive:
+    st.markdown("<p class='rtl-text'><b>تنزيل الصور مباشرة من رابط Google Drive:</b></p>", unsafe_allow_html=True)
+    st.caption("تأكد أن إذن مشاركة الملف في Google Drive هو: **أي شخص لديه الرابط (Anyone with the link)**.")
     
-    # Pre-fill default workspace paths if available
-    default_hint = ""
-    candidate_dirs = [
-        PROJECT_ROOT.parent / "furniture_images",
-        PROJECT_ROOT.parent / "dataset_100",
-        PROJECT_ROOT.parent / "dataset_500",
-    ]
-    for cdir in candidate_dirs:
-        if cdir.exists() and cdir.is_dir():
-            default_hint = str(cdir)
-            break
+    gdrive_url = st.text_input(
+        "رابط ملف Google Drive (ZIP أو مجلد):",
+        placeholder="https://drive.google.com/file/d/1A2B3C.../view?usp=sharing",
+        key="gdrive_input",
+    )
 
+    if st.button("📥 تنزيل وفك الضغط من Google Drive", key="btn_gdrive"):
+        if not gdrive_url.strip():
+            st.warning("⚠️ يرجى إدخال رابط Google Drive أولاً.")
+        else:
+            try:
+                import gdown
+                temp_dir = Path(tempfile.mkdtemp(prefix="gdrive_download_"))
+                with st.spinner("جاري تنزيل الملفات من Google Drive بسرعة السيرفر... قد يستغرق لحظات حسب الحجم:"):
+                    # Check if it's a folder URL
+                    if "drive/folders" in gdrive_url:
+                        gdown.download_folder(url=gdrive_url, output=str(temp_dir), quiet=False)
+                    else:
+                        zip_target = temp_dir / "dataset.zip"
+                        downloaded = gdown.download(url=gdrive_url, output=str(zip_target), quiet=False, fuzzy=True)
+                        if downloaded and zip_target.exists():
+                            try:
+                                extract_zip(zip_target, temp_dir)
+                                zip_target.unlink(missing_ok=True)
+                            except zipfile.BadZipFile:
+                                pass
+                
+                n_imgs = count_supported_images(temp_dir)
+                if n_imgs > 0:
+                    st.session_state["target_image_dir"] = str(temp_dir)
+                    st.session_state["image_count"] = n_imgs
+                    st.success(f"🎉 تم تنزيل واستخراج **{n_imgs:,}** صورة من Google Drive بنجاح!")
+                else:
+                    st.error("❌ تم التنزيل ولكن لم يتم العثور على صور مدعومة، يرجى التأكد من الرابط ومحتوى الملف.")
+            except Exception as exc:
+                st.error(f"❌ حدث خطأ أثناء التنزيل من Google Drive: {exc}")
+
+
+# 3. TAB: Kaggle Dataset Link
+with tab_kaggle:
+    st.markdown("<p class='rtl-text'><b>تنزيل الصور مباشرة من Kaggle:</b></p>", unsafe_allow_html=True)
+    st.caption("أدخل اسم أو رابط داتاست كاجل (مثال: `owner/dataset-name`).")
+    
+    kaggle_slug_input = st.text_input(
+        "معرّف داتاست كاجل (Dataset Slug / URL):",
+        placeholder="مثال: rhtsingh/google-universal-image-embeddings-128x128",
+        key="kaggle_input",
+    )
+
+    k_col1, k_col2 = st.columns(2)
+    with k_col1:
+        k_user = st.text_input("Kaggle Username (اختياري إن تم إعداده مسبقاً):", type="default")
+    with k_col2:
+        k_key = st.text_input("Kaggle Key / Token (اختياري):", type="password")
+
+    if st.button("📥 تنزيل وفك ضغط الداتاست من Kaggle", key="btn_kaggle"):
+        if not kaggle_slug_input.strip():
+            st.warning("⚠️ يرجى إدخال اسم الداتاست في Kaggle.")
+        else:
+            # Set credentials if provided
+            if k_user.strip():
+                os.environ["KAGGLE_USERNAME"] = k_user.strip()
+            if k_key.strip():
+                os.environ["KAGGLE_KEY"] = k_key.strip()
+                
+            # Extract slug if user pasted full URL
+            slug = kaggle_slug_input.strip()
+            match = re.search(r"kaggle\.com/(?:datasets/)?([^/]+/[^/?]+)", slug)
+            if match:
+                slug = match.group(1)
+
+            try:
+                from kaggle.api.kaggle_api_extended import KaggleApi
+                api = KaggleApi()
+                api.authenticate()
+                
+                temp_dir = Path(tempfile.mkdtemp(prefix="kaggle_dataset_"))
+                with st.spinner(f"جاري تنزيل الداتاست {slug} من Kaggle..."):
+                    api.dataset_download_files(slug, path=str(temp_dir), unzip=True, quiet=False)
+                    
+                n_imgs = count_supported_images(temp_dir)
+                if n_imgs > 0:
+                    st.session_state["target_image_dir"] = str(temp_dir)
+                    st.session_state["image_count"] = n_imgs
+                    st.success(f"🎉 تم تنزيل واستخراج **{n_imgs:,}** صورة من Kaggle بنجاح!")
+                else:
+                    st.error("❌ تم التنزيل ولكن لم يتم العثور على صور مدعومة داخل الداتاست.")
+            except Exception as exc:
+                st.error(f"❌ خطأ أثناء الاتصال بـ Kaggle: {exc}\nتأكد من إدخال الـ Username والـ Key الصحيحين في حسابك على Kaggle.")
+
+
+# 4. TAB: Local Folder (For PC / Server execution)
+with tab_folder:
+    st.markdown("<p class='rtl-text'><b>أدخل مسار مجلد موجود محلياً على جهازك أو السيرفر:</b></p>", unsafe_allow_html=True)
     folder_input = st.text_input(
-        "مسار مجلد الصور:",
-        value=default_hint,
+        "مسار مجلد الصور المحلي:",
         placeholder=r"مثال: D:\furniture_catalog\images",
-        help="اكتب المسار الكامل لمجلد الصور. النظام سيبحث داخل المجلد وجميع المجلدات الفرعية تلقائياً.",
+        key="local_folder_input",
     )
 
     if folder_input.strip():
         resolved_folder = Path(folder_input.strip().strip('"').strip("'"))
         if resolved_folder.exists() and resolved_folder.is_dir():
-            # Count images quickly
-            exts = {".jpg", ".jpeg", ".png", ".webp", ".bmp", ".tiff"}
-            found_count = sum(1 for p in resolved_folder.rglob("*") if p.suffix.lower() in exts)
-            st.success(f"✅ تم العثور على المجلد بنجاح! يحتوي على تقريباً **{found_count:,}** صورة مدعومة.")
-            target_image_dir = resolved_folder
+            found_count = count_supported_images(resolved_folder)
+            st.session_state["target_image_dir"] = str(resolved_folder)
+            st.session_state["image_count"] = found_count
+            st.success(f"✅ تم العثور على المجلد بنجاح! يحتوي على **{found_count:,}** صورة مدعومة.")
         else:
             st.error("❌ المسار غير موجود أو ليس مجلداً صحيحاً، يرجى التأكد من المسار.")
 
-with tab_upload:
-    st.markdown("<p class='rtl-text'><b>رفع ملف مضغوط ZIP يحتوي على الصور (مناسب عند رفع النظام على السحاب):</b></p>", unsafe_allow_html=True)
-    uploaded_zip = st.file_uploader(
-        "اختر ملف مضغوط ZIP للصور:",
-        type=["zip"],
-        help="ارفع ملف مضغوط يحتوي على مجلد الصور. سيتم فك الضغط ومعالجة الصور فوراً.",
-    )
 
-    if uploaded_zip is not None:
-        temp_dir = tempfile.mkdtemp(prefix="furniture_upload_")
-        with st.spinner("جاري فك ضغط ملف الصور..."):
-            with zipfile.ZipFile(uploaded_zip, "r") as zf:
-                zf.extractall(temp_dir)
-        target_image_dir = Path(temp_dir)
-        uploaded_temp_dir = temp_dir
-        
-        exts = {".jpg", ".jpeg", ".png", ".webp", ".bmp", ".tiff"}
-        unzipped_count = sum(1 for p in target_image_dir.rglob("*") if p.suffix.lower() in exts)
-        st.success(f"✅ تم فك الضغط بنجاح! تم استخراج **{unzipped_count:,}** صورة.")
+# ---------------------------------------------------------------------------
+# Active Dataset Status Banner
+# ---------------------------------------------------------------------------
+
+active_dir_str = st.session_state.get("target_image_dir")
+active_count = st.session_state.get("image_count", 0)
+
+st.markdown("<br>", unsafe_allow_html=True)
+if active_dir_str and Path(active_dir_str).exists():
+    st.info(f"📂 **المجلد الجاهز للفرز حالياً:** `{active_dir_str}` — يحتوي على **{active_count:,}** صورة جاهزة للتحليل.")
+else:
+    st.warning("👈 يرجى رفع ملف ZIP أو وضع رابط Google Drive / Kaggle أو اختيار مجلد من التبويبات أعلاه للمتابعة.")
 
 
 # ---------------------------------------------------------------------------
 # Execution Section
 # ---------------------------------------------------------------------------
 
-st.markdown("<br>", unsafe_allow_html=True)
 run_col1, run_col2, run_col3 = st.columns([1, 2, 1])
 
 with run_col2:
@@ -326,19 +437,24 @@ with run_col2:
         "🚀 بدء الفرز والتحليل الذكي الآن",
         type="primary",
         use_container_width=True,
-        disabled=(target_image_dir is None),
+        disabled=(active_dir_str is None),
     )
 
-if start_clicked and target_image_dir is not None:
-    # Build custom config
+if start_clicked and active_dir_str is not None:
+    target_path = Path(active_dir_str)
+    
+    # 1. Load base config safely
     base_config_path = PROJECT_ROOT / "config.yaml"
-    config = load_config(base_config_path) if base_config_path.exists() else Config()
+    base_cfg = load_config(base_config_path) if base_config_path.exists() else Config()
 
-    # Override config with UI inputs
-    config.use_background_removal = use_bg_removal
-    config.color_distance_threshold = float(color_distance_threshold)
-    config.similarity_threshold = float(similarity_threshold)
-    config.phash_threshold = int(phash_threshold)
+    # 2. Immutable replace to avoid FrozenInstanceError
+    config = replace(
+        base_cfg,
+        use_background_removal=use_bg_removal,
+        color_distance_threshold=float(color_distance_threshold),
+        similarity_threshold=float(similarity_threshold),
+        phash_threshold=int(phash_threshold),
+    )
 
     # Output paths
     run_timestamp = int(time.time())
@@ -353,14 +469,14 @@ if start_clicked and target_image_dir is not None:
         status_text = st.empty()
         prog_bar = st.progress(0.1)
 
-        status_text.info("🔍 المرحلة 1 و 2: فحص الملفات المتطابقة التامة والهاش الإدراكي (SHA-256 + pHash)...")
+        status_text.info("🔍 جاري تنفيذ المراحل: الهاش الدقيق + الهاش الإدراكي + تمثيلات CLIP + فحص الألوان (CIE-Lab)...")
         prog_bar.progress(0.3)
 
         t_start = time.time()
         try:
             with st.spinner("جاري استخراج المتجهات البصرية وفحص الألوان..."):
                 groups = run_pipeline(
-                    input_dir=target_image_dir,
+                    input_dir=target_path,
                     output_path=output_xlsx,
                     config=config,
                     cache_dir=cache_dir,
@@ -373,7 +489,7 @@ if start_clicked and target_image_dir is not None:
             elapsed_time = time.time() - t_start
             status_text.success(f"🎉 اكتمل الفرز بنجاح في غضون {elapsed_time:.1f} ثانية!")
             
-            # Save results in session state for persistence
+            # Save results in session state
             st.session_state["results_groups"] = groups
             st.session_state["output_xlsx"] = str(output_xlsx)
             st.session_state["output_csv"] = str(output_xlsx.with_suffix(".csv"))
@@ -404,7 +520,6 @@ if "results_groups" in st.session_state:
     total_images_in_dupes = sum(len(g.members) for g in groups)
     num_groups = len(groups)
     
-    # Read inventory report if available to get total scanned count
     total_scanned = total_images_in_dupes
     unique_count = 0
     if inv_xlsx_path and inv_xlsx_path.exists():
@@ -461,9 +576,7 @@ if "results_groups" in st.session_state:
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # -----------------------------------------------------------------------
     # Instant Downloads Section
-    # -----------------------------------------------------------------------
     st.markdown("<h3 class='rtl-text'>📥 تحميل التقارير النهائية للمراجعة البشرية</h3>", unsafe_allow_html=True)
     dcol1, dcol2, dcol3 = st.columns(3)
 
@@ -502,16 +615,13 @@ if "results_groups" in st.session_state:
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # -----------------------------------------------------------------------
     # Visual Duplicate Inspection Gallery
-    # -----------------------------------------------------------------------
     st.markdown("<h3 class='rtl-text'>👁️ معرض الفحص البصري للمجموعات المتطابقة</h3>", unsafe_allow_html=True)
     st.caption("تصفح المجموعات وتأكد بنفسك من مطابقة المنتجات بدقة جنباً إلى جنب:")
 
     if num_groups == 0:
         st.info("لم يتم العثور على أي صور مكررة في هذه العينة — جميع الصور فريدة!")
     else:
-        # Confidence Filter
         fcol1, fcol2 = st.columns([1, 2])
         with fcol1:
             conf_filter = st.selectbox(
@@ -529,7 +639,6 @@ if "results_groups" in st.session_state:
 
         st.write(f"المجموعات المعروضة: **{len(filtered_groups)}** مجموعة")
 
-        # Display groups in paginated view
         page_size = 10
         total_pages = max(1, (len(filtered_groups) + page_size - 1) // page_size)
         current_page = st.number_input("الصفحة:", min_value=1, max_value=total_pages, value=1, step=1)
@@ -538,7 +647,6 @@ if "results_groups" in st.session_state:
         page_groups = filtered_groups[start_idx : start_idx + page_size]
 
         for grp in page_groups:
-            # Badge style
             if grp.confidence >= 90:
                 badge_class = "badge-confidence-high"
                 badge_text = f"ثقة عالية ({grp.confidence}%)"
@@ -570,9 +678,7 @@ if "results_groups" in st.session_state:
                         else:
                             st.warning(f"الملف غير متوفر: {p.name}")
 
-    # -----------------------------------------------------------------------
     # Interactive Table View
-    # -----------------------------------------------------------------------
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("<h3 class='rtl-text'>📋 جدول تفاصيل الصور والمجموعات</h3>", unsafe_allow_html=True)
 
