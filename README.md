@@ -2,14 +2,18 @@
 title: Furniture Duplicate Detection AI
 emoji: 🪑
 colorFrom: blue
-colorTo: teal
-sdk: docker
-app_port: 7860
+colorTo: indigo
+sdk: gradio
+sdk_version: 6.31.0
+python_version: '3.12'
+app_file: gradio_app.py
 pinned: true
-short_description: 6-stage CLIP + FAISS + CIE-Lab EMD duplicate furniture image detector
+short_description: 6-stage CLIP + FAISS + CIE-Lab furniture dedup AI
 ---
 
 # Furniture Product-Image Duplicate Detection System
+
+> **Live Interactive Demo (ZeroGPU):** **[Launch App on Hugging Face Spaces](https://huggingface.co/spaces/george1234111/furniture-duplicate-detection-ai)** ([Direct Fullscreen URL](https://george1234111-furniture-duplicate-detection-ai.hf.space)) · **[Kaggle GPU Benchmark (v4)](https://www.kaggle.com/code/djnd27/furniture-duplicate-detection-ikea)**
 
 A production-grade computer-vision pipeline that detects duplicate product images in furniture e-commerce catalogs. It identifies exact byte copies, near-duplicates (cropped, resized, recompressed, watermarked), and cross-angle/re-shot product photos — guarded by a **mandatory color-verification gate (CIE-Lab + Earth Mover's Distance + spatial recolor detection)** to prevent false positives on same-shape, different-color SKUs.
 
@@ -71,21 +75,28 @@ Reproducible on Kaggle: **[Interactive GPU Benchmark Notebook (v4)](https://www.
 
 ## Interactive Web Application & Built-in Demo
 
-The Streamlit web app (`streamlit_app.py`) supports **Bilingual English / Arabic RTL switching**, **1-click evaluation on a curated 13-image built-in catalog (`demo_catalog/`)**, live Color Gate rejection cards showing blocked false-positive pairs side-by-side, ZIP/Google Drive/Direct URL/Kaggle imports, and instant Excel downloads.
+Try it directly in your browser with no installation:
+- **Live Hugging Face ZeroGPU App:** https://huggingface.co/spaces/george1234111/furniture-duplicate-detection-ai
+
+Both interactive web frontends (`gradio_app.py` for **Gradio 6 + ZeroGPU** and `streamlit_app.py` for **Streamlit**) support **Bilingual English / Arabic RTL switching**, **1-click evaluation on a curated 13-image built-in catalog (`demo_catalog/`)**, live Color Gate rejection cards showing blocked false-positive pairs side-by-side, `.zip`/image uploads, and instant `.xlsx` / `.csv` downloads.
 
 ### Running locally
 ```bash
+# Gradio 6 web app (matches Hugging Face ZeroGPU deployment)
+python gradio_app.py
+
+# Or Streamlit web app (includes Google Drive / URL / Kaggle importers)
 streamlit run streamlit_app.py
 ```
 Or on Windows, double-click `تشغيل_واجهة_الويب_Streamlit.bat`.
 
 ## Deploying to Hugging Face Spaces (Recommended)
 
-This repository includes a production `Dockerfile` configured for Hugging Face Spaces (`16 GB RAM`, `sdk: docker`, port `7860`) that pre-bakes OpenCLIP `ViT-B/32` and `rembg (u2netp)` weights during container build for zero cold-start wait:
+The hosted demo runs `gradio_app.py` on **Hugging Face Spaces (`sdk: gradio`, `sdk_version: 6.31.0`, `python_version: '3.12'`, `zero-a10g` ZeroGPU)**:
 
-1. Create a new Space on [huggingface.co/new-space](https://huggingface.co/new-space) selecting **Docker** SDK.
-2. Push or link this repository (`main` branch). The YAML header at the top of `README.md` configures the Space automatically.
-3. Alternatively, connect to [share.streamlit.io](https://share.streamlit.io) with `streamlit_app.py` (for smaller batches).
+1. Create a new Space on [huggingface.co/new-space](https://huggingface.co/new-space) selecting **Gradio** (`Blank`) + **ZeroGPU**.
+2. Upload `gradio_app.py`, `src/`, `config.yaml`, `demo_catalog/`, and `README.md` together with runtime dependencies (`open-clip-torch`, `faiss-cpu`, `rembg`, `onnxruntime`, `imagehash`, `pandas`, `openpyxl`, `PyYAML`, etc., omitting `gradio`/`spaces` so ZeroGPU's preinstalled runtime stays intact).
+3. For self-hosted servers or paid Docker Spaces, a production `Dockerfile` (`sdk: docker`, port `7860`, serving `streamlit_app.py` with baked OpenCLIP + `rembg` weights) is also included.
 
 ---
 
