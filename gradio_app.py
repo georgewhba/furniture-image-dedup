@@ -84,51 +84,79 @@ CUSTOM_CSS = """
     margin: 12px 0;
 }
 .kpi-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-top: 4px solid #2563eb;
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    border-top: 4px solid #2563eb !important;
     border-radius: 10px;
     padding: 12px 14px;
     text-align: center;
-    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
+    color: #0f172a !important;
 }
 .kpi-card.shield {
-    border-top-color: #e11d48;
-    background: #fff1f2;
+    border-top-color: #e11d48 !important;
+    background: #fff1f2 !important;
 }
 .kpi-card.success {
-    border-top-color: #059669;
-    background: #ecfdf5;
+    border-top-color: #059669 !important;
+    background: #ecfdf5 !important;
 }
 .kpi-val {
     font-size: 1.65rem;
     font-weight: 800;
-    color: #0f172a;
+    color: #0f172a !important;
     line-height: 1.2;
+}
+.kpi-card.success .kpi-val {
+    color: #047857 !important;
+}
+.kpi-card.shield .kpi-val {
+    color: #be123c !important;
 }
 .kpi-label {
     font-size: 0.82rem;
-    color: #475569;
+    color: #334155 !important;
     margin-top: 4px;
     font-weight: 600;
 }
 .guardrail-card {
-    background: #fff1f2;
-    border: 1px solid #fecdd3;
-    border-left: 5px solid #e11d48;
+    background: #fff1f2 !important;
+    border: 1px solid #fda4af !important;
+    border-left: 5px solid #e11d48 !important;
     border-radius: 10px;
     padding: 12px 16px;
     margin-bottom: 10px;
-    color: #1e293b;
+    color: #0f172a !important;
+    line-height: 1.55;
+}
+.guardrail-card b,
+.guardrail-card span,
+.guardrail-card div {
+    color: #0f172a !important;
+}
+.guardrail-card b.delta-e-val {
+    color: #be123c !important;
+}
+.guardrail-card code {
+    background: #ffe4e6 !important;
+    color: #881337 !important;
+    padding: 2px 6px !important;
+    border-radius: 5px !important;
+    font-weight: 600 !important;
+    border: 1px solid #fecdd3 !important;
 }
 .stage-funnel {
-    background: #f8fafc;
-    border: 1px solid #cbd5e1;
+    background: #f8fafc !important;
+    border: 1px solid #cbd5e1 !important;
     border-radius: 10px;
     padding: 10px 14px;
     font-size: 0.88rem;
-    color: #334155;
+    color: #1e293b !important;
     margin-top: 8px;
+}
+.stage-funnel b,
+.stage-funnel span {
+    color: #0f172a !important;
 }
 .rtl-box {
     direction: rtl;
@@ -145,7 +173,7 @@ def _tr(lang: str, en: str, ar: str) -> str:
 def _gpu_decorator(fn: Any) -> Any:
     """Attach Hugging Face ZeroGPU decorator when running inside a ZeroGPU runtime."""
     if spaces is not None and hasattr(spaces, "GPU"):
-        return spaces.GPU(duration=120)(fn)
+        return spaces.GPU(duration=25)(fn)
     return fn
 
 
@@ -297,7 +325,7 @@ def _format_guardrail_outputs(
                 <b>#{idx} — 🛑 {_tr(lang, "BLOCKED BY COLOR GATE", "تم الرفض عبر بوابة الألوان")}</b> ({stage_name})<br>
                 <code>{html.escape(pa.name)}</code> ↔ <code>{html.escape(pb.name)}</code><br>
                 {_tr(lang, "Shape Similarity:", "تشابه الشكل:")} <b>{sim_str}</b> &nbsp;|&nbsp;
-                {_tr(lang, "CIE-Lab Color Distance ΔE:", "المسافة اللونية ΔE:")} <b style="color:#be123c;">{dist_val:.2f}</b>
+                {_tr(lang, "CIE-Lab Color Distance ΔE:", "المسافة اللونية ΔE:")} <b class="delta-e-val">{dist_val:.2f}</b>
                 (&gt; {t_val:.1f} {_tr(lang, "threshold", "العتبة")})
             </div>""")
         if pa.is_file():
@@ -322,6 +350,7 @@ def _execute_pipeline_core(
     phash_threshold: int,
     lang: str,
     source_label: str,
+    embedding_device: str = "cpu",
 ) -> tuple[
     str,
     str,
@@ -332,10 +361,11 @@ def _execute_pipeline_core(
     str | None,
     str | None,
 ]:
-    """Run the 6-stage deduplication pipeline inside ZeroGPU or local CPU."""
+    """Run the 6-stage deduplication pipeline inside ZeroGPU or local/Space CPU."""
     base_cfg = _load_default_config()
     cfg = replace(
         base_cfg,
+        embedding_device=embedding_device,
         use_background_removal=bool(use_bg_removal),
         color_distance_threshold=float(color_threshold),
         similarity_threshold=float(sim_threshold),
@@ -415,15 +445,15 @@ def _execute_pipeline_core(
     )
 
 
-@_gpu_decorator
-def run_builtin_demo(
+def _run_builtin_demo_impl(
     use_bg_removal: bool,
     color_threshold: float,
     sim_threshold: float,
     phash_threshold: int,
     lang: str,
+    embedding_device: str,
 ) -> tuple[Any, ...]:
-    """Run the 6-stage pipeline directly on the bundled 13-image demo catalog."""
+    """Execute the 6-stage pipeline directly on the bundled 13-image demo catalog."""
     if not DEMO_CATALOG_DIR.is_dir():
         raise gr.Error(
             _tr(lang, "demo_catalog folder not found.", "مجلد الصور التجريبية غير موجود.")
@@ -446,17 +476,55 @@ def run_builtin_demo(
         phash_threshold,
         lang,
         label,
+        embedding_device=embedding_device,
+    )
+
+
+def run_builtin_demo(
+    use_bg_removal: bool,
+    color_threshold: float,
+    sim_threshold: float,
+    phash_threshold: int,
+    lang: str,
+) -> tuple[Any, ...]:
+    """Run demo catalog on CPU (unlimited free runs, zero ZeroGPU quota consumed)."""
+    return _run_builtin_demo_impl(
+        use_bg_removal,
+        color_threshold,
+        sim_threshold,
+        phash_threshold,
+        lang,
+        embedding_device="cpu",
     )
 
 
 @_gpu_decorator
-def run_uploaded_catalog(
+def run_builtin_demo_gpu(
+    use_bg_removal: bool,
+    color_threshold: float,
+    sim_threshold: float,
+    phash_threshold: int,
+    lang: str,
+) -> tuple[Any, ...]:
+    """Optional ZeroGPU-accelerated demo runner (short 25s A10G lease)."""
+    return _run_builtin_demo_impl(
+        use_bg_removal,
+        color_threshold,
+        sim_threshold,
+        phash_threshold,
+        lang,
+        embedding_device="auto",
+    )
+
+
+def _run_uploaded_catalog_impl(
     uploaded_files: list[str] | None,
     use_bg_removal: bool,
     color_threshold: float,
     sim_threshold: float,
     phash_threshold: int,
     lang: str,
+    embedding_device: str,
 ) -> tuple[Any, ...]:
     """Stage uploaded ZIP/images cleanly and execute the 6-stage pipeline."""
     staging_dir, count = _stage_uploaded_files(uploaded_files)
@@ -485,6 +553,48 @@ def run_uploaded_catalog(
         phash_threshold,
         lang,
         label,
+        embedding_device=embedding_device,
+    )
+
+
+def run_uploaded_catalog(
+    uploaded_files: list[str] | None,
+    use_bg_removal: bool,
+    color_threshold: float,
+    sim_threshold: float,
+    phash_threshold: int,
+    lang: str,
+) -> tuple[Any, ...]:
+    """Deduplicate uploaded images on CPU (unlimited free runs, no ZeroGPU quota block)."""
+    return _run_uploaded_catalog_impl(
+        uploaded_files,
+        use_bg_removal,
+        color_threshold,
+        sim_threshold,
+        phash_threshold,
+        lang,
+        embedding_device="cpu",
+    )
+
+
+@_gpu_decorator
+def run_uploaded_catalog_gpu(
+    uploaded_files: list[str] | None,
+    use_bg_removal: bool,
+    color_threshold: float,
+    sim_threshold: float,
+    phash_threshold: int,
+    lang: str,
+) -> tuple[Any, ...]:
+    """Optional ZeroGPU-accelerated catalog upload runner (short 25s A10G lease)."""
+    return _run_uploaded_catalog_impl(
+        uploaded_files,
+        use_bg_removal,
+        color_threshold,
+        sim_threshold,
+        phash_threshold,
+        lang,
+        embedding_device="auto",
     )
 
 
@@ -619,11 +729,19 @@ def build_demo() -> gr.Blocks:
         with gr.Tabs():
             with gr.Tab("🎯 1-Click Live Demo (13 Images)"):
                 demo_info = gr.Markdown(value=_demo_info_md("en"))
-                run_demo_btn = gr.Button(
-                    "🚀 Run 6-Stage AI Pipeline on Built-in Demo Catalog",
-                    variant="primary",
-                    size="lg",
-                )
+                with gr.Row():
+                    run_demo_btn = gr.Button(
+                        "🚀 Run 6-Stage AI Pipeline (Instant CPU • Unlimited)",
+                        variant="primary",
+                        size="lg",
+                        scale=3,
+                    )
+                    run_demo_gpu_btn = gr.Button(
+                        "⚡ Run on ZeroGPU (A10G)",
+                        variant="secondary",
+                        size="lg",
+                        scale=1,
+                    )
                 with gr.Accordion(
                     f"👀 Preview All {len(demo_gallery_data)} Built-in Demo Images", open=False
                 ):
@@ -644,11 +762,19 @@ def build_demo() -> gr.Blocks:
                     file_count="multiple",
                     file_types=["image", ".zip"],
                 )
-                run_upload_btn = gr.Button(
-                    "🔍 Deduplicate Uploaded Catalog",
-                    variant="primary",
-                    size="lg",
-                )
+                with gr.Row():
+                    run_upload_btn = gr.Button(
+                        "🔍 Deduplicate Uploaded Catalog (Instant CPU • Unlimited)",
+                        variant="primary",
+                        size="lg",
+                        scale=3,
+                    )
+                    run_upload_gpu_btn = gr.Button(
+                        "⚡ Deduplicate on ZeroGPU (A10G)",
+                        variant="secondary",
+                        size="lg",
+                        scale=1,
+                    )
 
             with gr.Tab("📊 Audited Kaggle GPU Benchmarks"):
                 bench_md = gr.Markdown(value=_benchmarks_md("en"))
@@ -685,14 +811,21 @@ def build_demo() -> gr.Blocks:
             csv_out = gr.File(label="📥 Filtered Duplicates (.csv)", interactive=False)
             inv_out = gr.File(label="📥 Master All-Images Inventory (.xlsx)", interactive=False)
 
-        def _switch_language(lang: str) -> tuple[str, str, str, str, str, str, str, str, str]:
+        def _switch_language(
+            lang: str,
+        ) -> tuple[str, str, str, str, str, str, str, str, str, str, str]:
             return (
                 _hero_html(lang),
                 _demo_info_md(lang),
                 _tr(
                     lang,
-                    "🚀 Run 6-Stage AI Pipeline on Built-in Demo Catalog",
-                    "🚀 تشغيل خط المعالجة (6 مراحل) على الكتالوج التجريبي الآن",
+                    "🚀 Run 6-Stage AI Pipeline (Instant CPU • Unlimited)",
+                    "🚀 تشغيل خط المعالجة (6 مراحل — تشغيل فوري بلا حد)",
+                ),
+                _tr(
+                    lang,
+                    "⚡ Run on ZeroGPU (A10G)",
+                    "⚡ تشغيل عبر ZeroGPU (A10G)",
                 ),
                 _tr(
                     lang,
@@ -701,8 +834,13 @@ def build_demo() -> gr.Blocks:
                 ),
                 _tr(
                     lang,
-                    "🔍 Deduplicate Uploaded Catalog",
-                    "🔍 فحص واستخراج التكرارات من الصور المرفوعة",
+                    "🔍 Deduplicate Uploaded Catalog (Instant CPU • Unlimited)",
+                    "🔍 فحص الصور المرفوعة (تشغيل فوري بلا حد)",
+                ),
+                _tr(
+                    lang,
+                    "⚡ Deduplicate on ZeroGPU (A10G)",
+                    "⚡ فحص المرفوعات على ZeroGPU (A10G)",
                 ),
                 _benchmarks_md(lang),
                 _tr(
@@ -729,8 +867,10 @@ def build_demo() -> gr.Blocks:
                 hero_md,
                 demo_info,
                 run_demo_btn,
+                run_demo_gpu_btn,
                 upload_note,
                 run_upload_btn,
+                run_upload_gpu_btn,
                 bench_md,
                 guardrail_title,
                 groups_title,
@@ -754,8 +894,18 @@ def build_demo() -> gr.Blocks:
             inputs=[bg_checkbox, color_slider, sim_slider, phash_slider, lang_state],
             outputs=result_outputs,
         )
+        run_demo_gpu_btn.click(
+            fn=run_builtin_demo_gpu,
+            inputs=[bg_checkbox, color_slider, sim_slider, phash_slider, lang_state],
+            outputs=result_outputs,
+        )
         run_upload_btn.click(
             fn=run_uploaded_catalog,
+            inputs=[uploader, bg_checkbox, color_slider, sim_slider, phash_slider, lang_state],
+            outputs=result_outputs,
+        )
+        run_upload_gpu_btn.click(
+            fn=run_uploaded_catalog_gpu,
             inputs=[uploader, bg_checkbox, color_slider, sim_slider, phash_slider, lang_state],
             outputs=result_outputs,
         )

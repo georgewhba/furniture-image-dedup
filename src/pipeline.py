@@ -475,9 +475,13 @@ def run(
 
         if to_embed:
             logger.info("Extracting embeddings for %d new images", len(to_embed))
+            requested_device = (
+                None if config.embedding_device == "auto" else config.embedding_device
+            )
             extractor = EmbeddingExtractor(
                 model_name=config.embedding_model,
                 pretrained=config.embedding_pretrained,
+                device=requested_device,
             )
 
             # Process in batches to avoid loading all images at once

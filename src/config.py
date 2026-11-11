@@ -34,6 +34,7 @@ class Config:
     # Stage 3 — Embeddings
     embedding_model: str = "ViT-B-32"
     embedding_pretrained: str = "laion2b_s34b_b79k"
+    embedding_device: str = "auto"
     embedding_batch_size: int = 32
     embedding_dimension: int = 512
     similarity_threshold: float = 0.85
@@ -82,6 +83,7 @@ class Config:
 
 _VALID_HASH_ALGORITHMS = {"sha256", "md5"}
 _VALID_COLOR_SPACES = {"lab", "hsv"}
+_VALID_EMBEDDING_DEVICES = {"auto", "cpu", "cuda"}
 _VALID_LOG_LEVELS = {"DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"}
 
 
@@ -93,6 +95,12 @@ def _validate(cfg: Config) -> list[str]:
         errors.append(
             f"hash_algorithm must be one of {_VALID_HASH_ALGORITHMS}, "
             f"got '{cfg.hash_algorithm}'"
+        )
+
+    if cfg.embedding_device not in _VALID_EMBEDDING_DEVICES:
+        errors.append(
+            f"embedding_device must be one of {_VALID_EMBEDDING_DEVICES}, "
+            f"got '{cfg.embedding_device}'"
         )
 
     if not 0 <= cfg.phash_threshold <= 64:
