@@ -136,6 +136,7 @@ class DuplicateGroup:
 def build_groups(
     matches: list[PairMatch],
     min_confidence: int = 60,
+    rejected_pairs: set[tuple[str, str]] | None = None,
 ) -> list[DuplicateGroup]:
     """Merge pairwise matches into groups and assign scores.
 
@@ -232,8 +233,28 @@ def build_groups(
                 match_type=m.match_type,
             )
 
-    # Step 3: Decompose representative graph with confidence guardrails and community partitioning
-    # Step 3: Decompose representative graph with density and confidence guardrails
+    # Map color-rejected pairs (cannot-link constraints) to canonical representatives
+    rep_rejected: set[tuple[str, str]] = set()
+    if rejected_pairs:
+        for u, v in rejected_pairs:
+            ru = rep_map.get(u, u)
+            rv = rep_map.get(v, v)
+            if ru != rv:
+                rep_rejected.add((ru, rv) if ru < rv else (rv, ru))
+
+    def _has_rejected_pair(nodes: list[str]) -> bool:
+        if not rep_rejected:
+            return False
+        for i in range(len(nodes)):
+            u = nodes[i]
+            for j in range(i + 1, len(nodes)):
+                v = nodes[j]
+                pair = (u, v) if u < v else (v, u)
+                if pair in rep_rejected:
+                    return True
+        return False
+
+    # Step 3: Decompose representative graph with density, confidence, and cannot-link guardrails
     rep_groups: list[list[str]] = []
     for comp in nx.connected_components(rep_G):
         if len(comp) < 2:
@@ -252,14 +273,15 @@ def build_groups(
                     if len(exact_clusters[u]) >= 2:
                         rep_groups.append([u])
                 continue
+            nodes_sorted = sorted(list(curr_sub.nodes()))
             if n == 2:
-                u, v = list(curr_sub.nodes())
+                u, v = nodes_sorted
                 edge_d = curr_sub[u][v]
                 conf = edge_d.get("confidence", 0)
-                if conf >= 45.0:
-                    rep_groups.append(sorted([u, v]))
+                if conf >= 45.0 and not _has_rejected_pair(nodes_sorted):
+                    rep_groups.append(nodes_sorted)
                 else:
-                    for w in [u, v]:
+                    for w in nodes_sorted:
                         if len(exact_clusters[w]) >= 2:
                             rep_groups.append([w])
                 continue
@@ -270,16 +292,15 @@ def build_groups(
             edges = list(curr_sub.edges(data=True))
             min_edge = min(edges, key=lambda x: x[2].get("confidence", 0))
 
-            # Dense duplicate cluster check (protects against transitive chaining across distinct products)
+            # Dense duplicate cluster check + strict cannot-link enforcement
             min_conf = min_edge[2].get("confidence", 0)
-            avg_deg = (2.0 * e) / n if n > 0 else 0
             dense_enough = (
-                (n == 3 and density >= 0.65 and min_conf >= 45.0)
-                or (4 <= n <= 30 and density >= 0.40 and min_conf >= 45.0)
-                or (n > 30 and (density >= 0.25 or avg_deg >= 12.0) and min_conf >= 45.0)
+                not _has_rejected_pair(nodes_sorted)
+                and min_conf >= 45.0
+                and ((n == 3 and density >= 0.65) or (n >= 4 and density >= 0.70))
             )
             if dense_enough:
-                rep_groups.append(sorted(list(curr_sub.nodes())))
+                rep_groups.append(nodes_sorted)
             else:
                 curr_sub.remove_edge(min_edge[0], min_edge[1])
                 for split_comp in nx.connected_components(curr_sub):

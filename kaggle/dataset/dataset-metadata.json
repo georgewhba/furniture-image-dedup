@@ -1,0 +1,8 @@
+{
+  "title": "Furniture Image Dedup - Source Code",
+  "id": "djnd27/furniture-image-dedup-code",
+  "subtitle": "6-stage duplicate detector for furniture product images with a color gate",
+  "description": "Source code of **furniture-image-dedup** (https://github.com/georgewhba/furniture-image-dedup).\n\nA production-grade tool that detects duplicate product images in a furniture e-commerce catalog using a six-stage funnel:\n\n1. Exact hash (SHA-256)\n2. Perceptual hash (pHash + dHash)\n3. CLIP ViT-B/32 embeddings + FAISS nearest-neighbour search\n4. **Mandatory color-verification gate** (rembg background removal + K-means palette + CIE-Lab distance with Hungarian matching) to reject same-shape / different-color products\n5. Union-find grouping + confidence scoring\n6. Excel / CSV report\n\nThe tool never deletes or modifies images; it only produces a report for human review.\n\nUse it from a notebook: add this dataset as input, unzip / copy `furniture-image-dedup` to `/kaggle/working`, add it to `sys.path`, then call `src.pipeline.run(...)`.",
+  "licenses": [{ "name": "MIT" }],
+  "keywords": ["computer vision", "image", "clustering"]
+}

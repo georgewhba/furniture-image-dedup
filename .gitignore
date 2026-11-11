@@ -67,3 +67,6 @@ models/
 Thumbs.db
 [Dd]esktop.ini
 .DS_Store
+
+# Kaggle build artifacts
+kaggle/dataset/build/

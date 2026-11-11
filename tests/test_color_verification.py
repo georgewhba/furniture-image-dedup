@@ -314,3 +314,32 @@ class TestVerifyColorMatch:
 
         assert len(result.palette_a) > 0
         assert len(result.palette_b) > 0
+
+    def test_spatial_recolor_catches_static_variant_but_allows_shifted_angle(self) -> None:
+        """Spatial check should catch localized scene recolor even under 4% crop,
+        but skip false penalties when parallax shifts the background angle."""
+        from src.color_verification import _spatial_recolor_distance
+
+        base = np.full((160, 160, 3), [225, 218, 208], dtype=np.uint8)
+        base[95:, :] = [190, 172, 148]  # beige floor/rug
+
+        # Same shot, product centered (30% of scene) in warm mustard vs cool navy
+        shot_a = base.copy()
+        shot_a[60:130, 35:125] = [210, 145, 30]
+        shot_b = base.copy()
+        shot_b[60:130, 35:125] = [25, 45, 110]
+
+        img_a = Image.fromarray(shot_a)
+        img_b = Image.fromarray(shot_b)
+        assert _spatial_recolor_distance(img_a, img_b) > 25.0
+
+        # Shifted parallax (different room wall lighting + sofa shifted left with same mustard)
+        shifted_a = np.full((160, 160, 3), [235, 228, 218], dtype=np.uint8)
+        shifted_a[:, 95:] = [140, 135, 128]  # window/shadow region
+        shifted_a[75:145, 55:145] = [210, 145, 30]
+        shifted_b = np.full((160, 160, 3), [200, 192, 182], dtype=np.uint8)
+        shifted_b[:, :55] = [150, 140, 130]  # opposite wall shadow
+        shifted_b[75:145, 15:105] = [210, 145, 30]
+        assert (
+            _spatial_recolor_distance(Image.fromarray(shifted_a), Image.fromarray(shifted_b)) == 0.0
+        )

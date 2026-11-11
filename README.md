@@ -1,15 +1,46 @@
+---
+title: Furniture Duplicate Detection AI
+emoji: 🪑
+colorFrom: blue
+colorTo: teal
+sdk: docker
+app_port: 7860
+pinned: true
+short_description: 6-stage CLIP + FAISS + CIE-Lab EMD duplicate furniture image detector
+---
+
 # Furniture Product-Image Duplicate Detection System
 
-A production-grade tool that detects duplicate product images in a furniture e-commerce catalog. It finds exact copies, near-duplicates (cropped/recompressed/watermarked), and re-shot products — with a **mandatory color-verification gate** to prevent false positives from same-shape-different-color products.
+A production-grade computer-vision pipeline that detects duplicate product images in furniture e-commerce catalogs. It identifies exact byte copies, near-duplicates (cropped, resized, recompressed, watermarked), and cross-angle/re-shot product photos — guarded by a **mandatory color-verification gate (CIE-Lab + Earth Mover's Distance + spatial recolor detection)** to prevent false positives on same-shape, different-color SKUs.
 
-**The tool never deletes, moves, or modifies any source image.** Its only output is a report (.xlsx + .csv) listing duplicate groups for human review.
+**The tool never deletes, moves, or modifies any source image.** Its output is a color-coded audit report (`.xlsx` + `.csv` + master inventory) for human review.
+
+---
+
+## Audited Multi-Dataset Benchmarks (Tesla T4 GPU)
+
+Reproducible on Kaggle: **[Interactive GPU Benchmark Notebook (v4)](https://www.kaggle.com/code/djnd27/furniture-duplicate-detection-ikea)**
+
+| Metric / Scenario | IKEA-FS (Baseline v1) | IKEA-FS (Upgraded v4) | RoyalOak Furniture (Upgraded v4) |
+|---|---|---|---|
+| **Catalog + Evaluation Scope** | 1,141 images (1,093 IKEA + 48 GT) | 1,141 images (1,093 IKEA + 48 GT) | 671 images (623 clean products + 48 GT) |
+| **Overall Ground-Truth Accuracy (48 pairs)** | 85.4% (41 / 48) | **95.8% (46 / 48)** | **100.0% (48 / 48)** |
+| **Exact Byte Copies (`exact`)** | 12 / 12 (100.0%) | **12 / 12 (100.0%)** | **12 / 12 (100.0%)** |
+| **4% Crop + Resize + JPEG q70** | 5 / 12 (41.7%) | **10 / 12 (83.3%)** | **12 / 12 (100.0%)** |
+| **Watermarked Copies** | 12 / 12 (100.0%) | **12 / 12 (100.0%)** | **12 / 12 (100.0%)** |
+| **Recolored Color-Variant Traps Blocked** | 12 / 12 GT (merged catalog colors) | **12 / 12 GT + 100% color split** | **12 / 12 GT + 98.6% category purity** |
+| **Runtime (Tesla T4)** | 643s (~10.7 min) | 620.9s (~10.3 min) | 103.6s (~1.7 min) |
+
+> **Data Audit Finding on `patilaakash619/royaloak`:** Raw scraped folders contained **678 website mega-menu banners** `(425×210)` repeated up to 74 times across categories; filtering banner dimensions isolated 623 true `(480×300)` furniture catalog photographs before evaluation.
 
 ---
 
 ## Table of Contents
 
 - [Overview](#overview)
-- [Streamlit Web Application](#streamlit-web-application)
+- [Interactive Web Application & Built-in Demo](#interactive-web-application--built-in-demo)
+- [Deploying to Hugging Face Spaces (Recommended)](#deploying-to-hugging-face-spaces-recommended)
+- [Running on Kaggle (free GPU)](#running-on-kaggle-free-gpu)
 - [One-Click Runners](#one-click-runners)
 - [Setup](#setup)
 - [CLI Usage](#cli-usage)
@@ -26,34 +57,50 @@ A production-grade tool that detects duplicate product images in a furniture e-c
 ## Overview
 
 ### What it does
-- Scans a folder of product images (recursively)
-- Groups images that show the **same physical product, in the same color**
-- Assigns each group a confidence score (0–100) and match-type label
-- Outputs an Excel + CSV report sorted by confidence for easy review
+- Scans a folder of product images recursively (read-only)
+- Groups images showing the **same physical product in the same color** across 3 tiers (`exact`, `near_exact`, `embedding_color_verified`)
+- Enforces **cannot-link constraints** during quotient-graph clustering to stop transitive chaining between different colorways
+- Outputs `.xlsx`, `.csv`, master all-images inventory, and `_telemetry.json` audit metrics
 
 ### What it doesn't do
-- ❌ Never deletes, moves, or renames any image
-- ❌ Never modifies source files
-- ❌ Never needs write access to the image folder
-- ❌ Never calls two images "duplicates" if they show different colors — even if the shape is identical
+- Never deletes, moves, or renames any image
+- Never modifies source files
+- Never merges two different-color SKUs — even when CLIP structural similarity exceeds 95%
 
 ---
 
-## Streamlit Web Application
+## Interactive Web Application & Built-in Demo
 
-The project includes an interactive web interface with Arabic RTL support, side-by-side visual inspection, and instant Excel report downloads.
+The Streamlit web app (`streamlit_app.py`) supports **Bilingual English / Arabic RTL switching**, **1-click evaluation on a curated 13-image built-in catalog (`demo_catalog/`)**, live Color Gate rejection cards showing blocked false-positive pairs side-by-side, ZIP/Google Drive/Direct URL/Kaggle imports, and instant Excel downloads.
 
 ### Running locally
 ```bash
 streamlit run streamlit_app.py
 ```
-Or simply double-click `تشغيل_واجهة_الويب_Streamlit.bat`.
+Or on Windows, double-click `تشغيل_واجهة_الويب_Streamlit.bat`.
 
-### Deploying to Streamlit Cloud / Hugging Face Spaces
-1. Push this repository to your GitHub account (Private or Public).
-2. Connect to [share.streamlit.io](https://share.streamlit.io).
-3. Select this repository and set main file path to `streamlit_app.py` or `app.py`.
-4. Deploy! Users can upload `.zip` archives of product images or specify folders.
+## Deploying to Hugging Face Spaces (Recommended)
+
+This repository includes a production `Dockerfile` configured for Hugging Face Spaces (`16 GB RAM`, `sdk: docker`, port `7860`) that pre-bakes OpenCLIP `ViT-B/32` and `rembg (u2netp)` weights during container build for zero cold-start wait:
+
+1. Create a new Space on [huggingface.co/new-space](https://huggingface.co/new-space) selecting **Docker** SDK.
+2. Push or link this repository (`main` branch). The YAML header at the top of `README.md` configures the Space automatically.
+3. Alternatively, connect to [share.streamlit.io](https://share.streamlit.io) with `streamlit_app.py` (for smaller batches).
+
+---
+
+## Running on Kaggle (free GPU)
+
+- **Notebook:** https://www.kaggle.com/code/djnd27/furniture-duplicate-detection-ikea — runs the full pipeline on the [IKEA-FS](https://www.kaggle.com/datasets/brikwerk/ikeafs) dataset (1,092 images, 46 products) plus injected ground-truth cases (exact copy, crop/recompress, watermark, recolored variant) and reports accuracy.
+- **Source-code dataset:** https://www.kaggle.com/datasets/djnd27/furniture-image-dedup-code
+
+To publish updates:
+```bash
+python kaggle/build_code_dataset.py
+kaggle datasets version -p kaggle/dataset/build -m "update code"
+python kaggle/notebook/build_notebook.py
+kaggle kernels push -p kaggle/notebook
+```
 
 ---
 
@@ -157,47 +204,48 @@ Every tunable threshold lives in `config.yaml`. Nothing is hardcoded.
 
 | Parameter | Default | What it controls |
 |-----------|---------|-----------------|
-| `phash_threshold` | 10 | Max Hamming distance for perceptual match. Lower = stricter. |
-| `similarity_threshold` | 0.85 | Min cosine similarity for embedding match. Higher = stricter. |
-| `color_distance_threshold` | 25.0 | Max Lab-space color distance. Lower = stricter. **This is the most important threshold.** |
-| `use_background_removal` | true | Isolate product before color extraction. Strongly recommended. |
+| `phash_threshold` | 8 | Max Hamming distance for perceptual match (plus crop4 hash). Lower = stricter. |
+| `dhash_threshold` | 6 | Max dHash Hamming distance. |
+| `similarity_threshold` | 0.925 | Min cosine similarity for CLIP embedding match. Higher = stricter. |
+| `color_distance_threshold` | 16.5 | Max Lab-space EMD / spatial distance. Lower = stricter. **Most important guardrail.** |
+| `use_background_removal` | true | Isolate product with `rembg (u2netp)` before color extraction. |
 | `color_n_clusters` | 5 | K-means clusters for dominant color palette. |
 
 ### Tuning Guide
 
-- **Too many false positives (different colors flagged)?** → Lower `color_distance_threshold` (e.g., 15–20).
-- **Too many false negatives (same product missed)?** → Lower `similarity_threshold` (e.g., 0.80) or raise `phash_threshold` (e.g., 12).
-- **Pipeline too slow?** → Increase `embedding_batch_size` (if GPU available), decrease `faiss_nprobe`, or decrease `similarity_k`.
+- **Too many false positives (different colors flagged)?** → Lower `color_distance_threshold` (e.g., 12–15).
+- **Too many false negatives (same product missed)?** → Lower `similarity_threshold` (e.g., 0.88) or raise `phash_threshold` (e.g., 10).
+- **Pipeline too slow?** → Increase `embedding_batch_size` (if GPU available), or disable background removal only on clean studio cutouts.
 
 ---
 
 ## Architecture — The Six-Stage Pipeline
 
 ```
-Input Folder → Stage 1 → Stage 2 → Stage 3 → Stage 4 → Stage 5 → Stage 6
-               Exact      Percep.   CLIP +    Color     Group +   Report
-               Hash       Hash      FAISS     Gate ⚠️    Score
+Input Folder → Stage 1 → Stage 2       → Stage 3     → Stage 4        → Stage 5         → Stage 6
+               SHA-256   Crop-Trimmed     CLIP +        Color Gate       Quotient-Graph    Report +
+               Exact     pHash + dHash    FAISS         (EMD + Spatial)  + Cannot-Link     Inventory
 ```
 
-Each stage only processes images **not already matched** by earlier stages (funnel optimization).
+Each stage applies strict precision guardrails while preserving full candidate graph connectivity:
 
 ### Stage 1 — Exact Hash (SHA-256)
-Computes a cryptographic hash over raw file bytes. Two files with the same hash are byte-identical. Confidence: 100%. The cheapest and fastest check.
+Computes a cryptographic hash over raw file bytes. Two files with the same hash are byte-identical (confidence: 100%).
 
-### Stage 2 — Perceptual Hash (pHash + dHash)
-Computes perceptual hashes and compares by Hamming distance. Catches the same image after cropping, recompression, or watermarking. Both pHash *and* dHash must be within threshold (dual-hash check reduces false positives).
+### Stage 2 — Crop-Aware Perceptual Hash (pHash + dHash)
+Computes full-frame and 4%-border-cropped pHash/dHash plus trimmed-foreground aspect-ratio verification. Loose hash matches (`distance > 2`) are deferred to Stage 3/4 CLIP semantic verification to prevent white-backdrop silhouette collisions.
 
 ### Stage 3 — CLIP Embeddings + FAISS
-Extracts a semantic embedding per image using a pretrained CLIP model. Builds a FAISS nearest-neighbor index for efficient similarity search. Catches "same product, different angle/background/lighting" — but also catches "same shape, different color," which is exactly why Stage 4 exists.
+Extracts semantic embeddings using OpenCLIP `ViT-B/32` (`laion2b_s34b_b79k`) and builds a FAISS inner-product index (`IndexFlatIP` / `IndexIVFFlat` with explicit `METRIC_INNER_PRODUCT`). Catches re-shot angles and lighting shifts — while Stage 4 guards against different colorways.
 
-### Stage 4 — Color Verification Gate (MANDATORY)
-**Every single candidate from Stage 3 must pass this gate.** No exceptions, no bypass. See [How Color Verification Works](#how-color-verification-works) for details.
+### Stage 4 — Mandatory Color Verification Gate
+**Every candidate from Stage 2 (strict) and Stage 3 MUST pass this gate.** Uses `rembg (u2netp)` product isolation, CIE-Lab K-means palettes, **Earth Mover's Distance (Wasserstein-1 optimal transport via `scipy.optimize.linprog`)**, and a crop-safe `16×16` Lab spatial recolor check for lifestyle room scenes.
 
-### Stage 5 — Grouping + Confidence Scoring
-Uses a union-find (disjoint-set) data structure to merge all confirmed pairwise matches into groups. Assigns each group the highest confidence and strongest match type from its constituent matches.
+### Stage 5 — Quotient-Graph Clustering & Cannot-Link Constraints
+Collapses exact equivalence classes into canonical nodes, enforces pairwise **cannot-link constraints** from Stage 2/4 Color Gate rejections to stop transitive chaining (`Navy ↔ Grey ↔ Green`), and verifies cluster density (`>= 0.70`) before assigning final group scores.
 
 ### Stage 6 — Report Generation
-Outputs both `.xlsx` and `.csv` reports, sorted by confidence descending.
+Outputs sorted `.xlsx` + `.csv` duplicate reports, master inventory of all scanned images, and `_telemetry.json` audit metrics.
 
 ---
 
@@ -219,9 +267,9 @@ After the AI finds candidate pairs, every single one passes through a color veri
 
 2. **Color extraction**: The pixel colors of the isolated product are clustered into 5 dominant color groups using K-means. This produces a "color palette" — e.g., "60% beige, 20% brown, 15% cream, 5% dark brown" for a beige sofa.
 
-3. **Color comparison in Lab space**: The two palettes are compared in CIE Lab color space — a color system specifically designed so that "perceptual difference" corresponds to mathematical distance. Unlike RGB (where a warm-lit beige and cool-lit beige look very different), Lab handles lighting variation naturally. The optimal matching between palettes uses the Hungarian algorithm.
+3. **Color comparison in Lab space**: The two palettes are compared in CIE Lab color space using both Hungarian matching and **Earth Mover's Distance (Wasserstein-1 optimal transport via `scipy.optimize.linprog`)**, combined with a crop-safe **16×16 spatial recolor detector** to catch localized product recoloring inside identical lifestyle room scenes.
 
-4. **Gate decision**: If the color distance exceeds the threshold (default: 25.0), the match is **rejected outright**, regardless of how high the AI similarity score was. The rejection is logged with both scores for auditability.
+4. **Gate decision**: If the combined color distance exceeds the threshold (default: `16.5`, calibrated on IKEA-FS and RoyalOak), the match is **rejected outright**, regardless of how high the AI similarity score was, and logged as a **cannot-link constraint** so Stage 5 cannot bridge different colors through a third image.
 
 ### Why This Works
 

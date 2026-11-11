@@ -141,6 +141,16 @@ class TestBuildGroups:
         ids = [g.group_id for g in groups]
         assert ids == [1, 2, 3]
 
+    def test_rejected_pair_prevents_transitive_chaining(self) -> None:
+        """If (a, c) was rejected by the color gate, {a, b, c} cannot merge into one group."""
+        matches = [
+            PairMatch("a.png", "b.png", confidence=90, match_type="near_exact"),
+            PairMatch("b.png", "c.png", confidence=85, match_type="near_exact"),
+        ]
+        groups = build_groups(matches, rejected_pairs={("a.png", "c.png")})
+        for g in groups:
+            assert not ("a.png" in g.members and "c.png" in g.members)
+
 
 # ---------------------------------------------------------------------------
 # compute_embedding_confidence

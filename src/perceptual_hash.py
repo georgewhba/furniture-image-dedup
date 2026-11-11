@@ -13,17 +13,51 @@ import logging
 from dataclasses import dataclass
 
 import imagehash
+import numpy as np
 from PIL import Image
 
 logger = logging.getLogger(__name__)
 
 
+def trim_uniform_background(image: Image.Image) -> Image.Image:
+    """Crop uniform studio borders (e.g. white/neutral backdrop) around the product.
+
+    If the four image borders are not uniform (such as in a full room scene),
+    returns the original image unchanged.
+    """
+    rgb = np.array(image.convert("RGB"), dtype=np.int16)
+    h, w, _ = rgb.shape
+    if h < 32 or w < 32:
+        return image
+    border = np.concatenate([rgb[0, :], rgb[-1, :], rgb[:, 0], rgb[:, -1]], axis=0)
+    bg_med = np.median(border, axis=0)
+    border_diff = np.max(np.abs(border - bg_med), axis=1)
+    if float(np.percentile(border_diff, 80)) > 18.0:
+        return image
+    fg_mask = np.max(np.abs(rgb - bg_med), axis=2) > 30
+    ys, xs = np.where(fg_mask)
+    if len(xs) < 50:
+        return image
+    x0, y0, x1, y1 = int(xs.min()), int(ys.min()), int(xs.max()) + 1, int(ys.max()) + 1
+    if (x1 - x0) < 16 or (y1 - y0) < 16:
+        return image
+    pad_x = max(2, int(w * 0.04))
+    pad_y = max(2, int(h * 0.04))
+    x0 = max(0, x0 - pad_x)
+    y0 = max(0, y0 - pad_y)
+    x1 = min(w, x1 + pad_x)
+    y1 = min(h, y1 + pad_y)
+    return image.crop((x0, y0, x1, y1))
+
+
 @dataclass(frozen=True)
 class HashPair:
-    """Stores both perceptual and difference hashes for a single image."""
+    """Stores perceptual and difference hashes (plus 4% border-crop hashes) for an image."""
 
     phash: imagehash.ImageHash
     dhash: imagehash.ImageHash
+    phash_crop4: imagehash.ImageHash | None = None
+    dhash_crop4: imagehash.ImageHash | None = None
 
 
 def compute_phash(image: Image.Image, hash_size: int = 8) -> imagehash.ImageHash:
@@ -53,17 +87,27 @@ def compute_dhash(image: Image.Image, hash_size: int = 8) -> imagehash.ImageHash
 
 
 def compute_hashes(image: Image.Image) -> HashPair:
-    """Compute both pHash and dHash for an image.
+    """Compute full-image and 4%-border-cropped pHash and dHash for an image.
 
     Args:
         image: A PIL Image.
 
     Returns:
-        A :class:`HashPair` containing both hashes.
+        A :class:`HashPair` containing both full and crop4 hashes.
     """
+    w, h = image.size
+    if w >= 25 and h >= 25:
+        c4 = image.crop((int(w * 0.04), int(h * 0.04), int(w * 0.96), int(h * 0.96)))
+        pc4 = compute_phash(c4)
+        dc4 = compute_dhash(c4)
+    else:
+        pc4 = None
+        dc4 = None
     return HashPair(
         phash=compute_phash(image),
         dhash=compute_dhash(image),
+        phash_crop4=pc4,
+        dhash_crop4=dc4,
     )
 
 
@@ -92,8 +136,8 @@ def are_near_duplicates(
     """Check whether two images are near-duplicates by perceptual hash.
 
     Both pHash *and* dHash distances must be within their respective
-    thresholds for the pair to be considered a near-duplicate.  This
-    dual-hash check reduces false positives compared to a single hash.
+    thresholds for the pair to be considered a near-duplicate.  Also checks
+    asymmetric 4% border-crop hashes at a strict <= 2 bit threshold.
 
     Args:
         pair_a: Hashes for the first image.
@@ -106,6 +150,16 @@ def are_near_duplicates(
     """
     p_dist = int(hamming_distance(pair_a.phash, pair_b.phash))
     d_dist = int(hamming_distance(pair_a.dhash, pair_b.dhash))
+    if pair_a.phash_crop4 is not None and pair_a.dhash_crop4 is not None:
+        cp = int(hamming_distance(pair_a.phash_crop4, pair_b.phash))
+        cd = int(hamming_distance(pair_a.dhash_crop4, pair_b.dhash))
+        if cp <= 2 and cd <= 2 and (cp + cd) < (p_dist + d_dist):
+            p_dist, d_dist = cp, cd
+    if pair_b.phash_crop4 is not None and pair_b.dhash_crop4 is not None:
+        cp = int(hamming_distance(pair_a.phash, pair_b.phash_crop4))
+        cd = int(hamming_distance(pair_a.dhash, pair_b.dhash_crop4))
+        if cp <= 2 and cd <= 2 and (cp + cd) < (p_dist + d_dist):
+            p_dist, d_dist = cp, cd
     is_match = bool(p_dist <= phash_threshold and d_dist <= dhash_threshold)
     return is_match, p_dist, d_dist
 
@@ -186,6 +240,7 @@ def find_near_duplicates(
         # FAISS IndexBinaryFlat.range_search uses strict inequality (dist < radius).
         # To include distances <= phash_threshold, radius must be phash_threshold + 1.
         lims, D, I = index.range_search(xb, phash_threshold + 1)
+        pair_best: dict[tuple[int, int], tuple[int, int]] = {}
         for i in range(n):
             for k in range(int(lims[i]), int(lims[i + 1])):
                 j = int(I[k])
@@ -193,16 +248,45 @@ def find_near_duplicates(
                     p_dist = int(D[k])
                     d_dist = (d_ints[i] ^ d_ints[j]).bit_count()
                     if d_dist <= dhash_threshold:
-                        conf = compute_confidence(p_dist, d_dist, confidence_base, confidence_decay)
-                        matches.append(
-                            {
-                                "pair": (paths[i], paths[j]),
-                                "confidence": conf,
-                                "match_type": "near_exact",
-                                "phash_distance": p_dist,
-                                "dhash_distance": d_dist,
-                            }
-                        )
+                        pair_best[(i, j)] = (p_dist, d_dist)
+
+        # Also check 4% border-cropped hashes against full hashes at strict <= 2 threshold
+        crop_indices = []
+        crop_p_bytes = []
+        crop_d_ints = []
+        for idx_i, p in enumerate(paths):
+            hp = hash_pairs[p]
+            if hp.phash_crop4 is not None and hp.dhash_crop4 is not None:
+                crop_indices.append(idx_i)
+                crop_p_bytes.append(np.packbits(hp.phash_crop4.hash.flatten()))
+                crop_d_ints.append(int(str(hp.dhash_crop4), 16))
+        if crop_p_bytes:
+            xq_crop = np.stack(crop_p_bytes)
+            c_lims, c_D, c_I = index.range_search(xq_crop, 3)
+            for ci, i in enumerate(crop_indices):
+                for k in range(int(c_lims[ci]), int(c_lims[ci + 1])):
+                    j = int(c_I[k])
+                    if i == j:
+                        continue
+                    p_dist = int(c_D[k])
+                    d_dist = (crop_d_ints[ci] ^ d_ints[j]).bit_count()
+                    if p_dist <= 2 and d_dist <= 2:
+                        u, v = (i, j) if i < j else (j, i)
+                        prev = pair_best.get((u, v))
+                        if prev is None or (p_dist + d_dist) < (prev[0] + prev[1]):
+                            pair_best[(u, v)] = (p_dist, d_dist)
+
+        for (i, j), (p_dist, d_dist) in sorted(pair_best.items()):
+            conf = compute_confidence(p_dist, d_dist, confidence_base, confidence_decay)
+            matches.append(
+                {
+                    "pair": (paths[i], paths[j]),
+                    "confidence": conf,
+                    "match_type": "near_exact",
+                    "phash_distance": p_dist,
+                    "dhash_distance": d_dist,
+                }
+            )
     except Exception as exc:
         logger.warning("FAISS binary search failed, using pairwise fallback: %s", exc)
         for i in range(n):

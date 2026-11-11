@@ -17,6 +17,7 @@ Index type rationale
 
 from __future__ import annotations
 
+import functools
 import logging
 import os
 from pathlib import Path
@@ -47,6 +48,28 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 
 
+@functools.lru_cache(maxsize=2)
+def _load_clip_model_cached(model_name: str, pretrained: str, device: str):
+    """Load and cache the OpenCLIP model and preprocessing transforms."""
+    import open_clip  # lazy — heavy import
+
+    local_model = Path(__file__).resolve().parent.parent / "models" / "open_clip_model.safetensors"
+    if local_model.is_file():
+        arch = "ViT-B-32-quickgelu" if "quickgelu" not in model_name else model_name
+        model, _, preprocess = open_clip.create_model_and_transforms(
+            arch, pretrained=str(local_model)
+        )
+        logger.info("Loaded local CLIP model weights from %s on %s", local_model, device)
+    else:
+        model, _, preprocess = open_clip.create_model_and_transforms(
+            model_name, pretrained=pretrained
+        )
+        logger.info("CLIP model loaded: %s / %s on %s", model_name, pretrained, device)
+
+    model = model.to(device).eval()
+    return model, preprocess
+
+
 class EmbeddingExtractor:
     """Wraps an open_clip CLIP model for batched image embedding extraction.
 
@@ -62,8 +85,6 @@ class EmbeddingExtractor:
         pretrained: str = "laion2b_s34b_b79k",
         device: str | None = None,
     ) -> None:
-        import open_clip  # lazy — heavy import
-
         if torch is None:
             raise ImportError(
                 "PyTorch is required for embedding extraction. Install with: pip install torch"
@@ -75,22 +96,7 @@ class EmbeddingExtractor:
             torch.set_num_threads(num_threads)
             logger.info("Configured PyTorch CPU with %d threads", num_threads)
 
-        local_model = (
-            Path(__file__).resolve().parent.parent / "models" / "open_clip_model.safetensors"
-        )
-        if local_model.is_file():
-            arch = "ViT-B-32-quickgelu" if "quickgelu" not in model_name else model_name
-            self.model, _, self.preprocess = open_clip.create_model_and_transforms(
-                arch, pretrained=str(local_model)
-            )
-            logger.info("Loaded local CLIP model weights from %s on %s", local_model, self.device)
-        else:
-            self.model, _, self.preprocess = open_clip.create_model_and_transforms(
-                model_name, pretrained=pretrained
-            )
-            logger.info("CLIP model loaded: %s / %s on %s", model_name, pretrained, self.device)
-
-        self.model = self.model.to(self.device).eval()
+        self.model, self.preprocess = _load_clip_model_cached(model_name, pretrained, self.device)
         self._dim: int | None = None
 
     @property
@@ -219,7 +225,7 @@ class FaissIndex:
                 n,
             )
             quantizer = faiss.IndexFlatIP(d)
-            self._index = faiss.IndexIVFFlat(quantizer, d, actual_nlist)
+            self._index = faiss.IndexIVFFlat(quantizer, d, actual_nlist, faiss.METRIC_INNER_PRODUCT)
             self._index.nprobe = self.nprobe
             self._index.train(embeddings)
 

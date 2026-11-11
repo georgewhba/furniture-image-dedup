@@ -1,0 +1,16 @@
+{
+  "id": "djnd27/furniture-duplicate-detection-ikea",
+  "title": "Furniture Duplicate Detection IKEA",
+  "code_file": "furniture-duplicate-detection-ikea.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "dataset_sources": ["djnd27/furniture-image-dedup-code", "brikwerk/ikeafs", "patilaakash619/royaloak"],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}
+

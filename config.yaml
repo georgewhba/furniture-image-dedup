@@ -27,13 +27,13 @@ embedding_model: ViT-B-32       # open_clip model architecture.
 embedding_pretrained: laion2b_s34b_b79k  # Pretrained weights for the model.
 embedding_batch_size: 64         # Images per batch during extraction.
 embedding_dimension: 512         # Output dimension for ViT-B-32.
-similarity_threshold: 0.930     # Cosine similarity threshold for >= 98% precision and recall.
+similarity_threshold: 0.925     # Cosine similarity threshold; Stage 4 Color Gate protects precision.
                                  # Color Gate protects against false positives.
 
 faiss_nlist: 100                 # Number of IVF clusters in the FAISS index.
 faiss_nprobe: 10                 # Number of clusters to visit per query.
 faiss_use_gpu: false             # Use FAISS GPU index if available.
-faiss_brute_force_threshold: 1000  # Below this image count, use brute-force.
+faiss_brute_force_threshold: 5000  # Below this image count, use brute-force IndexFlatIP.
 similarity_k: 50                 # Max neighbors to retrieve per query image (sufficient for all true product variations).
 
 # ---------------------------------------------------------------------------
@@ -57,9 +57,9 @@ color_space: lab                 # Color comparison space: "lab" or "hsv".
                                  # lighting changes. HSV is faster but less
                                  # accurate. Use "lab" unless you have a reason.
 
-color_distance_threshold: 33.0   # Max weighted Lab-space distance between two
-                                 # palettes for a color match. Range ~0–100+.
-                                 # Calibrated to accept natural perspective lighting while strictly rejecting color variants (which have distance >= 39.5).
+color_distance_threshold: 16.5   # Max weighted Lab-space EMD/scene-recolor distance
+                                 # between two palettes for a color match. Range ~0–100+.
+                                 # Calibrated on real catalog colors (IKEA-FS & RoyalOak).
 
 color_min_pixel_count: 100       # Minimum non-transparent pixels required
                                  # after background removal. Below this, skip

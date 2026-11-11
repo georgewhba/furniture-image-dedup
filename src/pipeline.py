@@ -17,10 +17,12 @@ for crash resilience.
 
 from __future__ import annotations
 
+import json
 import logging
 import time
+from collections.abc import Callable
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any
 
 import numpy as np
 from PIL import Image
@@ -36,7 +38,12 @@ from src.exact_hash import (
     compute_file_hash,
     find_exact_duplicates,
 )
-from src.perceptual_hash import HashPair, compute_hashes, find_near_duplicates
+from src.perceptual_hash import (
+    HashPair,
+    compute_hashes,
+    find_near_duplicates,
+    trim_uniform_background,
+)
 from src.report import generate_reports
 from src.scoring import DuplicateGroup, PairMatch, build_groups, compute_embedding_confidence
 
@@ -124,7 +131,9 @@ def run(
     sample_size: int | None = None,
     resume: bool = False,
     verbose: bool = False,
-    progress_callback: Any | None = None,
+    progress_callback: Callable[[str, float], None] | None = None,
+    telemetry_out: dict[str, Any] | None = None,
+    progress_lang: str = "ar",
 ) -> list[DuplicateGroup]:
     """Execute the full six-stage deduplication pipeline.
 
@@ -136,11 +145,18 @@ def run(
         sample_size: Process only the first N images (for quick tests).
         resume: If True, load cached results and process only new images.
         verbose: Enable debug-level logging.
+        progress_callback: Optional callback receiving ``(message, progress_0_to_1)``.
+        telemetry_out: Optional dict populated in place with stage counts and
+            Color Gate rejection details.
+        progress_lang: Language code (``"en"`` or ``"ar"``) for progress labels.
 
     Returns:
         List of :class:`DuplicateGroup` instances.
     """
     t_start = time.time()
+
+    def _tr(en: str, ar: str) -> str:
+        return en if progress_lang == "en" else ar
 
     if verbose:
         logging.getLogger().setLevel(logging.DEBUG)
@@ -162,7 +178,13 @@ def run(
 
     total_images = len(image_paths)
     if progress_callback:
-        progress_callback(f"تم اكتشاف {total_images:,} صورة مدعومة...", 0.05)
+        progress_callback(
+            _tr(
+                f"Discovered {total_images:,} valid product images...",
+                f"تم اكتشاف {total_images:,} صورة مدعومة...",
+            ),
+            0.05,
+        )
 
     # ------------------------------------------------------------------
     # Step 1: Cache + Content hashes
@@ -172,7 +194,13 @@ def run(
     logger.info("=" * 60)
 
     if progress_callback:
-        progress_callback(f"المرحلة 1/6: بدء فحص الهاش الدقيق لـ {total_images:,} صورة...", 0.08)
+        progress_callback(
+            _tr(
+                f"Stage 1/6: Running exact SHA-256 hash scan on {total_images:,} images...",
+                f"المرحلة 1/6: بدء فحص الهاش الدقيق لـ {total_images:,} صورة...",
+            ),
+            0.08,
+        )
 
     cache = ImageCache(cache_dir)
 
@@ -195,7 +223,13 @@ def run(
 
         if progress_callback and (idx % max(1, total_images // 20) == 0 or idx == total_images - 1):
             p_val = 0.08 + 0.06 * ((idx + 1) / total_images)
-            progress_callback(f"المرحلة 1/6: فحص بصمة الملفات — صورة {idx + 1:,} من {total_images:,}", p_val)
+            progress_callback(
+                _tr(
+                    f"Stage 1/6: File fingerprinting — image {idx + 1:,} of {total_images:,}",
+                    f"المرحلة 1/6: فحص بصمة الملفات — صورة {idx + 1:,} من {total_images:,}",
+                ),
+                p_val,
+            )
 
     logger.info("Cache: %d cached, %d new/changed", len(cached_files), len(new_files))
 
@@ -218,7 +252,13 @@ def run(
 
         if progress_callback and (idx % max(1, total_new // 20) == 0 or idx == total_new - 1):
             p_val = 0.14 + 0.06 * ((idx + 1) / total_new)
-            progress_callback(f"المرحلة 1/6: حساب الهاش الدقيق (SHA-256) — صورة {idx + 1:,} من {total_new:,}", p_val)
+            progress_callback(
+                _tr(
+                    f"Stage 1/6: Computing SHA-256 hashes — image {idx + 1:,} of {total_new:,}",
+                    f"المرحلة 1/6: حساب الهاش الدقيق (SHA-256) — صورة {idx + 1:,} من {total_new:,}",
+                ),
+                p_val,
+            )
 
     cache.flush()
 
@@ -296,7 +336,13 @@ def run(
 
         if progress_callback and (idx % max(1, total_p // 20) == 0 or idx == total_p - 1):
             p_val = 0.20 + 0.15 * ((idx + 1) / total_p)
-            progress_callback(f"المرحلة 2/6: حساب الهاش الإدراكي (pHash) — صورة {idx + 1:,} من {total_p:,}", p_val)
+            progress_callback(
+                _tr(
+                    f"Stage 2/6: Computing perceptual hashes (pHash/dHash) — {idx + 1:,}/{total_p:,}",
+                    f"المرحلة 2/6: حساب الهاش الإدراكي (pHash) — صورة {idx + 1:,} من {total_p:,}",
+                ),
+                p_val,
+            )
 
     cache.flush()
 
@@ -309,8 +355,20 @@ def run(
         confidence_decay=config.confidence_phash_decay,
     )
 
+    color_rejected_pairs: set[tuple[str, str]] = set()
+    rejected_details: list[dict[str, Any]] = []
+    stage2_matched_pairs: set[tuple[str, str]] = set()
+    deferred_phash_conf: dict[tuple[str, str], int] = {}
+
     for m in phash_matches:
         a, b = m["pair"]
+        pair_key = (a, b) if a < b else (b, a)
+        if m.get("phash_distance", 0) > 2 or m.get("dhash_distance", 0) > 2:
+            # Defer looser pHash matches to Stage 3/4 so CLIP semantic similarity
+            # filters out coarse 8x8 silhouette collisions before color verification.
+            deferred_phash_conf[pair_key] = m["confidence"]
+            continue
+
         img_a = _safe_open_image(Path(a))
         img_b = _safe_open_image(Path(b))
         if img_a is None or img_b is None:
@@ -320,10 +378,15 @@ def run(
                 img_b.close()
             continue
 
-        # Aspect ratio check (>15% diff => route to Stage 3)
-        ar_a = img_a.width / img_a.height
-        ar_b = img_b.width / img_b.height
-        ar_diff = abs(ar_a - ar_b) / max(ar_a, ar_b)
+        # Aspect ratio check on both full image and trimmed studio foreground (>15% diff => route to Stage 3)
+        trim_a = trim_uniform_background(img_a)
+        trim_b = trim_uniform_background(img_b)
+        ar_a, ar_b = img_a.width / img_a.height, img_b.width / img_b.height
+        tar_a, tar_b = trim_a.width / trim_a.height, trim_b.width / trim_b.height
+        ar_diff = max(
+            abs(ar_a - ar_b) / max(ar_a, ar_b),
+            abs(tar_a - tar_b) / max(tar_a, tar_b),
+        )
         if ar_diff > 0.15:
             logger.info(
                 "pHash pair %s ↔ %s aspect ratio diff %.1f%% > 15%% — skipping to Stage 3",
@@ -352,6 +415,19 @@ def run(
         img_b.close()
 
         if not color_res.passed:
+            color_rejected_pairs.add(pair_key)
+            rejected_details.append(
+                {
+                    "stage": "Stage 2 (pHash Color Gate)",
+                    "path_a": a,
+                    "path_b": b,
+                    "similarity": None,
+                    "phash_distance": m.get("phash_distance", 0),
+                    "color_distance": round(float(color_res.distance), 2),
+                    "threshold": float(config.color_distance_threshold),
+                    "reason": color_res.reason,
+                }
+            )
             logger.info(
                 "Color gate REJECTED pHash pair %s ↔ %s: distance=%.2f > threshold=%.2f — likely same shape, different color",
                 Path(a).name,
@@ -361,7 +437,7 @@ def run(
             )
             continue
 
-        redundant_files.add(b)
+        stage2_matched_pairs.add(pair_key)
         all_matches.append(
             PairMatch(
                 path_a=a,
@@ -407,9 +483,7 @@ def run(
             # Process in batches to avoid loading all images at once
             batch_size = config.embedding_batch_size
             total_batches = max(1, (len(to_embed) + batch_size - 1) // batch_size)
-            for b_idx, batch_start in enumerate(
-                range(0, len(to_embed), batch_size)
-            ):
+            for b_idx, batch_start in enumerate(range(0, len(to_embed), batch_size)):
                 batch_paths = to_embed[batch_start : batch_start + batch_size]
                 batch_images: list[Image.Image] = []
                 batch_valid_paths: list[str] = []
@@ -438,7 +512,10 @@ def run(
                     p_val = 0.35 + 0.30 * ((b_idx + 1) / total_batches)
                     cur_img_count = min(batch_start + batch_size, len(to_embed))
                     progress_callback(
-                        f"المرحلة 3/6: استخراج متجهات الذكاء الاصطناعي (CLIP) — صورة {cur_img_count:,} من {len(to_embed):,} (دفعة {b_idx + 1}/{total_batches})",
+                        _tr(
+                            f"Stage 3/6: Extracting CLIP ViT-B/32 embeddings — {cur_img_count:,}/{len(to_embed):,} (batch {b_idx + 1}/{total_batches})",
+                            f"المرحلة 3/6: استخراج متجهات الذكاء الاصطناعي (CLIP) — صورة {cur_img_count:,} من {len(to_embed):,} (دفعة {b_idx + 1}/{total_batches})",
+                        ),
                         p_val,
                     )
 
@@ -449,7 +526,13 @@ def run(
 
         # Build ordered arrays for FAISS
         if progress_callback:
-            progress_callback("المرحلة 3/6: البحث السريع عن المرشحين المتشابهين عبر FAISS...", 0.65)
+            progress_callback(
+                _tr(
+                    "Stage 3/6: Querying FAISS similarity index for shape candidates...",
+                    "المرحلة 3/6: البحث السريع عن المرشحين المتشابهين عبر FAISS...",
+                ),
+                0.65,
+            )
 
         ordered_paths = [f for f in ungrouped_for_embedding if f in embeddings_map]
         if len(ordered_paths) >= 2:
@@ -471,12 +554,36 @@ def run(
     rejected_candidates = 0
     total_cands = max(1, len(embedding_candidates))
 
-    for c_idx, cand in enumerate(tqdm(embedding_candidates, desc="Color verification", unit="pair")):
-        if progress_callback and (c_idx % max(1, total_cands // 20) == 0 or c_idx == total_cands - 1):
+    for c_idx, cand in enumerate(
+        tqdm(embedding_candidates, desc="Color verification", unit="pair")
+    ):
+        if progress_callback and (
+            c_idx % max(1, total_cands // 20) == 0 or c_idx == total_cands - 1
+        ):
             p_val = 0.66 + 0.22 * ((c_idx + 1) / total_cands)
-            progress_callback(f"المرحلة 4/6: التحقق اللوني الصارم (CIE-Lab) — زوج {c_idx + 1:,} من {total_cands:,}", p_val)
+            progress_callback(
+                _tr(
+                    f"Stage 4/6: Enforcing mandatory CIE-Lab Color Gate — pair {c_idx + 1:,}/{total_cands:,}",
+                    f"المرحلة 4/6: التحقق اللوني الصارم (CIE-Lab) — زوج {c_idx + 1:,} من {total_cands:,}",
+                ),
+                p_val,
+            )
 
         path_a, path_b = cand["pair"]
+        pair_key = (path_a, path_b) if path_a < path_b else (path_b, path_a)
+        if pair_key in stage2_matched_pairs:
+            continue
+        if pair_key in color_rejected_pairs:
+            rejected_candidates += 1
+            for entry in rejected_details:
+                ep = (
+                    (entry["path_a"], entry["path_b"])
+                    if entry["path_a"] < entry["path_b"]
+                    else (entry["path_b"], entry["path_a"])
+                )
+                if ep == pair_key and entry.get("similarity") is None:
+                    entry["similarity"] = round(float(cand["similarity"]), 4)
+            continue
         similarity = cand["similarity"]
 
         img_a = _safe_open_image(Path(path_a))
@@ -509,17 +616,34 @@ def run(
                     base=config.confidence_embedding_base,
                     distance_threshold=config.color_distance_threshold,
                 )
+                mtype = "embedding_color_verified"
+                if pair_key in deferred_phash_conf:
+                    mtype = "near_exact"
+                    conf = max(conf, deferred_phash_conf[pair_key])
                 all_matches.append(
                     PairMatch(
                         path_a=path_a,
                         path_b=path_b,
                         confidence=conf,
-                        match_type="embedding_color_verified",
+                        match_type=mtype,
                     )
                 )
                 passed_candidates += 1
             else:
+                color_rejected_pairs.add(pair_key)
                 rejected_candidates += 1
+                rejected_details.append(
+                    {
+                        "stage": "Stage 4 (CLIP + Color Gate)",
+                        "path_a": path_a,
+                        "path_b": path_b,
+                        "similarity": round(float(similarity), 4),
+                        "phash_distance": None,
+                        "color_distance": round(float(result.distance), 2),
+                        "threshold": float(config.color_distance_threshold),
+                        "reason": result.reason,
+                    }
+                )
         except Exception as exc:
             logger.warning("Color verification error: %s ↔ %s — %s", path_a, path_b, exc)
             rejected_candidates += 1
@@ -541,9 +665,15 @@ def run(
     logger.info("=" * 60)
 
     if progress_callback:
-        progress_callback("المرحلة 5/6: تجميع وتحليل المجموعات وحساب درجات الثقة...", 0.89)
+        progress_callback(
+            _tr(
+                "Stage 5/6: Quotient-graph clustering with cannot-link constraints...",
+                "المرحلة 5/6: تجميع وتحليل المجموعات وحساب درجات الثقة...",
+            ),
+            0.89,
+        )
 
-    groups = build_groups(all_matches)
+    groups = build_groups(all_matches, rejected_pairs=color_rejected_pairs)
 
     # ------------------------------------------------------------------
     # Step 6: Report generation
@@ -553,7 +683,13 @@ def run(
     logger.info("=" * 60)
 
     if progress_callback:
-        progress_callback("المرحلة 6/6: إنشاء وتنسيق تقارير Excel و CSV الاحترافية...", 0.94)
+        progress_callback(
+            _tr(
+                "Stage 6/6: Generating styled Excel & CSV audit reports...",
+                "المرحلة 6/6: إنشاء وتنسيق تقارير Excel و CSV الاحترافية...",
+            ),
+            0.94,
+        )
 
     runtime = time.time() - t_start
 
@@ -564,6 +700,27 @@ def run(
         runtime_seconds=runtime,
         all_image_paths=[str(p) for p in image_paths],
         content_hashes=file_content_hashes,
+    )
+
+    telemetry_payload: dict[str, Any] = {
+        "total_images": total_images,
+        "groups_found": len(groups),
+        "images_in_groups": sum(len(g.members) for g in groups),
+        "runtime_seconds": round(runtime, 2),
+        "stage1_exact_groups": len(exact_groups),
+        "stage1_exact_images": sum(len(g["members"]) for g in exact_groups),
+        "stage2_phash_candidates": len(phash_matches),
+        "stage2_matched": len(stage2_matched_pairs),
+        "stage3_clip_candidates": len(embedding_candidates),
+        "stage4_passed": passed_candidates,
+        "stage4_rejected": rejected_candidates,
+        "rejected_pairs": rejected_details[:50],
+    }
+    if telemetry_out is not None:
+        telemetry_out.update(telemetry_payload)
+    telemetry_path = output_path.with_name(f"{output_path.stem}_telemetry.json")
+    telemetry_path.write_text(
+        json.dumps(telemetry_payload, indent=2, ensure_ascii=False), encoding="utf-8"
     )
 
     # ------------------------------------------------------------------
@@ -589,7 +746,13 @@ def run(
     logger.info("Master Inventory CSV:         %s", inv_csv_path)
 
     if progress_callback:
-        progress_callback(f"🎉 اكتمل الفرز بنجاح! تم فحص {len(image_paths):,} صورة في {runtime:.1f} ثانية.", 1.0)
+        progress_callback(
+            _tr(
+                f"Done! Scanned {len(image_paths):,} images in {runtime:.1f}s.",
+                f"🎉 اكتمل الفرز بنجاح! تم فحص {len(image_paths):,} صورة في {runtime:.1f} ثانية.",
+            ),
+            1.0,
+        )
 
     cache.close()
     return groups

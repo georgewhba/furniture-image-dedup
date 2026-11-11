@@ -1,0 +1,16 @@
+.git
+.venv
+venv
+__pycache__
+*.pyc
+.pytest_cache
+.ruff_cache
+.dedup_cache
+outputs
+kaggle
+furniture_images
+furniture_seeds
+dataset_*
+sample_report.*
+*.log
+*.bat

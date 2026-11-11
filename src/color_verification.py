@@ -29,7 +29,7 @@ from dataclasses import dataclass
 
 import numpy as np
 from PIL import Image
-from scipy.optimize import linear_sum_assignment
+from scipy.optimize import linear_sum_assignment, linprog
 from sklearn.cluster import KMeans
 
 logger = logging.getLogger(__name__)
@@ -325,8 +325,89 @@ def compare_palettes(
         total_weight += w
 
     if total_weight > 0:
-        return weighted_dist / total_weight
-    return float(cost[row_idx, col_idx].mean())
+        hungarian_dist = weighted_dist / total_weight
+    else:
+        hungarian_dist = float(cost[row_idx, col_idx].mean())
+
+    # Also compute Earth Mover's Distance (Wasserstein-1 optimal transport)
+    # so a dominant cluster cannot match a tiny cluster without transporting
+    # the remaining color mass.
+    w_a_vec = np.array([c.weight for c in palette_a], dtype=np.float64)
+    w_b_vec = np.array([c.weight for c in palette_b], dtype=np.float64)
+    sum_a, sum_b = float(w_a_vec.sum()), float(w_b_vec.sum())
+    if sum_a > 0 and sum_b > 0:
+        w_a_vec /= sum_a
+        w_b_vec /= sum_b
+        pair_cost = cost[:n_a, :n_b]
+        a_eq = []
+        b_eq = []
+        for i in range(n_a):
+            row = np.zeros((n_a, n_b), dtype=np.float64)
+            row[i, :] = 1.0
+            a_eq.append(row.ravel())
+            b_eq.append(w_a_vec[i])
+        for j in range(n_b):
+            row = np.zeros((n_a, n_b), dtype=np.float64)
+            row[:, j] = 1.0
+            a_eq.append(row.ravel())
+            b_eq.append(w_b_vec[j])
+        try:
+            res = linprog(
+                pair_cost.ravel(),
+                A_eq=a_eq,
+                b_eq=b_eq,
+                bounds=(0, None),
+                method="highs",
+            )
+            if res.success:
+                return float(max(hungarian_dist, float(res.fun)))
+        except Exception:
+            pass
+
+    return float(hungarian_dist)
+
+
+def _spatial_recolor_distance(image_a: Image.Image, image_b: Image.Image) -> float:
+    """Detect localized product recoloring within an identical room/studio scene.
+
+    When two images share the same background scene (>= 50% of 16x16 spatial
+    patches within 6 Lab units under uncropped or 4%-cropped alignment) yet a
+    coherent object region (>= 12% of patches) shifts by > 15 Lab units
+    relative to the global median lighting shift, returns the 85th-percentile
+    residual Lab distance.
+    """
+    if min(image_a.size) < 32 or min(image_b.size) < 32:
+        return 0.0
+    a_rgb = image_a.convert("RGB")
+    b_rgb = image_b.convert("RGB")
+    wa, ha = a_rgb.size
+    wb, hb = b_rgb.size
+    la_0 = _rgb_to_lab(np.array(a_rgb.resize((16, 16), Image.Resampling.BOX)).reshape(-1, 3))
+    lb_0 = _rgb_to_lab(np.array(b_rgb.resize((16, 16), Image.Resampling.BOX)).reshape(-1, 3))
+
+    scores = []
+    for mode in ("none", "crop_a", "crop_b"):
+        if mode == "none":
+            la, lb = la_0, lb_0
+        elif mode == "crop_a":
+            ca = a_rgb.crop((int(wa * 0.04), int(ha * 0.04), int(wa * 0.96), int(ha * 0.96)))
+            la = _rgb_to_lab(np.array(ca.resize((16, 16), Image.Resampling.BOX)).reshape(-1, 3))
+            lb = lb_0
+        else:
+            cb = b_rgb.crop((int(wb * 0.04), int(hb * 0.04), int(wb * 0.96), int(hb * 0.96)))
+            la = la_0
+            lb = _rgb_to_lab(np.array(cb.resize((16, 16), Image.Resampling.BOX)).reshape(-1, 3))
+
+        diff_vec = la - lb
+        if float((np.linalg.norm(diff_vec, axis=1) < 6.0).mean()) < 0.50:
+            continue
+        med_shift = np.median(diff_vec, axis=0)
+        residual_de = np.linalg.norm(diff_vec - med_shift, axis=1)
+        if float((residual_de > 15.0).mean()) >= 0.12:
+            scores.append(float(np.percentile(residual_de, 85)))
+        else:
+            scores.append(0.0)
+    return min(scores) if scores else 0.0
 
 
 # ---------------------------------------------------------------------------
@@ -383,6 +464,8 @@ def _get_cached_palette(
         )
 
     if cache_key:
+        if len(_image_palette_cache) >= 4000:
+            _image_palette_cache.clear()
         _image_palette_cache[cache_key] = palette
     return palette
 
@@ -463,8 +546,10 @@ def verify_color_match(
             reason=reason,
         )
 
-    # Step 4–5: Compare palettes
+    # Step 4–5: Compare palettes (plus spatial scene-recolor check in Lab mode)
     distance = float(compare_palettes(palette_a, palette_b))
+    if color_space == "lab":
+        distance = max(distance, _spatial_recolor_distance(image_a, image_b))
 
     # Step 6: Gate decision
     passed = bool(distance <= distance_threshold)
